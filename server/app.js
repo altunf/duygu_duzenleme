@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
-import conn from "./db.js";
+import conn from "./config/db.js";
+import cors from "cors";
+import bodyParser from "body-parser";
 
 dotenv.config();
 
@@ -12,8 +14,8 @@ const PORT = process.env.PORT;
 
 //static files middleware
 app.use(express.static("public"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
 //routes
 
