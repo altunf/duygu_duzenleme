@@ -1,18 +1,20 @@
-import User from "../models/userModel.js";
-import bcrypt from "bcrypt";
+import { User } from "../models/userModel.js";
+import bcrypt from "bcryptjs";
 
 const registerController = async (req, res) => {
   try {
     const { username, password, email } = req.body;
-    const userCheck = await User.findOne(email);
+
+    const userCheck = await User.findOne({ email: "email" });
 
     if (userCheck) {
       return res.status(500).json({ msg: "kullanıcı mevcut" });
     }
 
     const passwordHash = await bcrypt.hash(password, 12);
-    const newUser = User.create({ username, email, password: passwordHash });
 
+    const newUser = User.create({ username, email, password: passwordHash });
+    console.log("first", userCheck);
     const token = await jwt.sign(
       { userId: newUser._id },
       process.env.JWT_SECRET,
@@ -49,4 +51,4 @@ const loginController = async (req, res) => {
   }
 };
 
-export default { registerController, loginController };
+export { registerController, loginController };
