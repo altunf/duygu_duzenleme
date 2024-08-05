@@ -1,10 +1,12 @@
 import React from "react";
-import { MyExcersizes } from "./my-excersizes";
+import { MyExercises } from "./my-exercises";
+import Link from "next/link";
 
 export const Sidebar = () => {
   return (
     <div>
-      <MyExcersizes />
+      <MyExercises />
+      <Link href={"/exercises"}>Exercises</Link>
     </div>
   );
 };
