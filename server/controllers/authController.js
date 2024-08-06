@@ -1,5 +1,6 @@
 import { User } from "../models/userModel.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const registerController = async (req, res) => {
   try {
@@ -36,15 +37,19 @@ const registerController = async (req, res) => {
 const loginController = async (req, res) => {
   try {
     const { username, password, email } = req.body;
-    const userCheck = await User.findOne(email);
+
+    const userCheck = await User.findOne({ email });
+
     if (!userCheck) {
-      return res.status(500).json({ msg: "kullanıcı bulunamadı" });
+      return res.status(404).json({ msg: "kullanıcı bulunamadı" });
     }
 
     const passwordCompare = await bcrypt.compare(password, userCheck.password);
+
     if (!passwordCompare) {
       return res.status(500).json({ msg: "Şifre Yanlış" });
     }
+
     const token = await jwt.sign(
       { userId: userCheck._id },
       process.env.JWT_SECRET,

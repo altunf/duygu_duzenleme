@@ -3,9 +3,9 @@ import React, { createContext, useContext, useState } from "react";
 const SidebarContext = createContext({});
 
 export const SidebarContextProvider = ({ children }: any) => {
-  const [sidebarItemTitle, setTitle] = useState([]);
+  const [sidebarItemTitle, setTitle] = useState("");
 
-  const values = {};
+  const values = { sidebarItemTitle, setTitle };
   return (
     <SidebarContext.Provider value={values}>{children}</SidebarContext.Provider>
   );

@@ -14,6 +14,9 @@ import {
 import { UserCog } from "lucide-react";
 
 export const MyAccount = () => {
+  const handleClick: any = () => {
+    localStorage.removeItem("token");
+  };
   return (
     <>
       <DropdownMenu>
@@ -29,7 +32,7 @@ export const MyAccount = () => {
           <DropdownMenuItem>Settings</DropdownMenuItem>
           <DropdownMenuItem>Support</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Logout</DropdownMenuItem>
+          <DropdownMenuItem onClick={handleClick}>Logout</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </>

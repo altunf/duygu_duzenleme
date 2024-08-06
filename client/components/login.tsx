@@ -11,6 +11,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState, ChangeEvent, FormEvent } from "react";
+import { redirect } from "next/navigation";
+
+import { useRouter } from "next/navigation";
 
 export function LoginForm() {
   const [loginData, setLoginData] = useState({
@@ -18,6 +21,7 @@ export function LoginForm() {
     password: "",
   });
 
+  const router = useRouter();
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
@@ -32,7 +36,8 @@ export function LoginForm() {
       body: JSON.stringify(loginData),
     });
     const data = await response.json();
-    console.log(data, "loginData");
+    localStorage.setItem("token", JSON.stringify(data));
+    router.push("/users");
   };
 
   return (
