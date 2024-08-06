@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 
 const registerController = async (req, res) => {
   try {
-    const { username, password, email } = req.body;
+    const { name, surname, username, password, email } = req.body;
 
     const userCheck = await User.findOne({ email: "email" });
 
@@ -13,7 +13,13 @@ const registerController = async (req, res) => {
 
     const passwordHash = await bcrypt.hash(password, 12);
 
-    const newUser = User.create({ username, email, password: passwordHash });
+    const newUser = User.create({
+      name,
+      surname,
+      username,
+      email,
+      password: passwordHash,
+    });
     console.log("first", userCheck);
     const token = await jwt.sign(
       { userId: newUser._id },
@@ -51,4 +57,13 @@ const loginController = async (req, res) => {
   }
 };
 
-export { registerController, loginController };
+const getAllUsersController = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching users", error });
+  }
+};
+
+export { registerController, loginController, getAllUsersController };

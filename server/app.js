@@ -1,8 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import conn from "./config/db.js";
-
-import bodyParser from "body-parser";
+import cors from "cors";
 
 import router from "./routes/authRoute.js";
 
@@ -15,12 +14,17 @@ const app = express();
 const PORT = process.env.PORT;
 
 //static files middleware
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Next.js uygulamanızın adresi
+    methods: ["GET", "POST"], // İzin verilen HTTP metotları
+    credentials: true,
+  })
+);
 app.use(express.static("public"));
-app.use(bodyParser.json({ limit: "30mb", extended: true }));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(express.json({ limit: "30mb", extended: true }));
 
 //routes
-
 app.use("/", router);
 
 app.listen(PORT, () => {

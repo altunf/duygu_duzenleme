@@ -1,31 +1,36 @@
 import mongoose from "mongoose";
-import validator from "validator";
 
 const { Schema } = mongoose;
 
 const userSchema = new Schema(
   {
+    name: {
+      type: String,
+      required: [true, "Name area is required"],
+      lowercase: true,
+      trim: true,
+    },
+    surname: {
+      type: String,
+      required: [true, "Surname area is required"],
+      lowercase: true,
+      trim: true,
+    },
     username: {
       type: String,
       required: [true, "Username area is required"],
       lowercase: true,
       trim: true,
-      validate: [validator.isAlphanumeric, "Only Alphanumeric characters"],
     },
     email: {
       type: String,
       required: [true, "Email area is required"],
       unique: true,
-      validate: [validator.isEmail, "Valid email is required"],
     },
     password: {
       type: String,
       required: [true, "Password area is required"],
       minLength: [4, "At least 4 characters"],
-    },
-    date: {
-      type: Date,
-      default: new Date(),
     },
   },
   {
