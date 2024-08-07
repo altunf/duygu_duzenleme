@@ -5,6 +5,7 @@ import { SidebarSheet } from "@/components/sidebar-sheet";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { MyAccount } from "@/components/my-account";
+import { ThemeButton } from "./theme-button";
 
 export const Header = () => {
   return (
@@ -23,6 +24,7 @@ export const Header = () => {
         </form>
       </div>
       <MyAccount />
+      <ThemeButton />
     </header>
   );
 };
