@@ -1,19 +1,26 @@
+"use client";
 import React from "react";
+import { Button } from "./ui/button";
 
 export const Exercises = () => {
-  let x: any = [];
-
-  for (let i = 1; i < 11; i++) {
-    x.push(i);
-  }
-
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h3>Egzersizler</h3>
-      <div>
-        {x.map((el: any, index: number) => {
-          return <div key={index}>Exercise {el}</div>;
-        })}
+    <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+      <div className="flex items-center">
+        <h1 className="text-lg font-semibold md:text-2xl">"Egzersizler"</h1>
+      </div>
+      <div
+        className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
+        x-chunk="dashboard-02-chunk-1"
+      >
+        <div className="flex flex-col items-center gap-1 text-center">
+          <h3 className="text-2xl font-bold tracking-tight">
+            Henüz bir egzersiz eklemediniz
+          </h3>
+          <p className="text-sm text-muted-foreground">
+            Aşağıdaki butona tıklayarak egzersizleri görebilirsiniz
+          </p>
+          <Button className="mt-4">Egzersizlerim</Button>
+        </div>
       </div>
     </main>
   );
