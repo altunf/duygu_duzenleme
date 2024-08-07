@@ -27,12 +27,14 @@ export const MyAccount = () => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuLabel>Hesabım</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Settings</DropdownMenuItem>
-          <DropdownMenuItem>Support</DropdownMenuItem>
+          <DropdownMenuItem>Ayarlar</DropdownMenuItem>
+          <DropdownMenuItem>Destek</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={handleClick}>Logout</DropdownMenuItem>
+          <DropdownMenuItem onClick={handleClick}>
+            Oturumu Kapat
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </>
