@@ -1,12 +1,13 @@
 "use client";
 import React from "react";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
-export const Exercises = () => {
+export const MyExercises = () => {
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="flex items-center">
-        <h1 className="text-lg font-semibold md:text-2xl">"Egzersiz Listem"</h1>
+        <h1 className="text-lg font-semibold md:text-2xl">Egzersiz Listem</h1>
       </div>
       <div
         className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
@@ -19,7 +20,9 @@ export const Exercises = () => {
           <p className="text-sm text-muted-foreground">
             Aşağıdaki butona tıklayarak egzersizleri görebilirsiniz
           </p>
-          <Button className="mt-4">Egzersizlerim</Button>
+          <Button className="mt-4">
+            <Link href={"/exercises"}>Egzersizlerim</Link>
+          </Button>
         </div>
       </div>
     </main>

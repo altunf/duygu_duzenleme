@@ -3,7 +3,7 @@ import { Bell, Search, UserCog } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
-import SidebarItems from "./sidebar-items";
+import SidebarMenu from "./sidebar-menu";
 import UpgradeToPro from "./upgrade-to-pro";
 
 import { AvatarDemo } from "./avatar";
@@ -23,7 +23,7 @@ export function Sidebar() {
           </Button>
         </div>
         <div className="flex-1">
-          <SidebarItems />
+          <SidebarMenu />
         </div>
         <div className="mt-auto p-4">
           <UpgradeToPro />
