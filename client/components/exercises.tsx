@@ -13,7 +13,20 @@ export const Exercises = () => {
         className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
         x-chunk="dashboard-02-chunk-1"
       >
-        <ExerciseCard /> <ExerciseCard /> <ExerciseCard />
+        <div className="flex flex-col gap-4">
+          <div className="hidden lg:grid lg:grid-cols-2 lg:gap-4 ">
+            <div className="grid place-content-start">
+              <div>
+                <ExerciseCard />
+              </div>
+            </div>
+            <div className="grid place-content-start">
+              <div>
+                <ExerciseCard />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   );

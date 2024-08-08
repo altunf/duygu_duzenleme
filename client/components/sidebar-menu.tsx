@@ -40,7 +40,11 @@ const SidebarMenu = () => {
             {index}
           </Badge>
         </Link>
-        {index === 2 ? <DropdownMenuSeparator /> : <></>}
+        {index === 2 ? (
+          <DropdownMenuSeparator className="border-[1px]" />
+        ) : (
+          <></>
+        )}
       </>
     );
   });

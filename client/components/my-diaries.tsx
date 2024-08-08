@@ -1,18 +1,8 @@
 import { Button } from "./ui/button";
-
 import { Badge } from "@/components/ui/badge";
-import Image from "next/image";
-
 import { MoreHorizontal, NotebookPen } from "lucide-react";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,7 +20,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-export function Dashboard() {
+export function MyDiaries() {
   const newRow = (
     <TableRow>
       <TableCell className="hidden sm:table-cell">

@@ -2,7 +2,8 @@
 import React from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Dashboard } from "./my-diaries";
+import { MyDiaries } from "./my-diaries";
+import NewDiary from "./new-diary";
 
 export const FeelingDiary = () => {
   return (
@@ -19,14 +20,17 @@ export const FeelingDiary = () => {
           <TabsTrigger value="newDiary">Günlük Oluştur</TabsTrigger>
         </TabsList>
       </div>
+
       <div
-        className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
+        className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm "
         x-chunk="dashboard-02-chunk-1"
       >
         <TabsContent value="myDiaries">
-          <Dashboard />
+          <MyDiaries />
         </TabsContent>
-        <TabsContent value="newDiary"></TabsContent>
+        <TabsContent value="newDiary">
+          <NewDiary />
+        </TabsContent>
       </div>
     </Tabs>
   );
