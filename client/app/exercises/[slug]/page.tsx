@@ -1,6 +1,6 @@
-"use client";
-import { FeelingDiary } from "@/components/feeling-diary";
+import { Exercises } from "@/components/exercises";
 
+import { FeelingsSidebar } from "@/components/feelings-sidebar";
 import { Header } from "@/components/header";
 import { Sidebar } from "@/components/sidebar";
 
@@ -9,10 +9,10 @@ export default function MyFeelingDiaryPage() {
     <main>
       <div className="min-h-screen flex ">
         <Sidebar />
-
+        <FeelingsSidebar />
         <div className="w-full flex flex-col">
           <Header />
-          <FeelingDiary />
+          <Exercises />
         </div>
       </div>
     </main>
