@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import { Button } from "./ui/button";
+import { ScrollArea } from "./ui/scroll-area";
 
 export const ContentArea = () => {
   return (
-    <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+    <div className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="flex items-center  ">
         <h1 className="text-lg font-semibold md:text-2xl">"Egzersiz Listem"</h1>
       </div>
@@ -12,16 +12,8 @@ export const ContentArea = () => {
         className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
         x-chunk="dashboard-02-chunk-1"
       >
-        <div className="flex flex-col items-center gap-1 text-center">
-          <h3 className="text-2xl font-bold tracking-tight">
-            Henüz bir egzersiz eklemediniz
-          </h3>
-          <p className="text-sm text-muted-foreground">
-            Aşağıdaki butona tıklayarak egzersizleri görebilirsiniz
-          </p>
-          <Button className="mt-4">Egzersizlerim</Button>
-        </div>
+        <div className="flex flex-col items-center gap-1 text-center">sdad</div>
       </div>
-    </main>
+    </div>
   );
 };

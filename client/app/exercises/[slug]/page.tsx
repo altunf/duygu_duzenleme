@@ -6,14 +6,12 @@ import { Sidebar } from "@/components/sidebar";
 
 export default function MyFeelingDiaryPage() {
   return (
-    <main>
-      <div className="min-h-screen flex ">
-        <Sidebar />
-        <FeelingsSidebar />
-        <div className="w-full flex flex-col">
-          <Header />
-          <Exercises />
-        </div>
+    <main className="min-h-screen flex">
+      <Sidebar />
+      <FeelingsSidebar />
+      <div className="w-full flex flex-col">
+        <Header />
+        <Exercises />
       </div>
     </main>
   );
