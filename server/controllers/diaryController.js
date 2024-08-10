@@ -2,7 +2,7 @@ import { Diary } from "../models/diaryModel.js";
 
 const newDiaryController = async (req, res) => {
   try {
-    const { title, mood, point, date } = req.body;
+    const { title, mood, point, date, text } = req.body;
 
     const currentUser = localStorage.getItem("token");
     const userID = JSON.parse(currentUser).userCheck._id;

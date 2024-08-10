@@ -18,9 +18,6 @@ import {
 } from "@/components/ui/select";
 
 export function SelectMood() {
-  const [diaryTitle, setDiaryTitle] = useState("Günlük Adı Giriniz");
-  const [isEditing, setIsEditing] = useState(false);
-
   return (
     <Select>
       <SelectTrigger>
@@ -87,7 +84,7 @@ export function EditableTitle() {
 export default function NewDiary() {
   return (
     <div className="px-4 md:px-6 pb-6">
-      <div className="space-y-4">
+      <form className="space-y-4">
         <header className="space-y-1">
           <div className="flex items-center justify-start space-x-2">
             <EditableTitle />
@@ -114,7 +111,7 @@ export default function NewDiary() {
           </div>
           <Button>Kaydet</Button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

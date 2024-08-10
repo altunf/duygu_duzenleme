@@ -26,10 +26,13 @@ const diarySchema = new Schema(
       type: Date,
       required: [true, "Date area is required"],
     },
-
+    text: {
+      type: String,
+      required: [true, "Text area is required"],
+    },
     userID: {
       type: String,
-      required: [true, "User ID area is required"],
+      required: [true, "UserID area is required"],
     },
   },
   {
