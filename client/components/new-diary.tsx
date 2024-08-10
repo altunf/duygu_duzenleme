@@ -37,7 +37,7 @@ export function SelectMood() {
 
 export default function NewDiary() {
   return (
-    <div className="px-4 py-6 md:px-6 lg:py-12">
+    <div className="px-4 md:px-6 pb-6">
       <div className="space-y-4">
         <header className="space-y-1">
           <h1 className="text-3xl font-bold">Mood Diary</h1>

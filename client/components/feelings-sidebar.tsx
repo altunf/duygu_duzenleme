@@ -6,7 +6,7 @@ import { useSidebarContext } from "@/context/sidebar-context";
 export function FeelingsSidebar() {
   const { setOpen }: any = useSidebarContext();
   return (
-    <div className="hidden min-h-screen border-r bg-muted/40 md:block w-64 min-w-64 max-w-64">
+    <div className="hidden min-h-screen border-r bg-muted/40 md:block w-64 min-w-64 max-w-64 overflow-y-auto">
       <div className="flex justify-end mt-4 mr-2 cursor-pointer">
         <X
           onClick={() => {
@@ -14,7 +14,7 @@ export function FeelingsSidebar() {
           }}
         />
       </div>
-      <div className="flex h-full max-h-screen flex-col gap-2">
+      <div className="flex  max-h-screen flex-col gap-2">
         <div className="flex-1">
           <Link
             href={"exercises/1"}

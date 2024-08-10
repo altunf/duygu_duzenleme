@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(req: NextRequest, res: NextResponse) {
-  console.log(`${JSON.stringify(res)} sad`);
+  console.log(`${JSON.stringify(req.body)} sad`);
   return NextResponse.next();
 }
 

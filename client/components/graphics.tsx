@@ -42,7 +42,7 @@ export const Graphics = () => {
         <h1 className="text-lg font-semibold md:text-2xl">Grafikler</h1>
       </div>
       <div
-        className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
+        className="flex flex-1 items-center justify-center rounded-lg border border-dashed "
         x-chunk="dashboard-02-chunk-1"
       >
         <Charts />
@@ -54,7 +54,7 @@ export const Graphics = () => {
 export function Charts() {
   return (
     <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
-      <div className="grid w-full gap-6 sm:grid-cols-2 lg:max-w-[22rem] lg:grid-cols-1 xl:max-w-[25rem]">
+      <div className="grid w-full gap-6 sm:grid-cols-2 lg:max-w-[22rem] lg:grid-cols-1 xl:max-w-[25rem] ">
         <Card className="lg:max-w-md" x-chunk="charts-01-chunk-0">
           <CardHeader className="space-y-0 pb-2">
             <CardDescription>Today</CardDescription>
