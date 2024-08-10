@@ -13,18 +13,23 @@ const diarySchema = new Schema(
     },
     mood: {
       type: String,
-      required: [true, "Name area is required"],
+      required: [true, "Mood area is required"],
       lowercase: true,
       trim: true,
     },
+    point: {
+      type: String,
+      required: [true, "Point area is required"],
+      lowercase: true,
+    },
     date: {
       type: Date,
-      required: [true, "Surname area is required"],
+      required: [true, "Date area is required"],
     },
 
     userID: {
       type: String,
-      required: [true, "Email area is required"],
+      required: [true, "User ID area is required"],
     },
   },
   {
