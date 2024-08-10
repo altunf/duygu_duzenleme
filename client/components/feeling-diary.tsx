@@ -4,8 +4,17 @@ import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MyDiaries } from "./my-diaries";
 import { NewDiary } from "./new-diary";
+import { useRouter } from "next/navigation";
 
 export const FeelingDiary = () => {
+  const router = useRouter();
+  const handleCreateNewDiary = () => {
+    router.push("/diaries/new");
+  };
+
+  const handleCreateDiary = () => {
+    router.push("/diaries");
+  };
   return (
     <Tabs
       defaultValue="myDiaries"
@@ -16,8 +25,12 @@ export const FeelingDiary = () => {
       </div>
       <div className="grid grid-cols-2 w-[480px]">
         <TabsList>
-          <TabsTrigger value="myDiaries">Günlüklerim</TabsTrigger>
-          <TabsTrigger value="newDiary">Günlük Oluştur</TabsTrigger>
+          <TabsTrigger value="myDiaries" onClick={handleCreateDiary}>
+            Günlüklerim
+          </TabsTrigger>
+          <TabsTrigger value="newDiary" onClick={handleCreateNewDiary}>
+            Günlük Oluştur
+          </TabsTrigger>
         </TabsList>
       </div>
       <div

@@ -8,7 +8,7 @@ const HomePage = (
   <main className="flex min-h-screen ">
     <Sidebar />
     <div className="w-full flex flex-col">
-      <Header /> <MyExercises />
+      <MyExercises />
     </div>
   </main>
 );

@@ -19,38 +19,64 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useState, useEffect } from "react";
+
+interface Diary {
+  title: string;
+  mood: string;
+  point: number;
+  date: string;
+  text: string;
+}
+
+const fetchDiaries = async () => {
+  const response = await fetch("http://localhost:3001/diaries");
+  const data = await response.json();
+  return data;
+};
 
 export function MyDiaries() {
-  const newRow = (
-    <TableRow>
-      <TableCell className="hidden sm:table-cell">
-        <NotebookPen />
-      </TableCell>
-      <TableCell className="font-medium">Öfkeli bir gün</TableCell>
-      <TableCell>
-        <Badge variant="outline">Öfke</Badge>
-      </TableCell>
-      <TableCell className="hidden md:table-cell">25</TableCell>
-      <TableCell className="hidden md:table-cell">
-        2023-07-12 10:42 AM
-      </TableCell>
-      <TableCell>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button aria-haspopup="true" size="icon" variant="ghost">
-              <MoreHorizontal className="h-4 w-4" />
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
-            <DropdownMenuItem>Delete</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </TableCell>
-    </TableRow>
-  );
+  const [userDiaries, setUserDiaries] = useState<Diary[]>([]);
+
+  useEffect(() => {
+    const getDiaries = async () => {
+      const userDiaries = await fetchDiaries();
+      setUserDiaries(userDiaries);
+    };
+    getDiaries();
+  }, []);
+
+  const SavedDiary: any = ({ props }: any) => {
+    return (
+      <TableRow>
+        <TableCell className="hidden sm:table-cell">
+          <NotebookPen />
+        </TableCell>
+        <TableCell className="font-medium">{props.title}</TableCell>
+        <TableCell>
+          <Badge variant="outline">{props.mood}</Badge>
+        </TableCell>
+        <TableCell className="hidden md:table-cell">{props.point}</TableCell>
+        <TableCell className="hidden md:table-cell">{props.date}</TableCell>
+        <TableCell>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button aria-haspopup="true" size="icon" variant="ghost">
+                <MoreHorizontal className="h-4 w-4" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem>Edit</DropdownMenuItem>
+              <DropdownMenuItem>Delete</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </TableCell>
+      </TableRow>
+    );
+  };
+
   return (
     <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
       <Card x-chunk="dashboard-06-chunk-0">
@@ -63,7 +89,7 @@ export function MyDiaries() {
                 </TableHead>
                 <TableHead>Günlük Adı</TableHead>
                 <TableHead>Duygu</TableHead>
-                <TableHead className="hidden md:table-cell">Puanlama</TableHead>
+                <TableHead className="hidden md:table-cell">Puan</TableHead>
                 <TableHead className="hidden md:table-cell">Tarih</TableHead>
                 <TableHead>
                   <span className="sr-only">Actions</span>
@@ -71,11 +97,9 @@ export function MyDiaries() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {newRow}
-              {newRow}
-              {newRow}
-              {newRow}
-              {newRow}
+              {userDiaries.map((el: Diary, index: number) => {
+                return <SavedDiary key={index} props={el} />;
+              })}
             </TableBody>
           </Table>
         </CardContent>

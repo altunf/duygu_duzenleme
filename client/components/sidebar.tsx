@@ -10,7 +10,7 @@ import { AvatarDemo } from "./avatar";
 
 export function Sidebar() {
   return (
-    <div className="hidden border-r bg-muted/40 md:block w-64 min-w-64 max-w-64">
+    <div className="hidden border-r bg-muted/40 md:block w-72 min-w-72 max-w-64">
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
           <Link href="/" className="flex items-center gap-2 font-semibold">

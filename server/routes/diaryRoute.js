@@ -6,7 +6,7 @@ import {
 
 const router = express.Router();
 
-router.post("/diaries", newDiaryController);
+router.post("/diaries/new", newDiaryController);
 
 router.get("/diaries", getAllDiariesOfUser);
 

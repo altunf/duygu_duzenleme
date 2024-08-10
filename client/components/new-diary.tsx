@@ -79,20 +79,20 @@ export function NewDiary() {
             </p>
           </header>
           <div className="space-y-4">
-            <div className="flex items-center justify-between space-x-4">
+            <div className="flex items-center justify-between space-x-4 lg:flex-flow">
               <FormField
                 control={form.control}
                 name="mood"
                 render={({ field }) => (
                   <FormItem className="w-[150px]">
-                    <FormLabel>Duygular</FormLabel>
+                    <FormLabel>Nasıl Hissediyorsun?</FormLabel>
                     <FormControl>
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
                         <SelectTrigger>
-                          <SelectValue placeholder="Bir duygu seçin" />
+                          <SelectValue placeholder="Bir duygu seç" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectGroup>
@@ -189,7 +189,7 @@ export function NewDiary() {
     const currentUser: any = localStorage.getItem("token");
     const userID = JSON.parse(currentUser).userCheck._id;
 
-    const response = await fetch("http://localhost:3001/diaries", {
+    const response = await fetch("http://localhost:3001/diaries/new", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

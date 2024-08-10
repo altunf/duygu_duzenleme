@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { UserCog } from "lucide-react";
+import { Settings, UserCog } from "lucide-react";
 
 export const MyAccount = () => {
   const handleClick: any = () => {
@@ -22,7 +22,7 @@ export const MyAccount = () => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="secondary" size="icon" className="rounded-full">
-            <UserCog className="h-6 w-6" />
+            <Settings className="h-6 w-6" />
             <span className="sr-only">Toggle user menu</span>
           </Button>
         </DropdownMenuTrigger>

@@ -22,7 +22,7 @@ const SidebarMenu = () => {
     <LineChart className="h-4 w-4" />,
     <List className="h-4 w-4" />,
   ];
-  const hrefs = ["/", "/diaries", "/graphics", "exercises"];
+  const hrefs = ["/", "/diaries", "/graphics", "/exercises"];
   const menuItems = menuNames.map((el: any, index: number) => {
     return (
       <div key={index}>
