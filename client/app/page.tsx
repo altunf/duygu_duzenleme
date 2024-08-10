@@ -18,7 +18,7 @@ const deneme = () => {
 };
 
 export default function Home() {
-  const xData = localStorage.getItem("token");
+  const xData: any = localStorage.getItem("token");
 
   const renderPage = xData ? HomePage : deneme;
   return renderPage;

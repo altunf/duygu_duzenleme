@@ -25,9 +25,8 @@ const SidebarMenu = () => {
   const hrefs = ["/", "/diaries", "/graphics", "exercises"];
   const menuItems = menuNames.map((el: any, index: number) => {
     return (
-      <>
+      <div key={index}>
         <Link
-          key={index}
           href={hrefs[index]}
           className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
           onClick={() => {
@@ -45,7 +44,7 @@ const SidebarMenu = () => {
         ) : (
           <></>
         )}
-      </>
+      </div>
     );
   });
   return (

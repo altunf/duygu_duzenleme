@@ -21,7 +21,7 @@ const registerController = async (req, res) => {
       email,
       password: passwordHash,
     });
-    console.log("first", userCheck);
+
     const token = await jwt.sign(
       { userId: newUser._id },
       process.env.JWT_SECRET,

@@ -35,7 +35,6 @@ export function SignUpForm() {
       body: JSON.stringify(registerData),
     });
     const data = await response.json();
-    console.log(data, "registerData");
   };
 
   return (

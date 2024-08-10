@@ -1,9 +1,11 @@
+"use client";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
 import * as React from "react";
+import { useState } from "react";
 
 import {
   Select,
@@ -16,6 +18,9 @@ import {
 } from "@/components/ui/select";
 
 export function SelectMood() {
+  const [diaryTitle, setDiaryTitle] = useState("Günlük Adı Giriniz");
+  const [isEditing, setIsEditing] = useState(false);
+
   return (
     <Select>
       <SelectTrigger>
@@ -24,14 +29,58 @@ export function SelectMood() {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Temel Duygular</SelectLabel>
-          <SelectItem value="apple">Öfkeli</SelectItem>
-          <SelectItem value="banana">Neşeli</SelectItem>
-          <SelectItem value="blueberry">Tiksinmiş</SelectItem>
-          <SelectItem value="grapes">Üzgün</SelectItem>
-          <SelectItem value="pineapple">Şaşırmış</SelectItem>
+          <SelectItem value="öfkeli">Öfkeli</SelectItem>
+          <SelectItem value="neşeli">Neşeli</SelectItem>
+          <SelectItem value="tiksinmiş">Tiksinmiş</SelectItem>
+          <SelectItem value="üzgün">Üzgün</SelectItem>
+          <SelectItem value="şaşırmış">Şaşırmış</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
+  );
+}
+
+export function EditableTitle() {
+  const [diaryTitle, setDiaryTitle] = useState("Günlük Adı Giriniz");
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleTitleClick = () => {
+    setIsEditing(true);
+    setDiaryTitle("");
+  };
+
+  const handleInputBlur = () => {
+    setIsEditing(false);
+    if (diaryTitle == "") {
+      setDiaryTitle("Günlük Adı Giriniz");
+    }
+  };
+
+  const handleInputChange = (e: any) => {
+    setDiaryTitle(e.target.value);
+  };
+
+  return (
+    <>
+      {isEditing ? (
+        <input
+          type="text"
+          value={diaryTitle}
+          onChange={handleInputChange}
+          onBlur={handleInputBlur}
+          className="text-3xl font-bold w-full border-none focus:outline-none"
+          autoFocus
+        />
+      ) : (
+        <h1
+          className="text-3xl font-bold cursor-pointer "
+          onClick={handleTitleClick}
+          autoFocus
+        >
+          {diaryTitle}
+        </h1>
+      )}
+    </>
   );
 }
 
@@ -40,7 +89,9 @@ export default function NewDiary() {
     <div className="px-4 md:px-6 pb-6">
       <div className="space-y-4">
         <header className="space-y-1">
-          <h1 className="text-3xl font-bold">Mood Diary</h1>
+          <div className="flex items-center justify-start space-x-2">
+            <EditableTitle />
+          </div>
           <p className="text-gray-500 dark:text-gray-400">
             Record your daily experiences and thoughts related to feelings.
           </p>
