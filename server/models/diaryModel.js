@@ -18,7 +18,7 @@ const diarySchema = new Schema(
       trim: true,
     },
     point: {
-      type: String,
+      type: Number,
       required: [true, "Point area is required"],
       lowercase: true,
     },

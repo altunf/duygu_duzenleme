@@ -4,14 +4,14 @@ const newDiaryController = async (req, res) => {
   try {
     const { title, mood, point, date, text } = req.body;
 
-    const currentUser = localStorage.getItem("token");
-    const userID = JSON.parse(currentUser).userCheck._id;
+    const userID = req.headers["current-user"];
 
     const newDiary = Diary.create({
       title,
       mood,
       point,
       date,
+      text,
       userID: userID,
     });
 
@@ -23,11 +23,11 @@ const newDiaryController = async (req, res) => {
 
 const getAllDiariesOfUser = async (req, res) => {
   try {
-    const diaries = await Diary.find();
+    const diaries = await Diary.find({ UserID: req.userID });
     res.status(200).json(diaries);
   } catch (error) {
     res.status(500).json({ message: "Error fetching diaries", error });
   }
 };
 
-export { newDiaryController };
+export { newDiaryController, getAllDiariesOfUser };

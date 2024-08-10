@@ -3,8 +3,7 @@ import React from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MyDiaries } from "./my-diaries";
-import NewDiary from "./new-diary";
-import { DiaryForm } from "./new-diary copy";
+import { NewDiary } from "./new-diary";
 
 export const FeelingDiary = () => {
   return (
@@ -29,7 +28,7 @@ export const FeelingDiary = () => {
           <MyDiaries />
         </TabsContent>
         <TabsContent value="newDiary" className="h-96">
-          <DiaryForm />
+          <NewDiary />
         </TabsContent>
       </div>
     </Tabs>

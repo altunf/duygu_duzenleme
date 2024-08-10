@@ -1,11 +1,19 @@
 "use client";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 
-import * as React from "react";
-import { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
 import {
   Select,
@@ -16,102 +24,178 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Textarea } from "./ui/textarea";
+import { Slider } from "./ui/slider";
 
-export function SelectMood() {
-  return (
-    <Select>
-      <SelectTrigger>
-        <SelectValue placeholder="Bir duygu seçin" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          <SelectLabel>Temel Duygular</SelectLabel>
-          <SelectItem value="öfkeli">Öfkeli</SelectItem>
-          <SelectItem value="neşeli">Neşeli</SelectItem>
-          <SelectItem value="tiksinmiş">Tiksinmiş</SelectItem>
-          <SelectItem value="üzgün">Üzgün</SelectItem>
-          <SelectItem value="şaşırmış">Şaşırmış</SelectItem>
-        </SelectGroup>
-      </SelectContent>
-    </Select>
-  );
-}
+const formSchema = z.object({
+  title: z.string(),
+  mood: z.string(),
+  point: z.number(),
+  date: z.string(),
+  text: z.string(),
+});
 
-export function EditableTitle() {
-  const [diaryTitle, setDiaryTitle] = useState("Günlük Adı Giriniz");
-  const [isEditing, setIsEditing] = useState(false);
-
-  const handleTitleClick = () => {
-    setIsEditing(true);
-    setDiaryTitle("");
-  };
-
-  const handleInputBlur = () => {
-    setIsEditing(false);
-    if (diaryTitle == "") {
-      setDiaryTitle("Günlük Adı Giriniz");
-    }
-  };
-
-  const handleInputChange = (e: any) => {
-    setDiaryTitle(e.target.value);
-  };
+export function NewDiary() {
+  // 1. Define your form.
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      title: "",
+      mood: "",
+      point: 2,
+      date: "",
+      text: "",
+    },
+  });
 
   return (
-    <>
-      {isEditing ? (
-        <input
-          type="text"
-          value={diaryTitle}
-          onChange={handleInputChange}
-          onBlur={handleInputBlur}
-          className="text-3xl font-bold w-full border-none focus:outline-none"
-          autoFocus
-        />
-      ) : (
-        <h1
-          className="text-3xl font-bold cursor-pointer "
-          onClick={handleTitleClick}
-          autoFocus
-        >
-          {diaryTitle}
-        </h1>
-      )}
-    </>
-  );
-}
-
-export default function NewDiary() {
-  return (
-    <div className="px-4 md:px-6 pb-6">
-      <form className="space-y-4">
-        <header className="space-y-1">
-          <div className="flex items-center justify-start space-x-2">
-            <EditableTitle />
-          </div>
-          <p className="text-gray-500 dark:text-gray-400">
-            Record your daily experiences and thoughts related to feelings.
-          </p>
-        </header>
-        <div className="space-y-4">
-          <div className="flex items-center space-x-4">
-            <SelectMood />
-            <div className="flex items-center space-x-2">
-              <Label htmlFor="date">Tarih</Label>
-              <Input type="date" id="date" />
+    <main className="px-4 md:px-6 pb-6">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <header className="space-y-1">
+            <div className="flex items-center justify-start space-x-2">
+              <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="text"
+                        placeholder="Günlük adı giriniz..."
+                        className="text-3xl font-bold w-full border-none focus:outline-none px-0 "
+                        autoFocus
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
+            <p className="text-gray-500 dark:text-gray-400">
+              Duygularla ilgili günlük deneyimlerinizi ve düşüncelerinizi
+              kaydedin.
+            </p>
+          </header>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between space-x-4">
+              <FormField
+                control={form.control}
+                name="mood"
+                render={({ field }) => (
+                  <FormItem className="w-[150px]">
+                    <FormLabel>Duygular</FormLabel>
+                    <FormControl>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Bir duygu seçin" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Temel Duygular</SelectLabel>
+                            <SelectItem value="öfkeli">Öfkeli</SelectItem>
+                            <SelectItem value="neşeli">Neşeli</SelectItem>
+                            <SelectItem value="tiksinmiş">Tiksinmiş</SelectItem>
+                            <SelectItem value="üzgün">Üzgün</SelectItem>
+                            <SelectItem value="şaşırmış">Şaşırmış</SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className="flex items-center pace-x-2 ">
+                <FormField
+                  control={form.control}
+                  name="point"
+                  render={({ field: { value, onChange } }) => (
+                    <FormItem>
+                      <FormLabel>Duygu yoğunluğu</FormLabel>
+                      <FormControl>
+                        <div className="flex items-center justify-between rounded h-9 w-[150px] border px-3 py-1">
+                          <Slider
+                            defaultValue={[value]}
+                            max={10}
+                            step={1}
+                            onValueChange={(vals) => {
+                              onChange(vals[0]);
+                            }}
+                          />
+                          <span className="ml-2">
+                            {form.getValues("point")}
+                          </span>
+                        </div>
+                      </FormControl>
+
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="flex items-center pace-x-2">
+                <FormField
+                  control={form.control}
+                  name="date"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Tarih</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="date"
+                          id="date"
+                          onChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+            <div>
+              <FormField
+                control={form.control}
+                name="text"
+                render={({ field }) => (
+                  <FormItem className="grid w-full gap-1.5">
+                    <FormLabel>Günlük</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Write your entry here."
+                        className="min-h-[300px] "
+                        onChange={field.onChange}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <Button type="submit">Kaydet</Button>
           </div>
-          <div className="grid w-full gap-1.5">
-            <Label htmlFor="entry">Günlük</Label>
-            <Textarea
-              id="entry"
-              placeholder="Write your entry here."
-              className="min-h-[200px]"
-            />
-          </div>
-          <Button>Kaydet</Button>
-        </div>
-      </form>
-    </div>
+        </form>
+      </Form>
+    </main>
   );
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values);
+    const currentUser: any = localStorage.getItem("token");
+    const userID = JSON.parse(currentUser).userCheck._id;
+
+    const response = await fetch("http://localhost:3001/diaries", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Current-User": userID,
+      },
+      body: JSON.stringify(values),
+    });
+  }
 }
