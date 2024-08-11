@@ -28,7 +28,7 @@ const SidebarMenu = () => {
       <div key={index}>
         <Link
           href={hrefs[index]}
-          className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+          className="flex items-center gap-3 rounded-lg px-3 py-2  transition-all hover:text-primary"
           onClick={() => {
             index == 3 ? setOpen(true) : "";
           }}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Badge } from "@/components/ui/badge";
-import { MoreHorizontal, NotebookPen } from "lucide-react";
+import { BookOpen, MoreHorizontal, NotebookPen } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   DropdownMenu,
@@ -30,6 +30,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+import { useRouter } from "next/navigation";
+
 interface Diary {
   _id: string;
   title: string;
@@ -44,6 +46,12 @@ export function MyDiaries() {
   const [selectedDiary, setSelectedDiary] = useState<Diary | null>(null);
   const [newTitle, setNewTitle] = useState<string>("");
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
+
+  const router = useRouter();
+
+  const handleRowClick = (title: string) => {
+    router.push(`/diaries/${encodeURIComponent(title)}`);
+  };
 
   useEffect(() => {
     const getDiaries = async () => {
@@ -119,7 +127,7 @@ export function MyDiaries() {
             <TableHeader>
               <TableRow>
                 <TableHead className="hidden w-[100px] sm:table-cell">
-                  <span className="sr-only">Image</span>
+                  Görüntüle
                 </TableHead>
                 <TableHead>Günlük Adı</TableHead>
                 <TableHead>Duygu</TableHead>
@@ -134,7 +142,11 @@ export function MyDiaries() {
               {userDiaries.map((diary: Diary) => (
                 <TableRow key={diary._id}>
                   <TableCell className="hidden sm:table-cell">
-                    <NotebookPen />
+                    <BookOpen
+                      onClick={() => {
+                        handleRowClick(diary.title);
+                      }}
+                    />
                   </TableCell>
                   <TableCell className="font-medium">{diary.title}</TableCell>
                   <TableCell>
@@ -185,9 +197,6 @@ export function MyDiaries() {
 
       {/* Başlık düzenleme dialog'u */}
       <Dialog open={dialogOpen} onOpenChange={() => setDialogOpen(false)}>
-        <DialogTrigger asChild>
-          <Button variant="outline">Yeniden Adlandır</Button>
-        </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>Başlığı Düzenle</DialogTitle>
