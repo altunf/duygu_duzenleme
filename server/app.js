@@ -16,7 +16,7 @@ const PORT = process.env.PORT;
 app.use(
   cors({
     origin: "http://localhost:3000", // Next.js uygulamanızın adresi
-    methods: ["GET", "POST"], // İzin verilen HTTP metotları
+    methods: ["GET", "POST", "DELETE", "PUT"], // İzin verilen HTTP metotları
     credentials: true,
   })
 );
