@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export function ThemeButton() {
-  const { setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   return (
     <DropdownMenu>

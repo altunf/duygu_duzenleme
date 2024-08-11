@@ -1,7 +1,15 @@
 "use client";
 import React from "react";
 
-import { LineChart, List, ListChecks, NotebookPen } from "lucide-react";
+import {
+  ChartPie,
+  ChevronRight,
+  ClipboardList,
+  LineChart,
+  List,
+  ListChecks,
+  NotebookPen,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { DropdownMenuSeparator } from "./ui/dropdown-menu";
 
@@ -17,10 +25,10 @@ const SidebarMenu = () => {
     "Egzersizler",
   ];
   const icons = [
-    <ListChecks className="h-4 w-4" />,
-    <NotebookPen className="h-4 w-4" />,
-    <LineChart className="h-4 w-4" />,
-    <List className="h-4 w-4" />,
+    <ClipboardList className="h-5 w-5 text-violet-800" />,
+    <NotebookPen className="h-5 w-5 text-orange-600" />,
+    <ChartPie className="h-5 w-5 text-sky-700" />,
+    <List className="h-5 w-5  text-green-700" />,
   ];
   const hrefs = ["/", "/diaries", "/graphics", "/exercises"];
   const menuItems = menuNames.map((el: any, index: number) => {
@@ -28,16 +36,14 @@ const SidebarMenu = () => {
       <div key={index}>
         <Link
           href={hrefs[index]}
-          className="flex items-center gap-3 rounded-lg px-3 py-2  transition-all hover:text-primary"
+          className="flex items-center gap-3 rounded-lg px-0 py-4  transition-all hover:text-primary"
           onClick={() => {
             index == 3 ? setOpen(true) : "";
           }}
         >
           {icons[index]}
           {el}
-          <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-            {index}
-          </Badge>
+          <ChevronRight className="ml-auto flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-slate-400" />
         </Link>
         {index === 2 ? (
           <DropdownMenuSeparator className="border-[1px]" />
