@@ -1,8 +1,8 @@
 import { Exercise } from "../models/exerciseModel.js";
 
 const addNewExercise = async (req, res) => {
-  //Belki Pro versiyonunda kullanıcılar da ekler
-  //SADECE ADMİN yeni exercise ekler
+  //Belki Pro versiyonunda kullanıcılar da ekleyebilir
+  //SADECE ADMİN yeni exercise ekleyebilir
   try {
     const { title, description, tag, text } = req.body;
     const userID = req.headers["user-id"];
@@ -39,4 +39,12 @@ const addCompletionDate = async (exerciseId, newDate) => {
   }
 };
 
-export { addNewExercise, addCompletionDate };
+const getAllExercises = async (req, res) => {
+  try {
+    const exercises = await Exercise.find();
+    res.status(200).json(exercises);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching exercises", error });
+  }
+};
+export { addNewExercise, addCompletionDate, getAllExercises };

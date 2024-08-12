@@ -100,7 +100,7 @@ export function CreateExercise() {
                 name="tag"
                 render={({ field }) => (
                   <FormItem className="w-[150px]">
-                    <FormLabel>Nasıl Hissediyorsun?</FormLabel>
+                    <FormLabel>Ne ile ilgili?</FormLabel>
                     <FormControl>
                       <Select
                         onValueChange={field.onChange}

@@ -1,8 +1,25 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ExerciseCard } from "./exercise-card";
 
+interface Exercise {
+  title: string;
+  description: string;
+  tag: any;
+  text: string;
+}
+
 export const Exercises = () => {
+  const [allExercises, setAllExercises] = useState<Exercise[]>([]);
+  useEffect(() => {
+    const getDiaries = async () => {
+      const response = await fetch("http://localhost:3001/exercises/:*");
+      const data = await response.json();
+      setAllExercises(data);
+    };
+    getDiaries();
+  }, []);
+
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="flex items-center">
@@ -16,7 +33,9 @@ export const Exercises = () => {
           <div className="hidden lg:grid lg:grid-cols-2 lg:gap-4 ">
             <div className="grid place-content-start">
               <div>
-                <ExerciseCard />
+                {allExercises.map((el: any, index: number) => {
+                  return <ExerciseCard key={index} props={el} />;
+                })}
               </div>
             </div>
           </div>
