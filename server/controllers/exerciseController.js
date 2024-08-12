@@ -4,7 +4,7 @@ const addNewExercise = async (req, res) => {
   //Belki Pro versiyonunda kullanıcılar da ekler
   //SADECE ADMİN yeni exercise ekler
   try {
-    const { title, description, tag, text, completionDates } = req.body;
+    const { title, description, tag, text } = req.body;
     const userID = req.headers["user-id"];
 
     const newExercise = await Exercise.create({
@@ -12,7 +12,7 @@ const addNewExercise = async (req, res) => {
       description,
       tag,
       text,
-      completionDates,
+      // completionDates,
       userID: userID,
     });
 

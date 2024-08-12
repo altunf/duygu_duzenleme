@@ -19,21 +19,6 @@ export const Exercises = () => {
                 <ExerciseCard />
               </div>
             </div>
-            <div className="grid place-content-start">
-              <div>
-                <ExerciseCard />
-              </div>
-            </div>{" "}
-            <div className="grid place-content-start">
-              <div>
-                <ExerciseCard />
-              </div>
-            </div>{" "}
-            <div className="grid place-content-start">
-              <div>
-                <ExerciseCard />
-              </div>
-            </div>
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@ const exerciseSchema = new Schema(
     },
     description: {
       type: String,
-      //required: [true, "Description area is required"],
+      required: [false, "Description area is required"],
       lowercase: true,
     },
     tag: {
@@ -25,11 +25,11 @@ const exerciseSchema = new Schema(
     },
     completionDates: {
       type: Array,
-      required: [true, "UserID area is required"],
+      required: [false, "UserID area is required"],
     },
     userID: {
       type: String,
-      required: [true, "UserID area is required"],
+      required: [false, "UserID area is required"],
     },
   },
   {
