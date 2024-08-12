@@ -64,7 +64,6 @@ export default function Page({ params }: { params: { slug: string } }) {
     <main className="flex min-h-screen">
       <Sidebar />
       <div className="w-full flex flex-col">
-        <Header />
         <div
           className={`flex items-center justify-center h-full w-full overflow-auto
            ${bgStyle}`}
