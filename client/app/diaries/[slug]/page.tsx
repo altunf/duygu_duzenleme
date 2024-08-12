@@ -13,7 +13,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   console.log("theme", theme);
 
   const light =
-    "  bg-[radial-gradient(#e5e7eb_1.5px,transparent_1.5px)] [background-size:16px_16px] ";
+    "  bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] ";
   const dark =
     "  bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))] ";
 

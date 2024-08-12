@@ -25,7 +25,7 @@ const registerController = async (req, res) => {
     const token = await jwt.sign(
       { userId: newUser._id },
       process.env.JWT_SECRET,
-      { expiresIn: "1h" }
+      { expiresIn: "1d" }
     );
 
     res.status(201).json({ status: "OK", newUser, token });

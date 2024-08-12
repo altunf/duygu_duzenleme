@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -12,14 +11,29 @@ import {
 
 export function ExerciseCard() {
   return (
-    <Card className="w-[350px]">
+    <Card className="overflow-y-auto" x-chunk="dashboard-07-chunk-4">
       <CardHeader>
-        <CardTitle>Nefes Egzersizi</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
+        <CardTitle>Başlık</CardTitle>
+        <CardDescription>
+          Lipsum dolor sit amet, consectetur adipiscing elit
+        </CardDescription>
       </CardHeader>
-      <CardContent>Nefes Egzersizi Nedir?</CardContent>
-      <CardFooter className="flex justify-between">
-        <Button>Egzersiz Listeme Ekle</Button>
+      <CardContent>
+        <div className="grid gap-2">
+          <img
+            alt="Product image"
+            className="aspect-square w-full rounded-md object-cover"
+            height="200"
+            src="/pp.jpeg"
+            width="100"
+          />
+        </div>
+      </CardContent>
+      <CardFooter>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident rem
+        ipsum pariatur consectetur, cupiditate vero porro adipisci maiores minus
+        voluptatum odit quibusdam. Beatae ducimus mollitia tempore odit
+        obcaecati possimus sunt?
       </CardFooter>
     </Card>
   );

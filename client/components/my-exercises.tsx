@@ -3,6 +3,7 @@ import React from "react";
 import { Button } from "./ui/button";
 
 import Link from "next/link";
+import ExerciseTodoList from "./todo-list";
 
 export const MyExercises = () => {
   return (
@@ -15,9 +16,7 @@ export const MyExercises = () => {
         x-chunk="dashboard-02-chunk-1"
       >
         <div className="flex flex-col items-center gap-1 text-center">
-          <h3 className="text-2xl font-bold tracking-tight">
-            Henüz bir egzersiz eklemediniz
-          </h3>
+          <ExerciseTodoList />
           <p className="text-sm text-muted-foreground">
             Aşağıdaki butona tıklayarak egzersizleri görebilirsiniz
           </p>
