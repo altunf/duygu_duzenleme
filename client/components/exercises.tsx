@@ -31,12 +31,10 @@ export const Exercises = () => {
       >
         <div className="flex flex-col gap-4">
           <div className="hidden lg:grid lg:grid-cols-2 lg:gap-4 ">
-            <div className="grid place-content-start">
-              <div>
-                {allExercises.map((el: any, index: number) => {
-                  return <ExerciseCard key={index} props={el} />;
-                })}
-              </div>
+            <div className="grid place-content-center gap-6">
+              {allExercises.map((el: any, index: number) => {
+                return <ExerciseCard key={index} props={el} />;
+              })}
             </div>
           </div>
         </div>

@@ -29,10 +29,15 @@ export function ExerciseCard({ props, maxLength = 100 }: any) {
   );
 
   return (
-    <Card className="overflow-y-auto" x-chunk="dashboard-07-chunk-4">
+    <Card
+      className="overflow-y-auto max-w-96 max-h-[400px]"
+      x-chunk="dashboard-07-chunk-4"
+    >
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle>{props.title}</CardTitle>
+          <CardTitle>
+            <i>{props.title}</i>
+          </CardTitle>
         </div>
         <CardDescription>{props.description}</CardDescription>
       </CardHeader>
@@ -43,13 +48,16 @@ export function ExerciseCard({ props, maxLength = 100 }: any) {
             alt="Product image"
             height={100}
             width={100}
-            className="aspect-square w-full rounded-md object-cover"
           />
         </div>
+        <div></div>
       </CardContent>
-      <Button className="cursor-pointer ">Listeme ekle</Button>
+
       <CardFooter>{newText}</CardFooter>
-      <i>#{props.tag?.[0]}</i>
+      <CardContent className="flex items-center justify-between">
+        <i>#{props.tag?.[0]}</i>
+        <Button className="cursor-pointer ">Listeme ekle</Button>
+      </CardContent>
     </Card>
   );
 }
