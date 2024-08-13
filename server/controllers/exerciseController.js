@@ -1,5 +1,4 @@
 import { Exercise } from "../models/exerciseModel.js";
-import jwt from "jsonwebtoken";
 
 const addNewExercise = async (req, res) => {
   //Pro versiyonunda kullanıcılar kendilerine özel egzersizler ekleyebilir
@@ -53,7 +52,7 @@ const addCompletionDate = async (req, res) => {
       { $push: { [`completionDates.${userId}`]: newDate } },
       { new: true, useFindAndModify: false }
     );
-    console.log("qweqewqwe");
+
     res.status(200).json({ message: "Completion date added successfully" });
   } catch (error) {
     console.error("Error adding completion date:", error);

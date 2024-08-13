@@ -31,11 +31,9 @@ const formSchema = z.object({
   description: z.string(),
   tag: z.string(),
   text: z.string(),
-  //completionDates: z.string(),
 });
 
 export function CreateExercise() {
-  // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -43,7 +41,6 @@ export function CreateExercise() {
       description: "",
       tag: "",
       text: "",
-      //completionDates: "",
     },
   });
 

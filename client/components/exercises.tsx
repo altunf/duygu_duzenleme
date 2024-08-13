@@ -20,6 +20,17 @@ export const Exercises = () => {
     getExercises();
   }, []);
 
+  let tek = [];
+  let cift = [];
+
+  for (let i = 0; i < allExercises.length; i++) {
+    if (i % 2 == 0) {
+      cift.push(allExercises[i]);
+    } else {
+      tek.push(allExercises[i]);
+    }
+  }
+
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="flex items-center">
@@ -32,7 +43,12 @@ export const Exercises = () => {
         <div className="flex flex-col gap-4">
           <div className="hidden lg:grid lg:grid-cols-2 lg:gap-4 ">
             <div className="grid place-content-center gap-6">
-              {allExercises.map((el: any, index: number) => {
+              {cift?.map((el: any, index: number) => {
+                return <ExerciseCard key={index} props={el} />;
+              })}
+            </div>{" "}
+            <div className="grid place-content-center gap-6">
+              {tek?.map((el: any, index: number) => {
                 return <ExerciseCard key={index} props={el} />;
               })}
             </div>

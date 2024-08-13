@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { ScrollArea } from "./ui/scroll-area";
 
 export const ContentArea = () => {
   return (
