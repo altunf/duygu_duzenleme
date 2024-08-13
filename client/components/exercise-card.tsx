@@ -11,12 +11,24 @@ import {
 import { Button } from "./ui/button";
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-export function ExerciseCard({ props, maxLength = 100 }: any) {
+export function ExerciseCard({ props, maxLength = 50 }: any) {
+  const router = useRouter();
   const [isTruncated, setIsTruncated] = useState(true);
 
   const toggleTruncate = () => {
     setIsTruncated(!isTruncated);
+  };
+
+  const handleClick = (props: any) => {
+    let existingTodos = JSON.parse(localStorage.getItem("todos") || "[]");
+    existingTodos.push(props);
+    console.log(props, "props");
+    localStorage.setItem("todos", JSON.stringify(existingTodos));
+    console.log(typeof props, "item");
+
+    router.push("/");
   };
 
   const newText = (
@@ -46,8 +58,9 @@ export function ExerciseCard({ props, maxLength = 100 }: any) {
           <Image
             src={"/pp.jpeg"}
             alt="Product image"
-            height={100}
-            width={100}
+            height={300}
+            width={400}
+            className=" aspect-video"
           />
         </div>
         <div></div>
@@ -56,7 +69,14 @@ export function ExerciseCard({ props, maxLength = 100 }: any) {
       <CardFooter>{newText}</CardFooter>
       <CardContent className="flex items-center justify-between">
         <i>#{props.tag?.[0]}</i>
-        <Button className="cursor-pointer ">Listeme ekle</Button>
+        <Button
+          onClick={() => {
+            handleClick(props);
+          }}
+          className="cursor-pointer"
+        >
+          Listeme ekle
+        </Button>
       </CardContent>
     </Card>
   );

@@ -6,7 +6,7 @@ import { MyDiaries } from "./my-diaries";
 import { NewDiary } from "./new-diary";
 import { useRouter } from "next/navigation";
 
-export const FeelingDiary = () => {
+export const FeelingDiary = ({ defaultTab }: any) => {
   const router = useRouter();
   const handleCreateNewDiary = () => {
     router.push("/diaries/new");
@@ -17,7 +17,7 @@ export const FeelingDiary = () => {
   };
   return (
     <Tabs
-      defaultValue="myDiaries"
+      defaultValue={defaultTab}
       className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 "
     >
       <div className="flex items-center">

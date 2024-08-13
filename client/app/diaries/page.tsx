@@ -12,7 +12,7 @@ export default function MyFeelingDiaryPage() {
 
         <div className="w-full flex flex-col">
           <Header />
-          <FeelingDiary />
+          <FeelingDiary defaultTab="myDiaries" />
         </div>
       </div>
     </main>

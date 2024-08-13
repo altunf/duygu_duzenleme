@@ -1,8 +1,9 @@
 import { Exercise } from "../models/exerciseModel.js";
 
 const addNewExercise = async (req, res) => {
-  //Belki Pro versiyonunda kullanıcılar da ekleyebilir
-  //SADECE ADMİN yeni exercise ekleyebilir
+  //Pro versiyonunda kullanıcılar kendilerine özel egzersizler ekleyebilir
+
+  //Sadece ADMİN yeni egzersiz ekleyebilir
   try {
     const { title, description, tag, text } = req.body;
     const userID = req.headers["user-id"];

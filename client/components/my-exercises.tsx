@@ -9,6 +9,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { NewDiary } from "./new-diary";
 
 export const MyExercises = () => {
+  const storedTodos = JSON.parse(localStorage.getItem("todos") || "[]");
+
+  console.log(typeof storedTodos, "stored");
+
   const y = (
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="flex items-center">
@@ -19,7 +23,6 @@ export const MyExercises = () => {
         x-chunk="dashboard-02-chunk-1"
       >
         <div className="flex flex-col items-center gap-1 text-center">
-          <ExerciseTodoList />
           <p className="text-sm text-muted-foreground">
             Aşağıdaki butona tıklayarak egzersizleri görebilirsiniz
           </p>
@@ -49,7 +52,9 @@ export const MyExercises = () => {
         x-chunk="dashboard-02-chunk-1"
       >
         <TabsContent value="exercises" className="h-96 ">
-          <ExerciseTodoList />
+          {storedTodos?.map((el: any, index: number) => {
+            return <ExerciseTodoList key={index} props={el} />;
+          })}
         </TabsContent>
         <TabsContent value="completed" className="h-96">
           <NewDiary />

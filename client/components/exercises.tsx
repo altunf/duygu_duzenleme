@@ -12,12 +12,12 @@ interface Exercise {
 export const Exercises = () => {
   const [allExercises, setAllExercises] = useState<Exercise[]>([]);
   useEffect(() => {
-    const getDiaries = async () => {
+    const getExercises = async () => {
       const response = await fetch("http://localhost:3001/exercises/:*");
       const data = await response.json();
       setAllExercises(data);
     };
-    getDiaries();
+    getExercises();
   }, []);
 
   return (
