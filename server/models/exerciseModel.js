@@ -2,6 +2,15 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
+const dateSchema = new Schema(
+  {
+    date: {
+      type: String,
+      required: false,
+    },
+  },
+  { _id: false }
+);
 const exerciseSchema = new Schema(
   {
     title: {
@@ -24,8 +33,9 @@ const exerciseSchema = new Schema(
       required: [true, "Text area is required"],
     },
     completionDates: {
-      type: Array,
-      required: [false, "UserID area is required"],
+      type: Map,
+      of: [dateSchema],
+      default: {},
     },
     userID: {
       type: String,

@@ -7,6 +7,7 @@ import {
 
 const router = express.Router();
 router.post("/admin", addNewExercise);
+router.post("/", addCompletionDate);
 router.get("/exercises/:*", getAllExercises);
 
 export default router;

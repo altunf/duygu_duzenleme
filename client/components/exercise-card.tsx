@@ -24,9 +24,7 @@ export function ExerciseCard({ props, maxLength = 50 }: any) {
   const handleClick = (props: any) => {
     let existingTodos = JSON.parse(localStorage.getItem("todos") || "[]");
     existingTodos.push(props);
-    console.log(props, "props");
     localStorage.setItem("todos", JSON.stringify(existingTodos));
-    console.log(typeof props, "item");
 
     router.push("/");
   };
