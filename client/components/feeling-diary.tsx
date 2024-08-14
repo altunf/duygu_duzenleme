@@ -18,7 +18,7 @@ export const FeelingDiary = ({ defaultTab }: any) => {
   return (
     <Tabs
       defaultValue={defaultTab}
-      className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 "
+      className="flex h-full w-full flex-col gap-4 p-4 lg:gap-6 lg:p-6 "
     >
       <div className="flex items-center">
         <h1 className="text-lg font-semibold md:text-2xl">Duygu Günlüğüm</h1>
@@ -37,10 +37,10 @@ export const FeelingDiary = ({ defaultTab }: any) => {
         className="flex flex-1 items-center justify-center rounded-lg border border-dashed overflow-x-auto overflow-y-auto"
         x-chunk="dashboard-02-chunk-1"
       >
-        <TabsContent value="myDiaries" className="h-96 ">
+        <TabsContent value="myDiaries">
           <MyDiaries />
         </TabsContent>
-        <TabsContent value="newDiary" className="h-96">
+        <TabsContent value="newDiary">
           <NewDiary />
         </TabsContent>
       </div>

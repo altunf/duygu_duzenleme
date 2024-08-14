@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Badge } from "@/components/ui/badge";
-import { BookOpen, MoreHorizontal, NotebookPen } from "lucide-react";
+import { BookOpen, MoreHorizontal } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   DropdownMenu,

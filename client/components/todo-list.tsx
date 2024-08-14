@@ -27,17 +27,17 @@ export default function ExerciseTodoList() {
   };
 
   return (
-    <div className="bg-background p-6 w-full max-w-md flex flex-col gap-4">
-      <div className="flex flex-col gap-2">
-        {storedTodos.map((el: any, index: number) => {
-          return (
-            <div
-              key={index}
-              className="flex items-center gap-2 bg-muted p-2 rounded-md  line-through text-muted-foreground"
-            >
-              <label htmlFor="todo-1" className="flex-1 text-sm font-medium">
-                {el.title}
-              </label>
+    <main className="flex flex-col h-full w-full  rounded-sm  items-center gap-2 p-2">
+      {storedTodos.map((el: any, index: number) => {
+        return (
+          <div
+            key={index}
+            className="flex justify-between h-full w-[400px] items-center gap-2 bg-muted p-2 rounded-md  line-through text-muted-foreground"
+          >
+            <label htmlFor="todo-1" className="ml-6 text-md font-medium">
+              {el.title}
+            </label>
+            <div>
               <Button
                 variant="ghost"
                 size="icon"
@@ -46,19 +46,19 @@ export default function ExerciseTodoList() {
                   handleClick(el);
                 }}
               >
-                <Save className="w-4 h-4 " />
+                <Save className="w-5 h-5 " />
               </Button>
               <Button
                 variant="ghost"
                 size="icon"
                 className="text-muted-foreground"
               >
-                <TrashIcon className="w-4 h-4" />
+                <TrashIcon className="w-5 h-5" />
               </Button>
             </div>
-          );
-        })}
-      </div>
-    </div>
+          </div>
+        );
+      })}
+    </main>
   );
 }

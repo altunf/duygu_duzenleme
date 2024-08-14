@@ -1,6 +1,5 @@
 "use client";
 
-import { Sidebar } from "@/components/sidebar";
 import { useTheme } from "next-themes";
 
 import { useEffect, useState } from "react";
@@ -9,7 +8,6 @@ export default function Page({ params }: { params: { slug: string } }) {
   const [diary, setDiary] = useState<any[]>([]);
 
   const { theme } = useTheme();
-  console.log("theme", theme);
 
   const light =
     "  bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] ";
@@ -39,7 +37,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   const diaryTemp = (props: any) => {
     return (
-      <main key={props._id} className="px-4 sm:px-6 lg:px-8 h-96">
+      <main key={props._id} className="px-4 sm:px-6 lg:px-8 ">
         <div
           className={`max-w-4xl w-full  p-6 ${bgClr}  rounded-lg shadow-2xl`}
         >
@@ -60,22 +58,17 @@ export default function Page({ params }: { params: { slug: string } }) {
   };
 
   return (
-    <main className="flex min-h-screen">
-      <Sidebar />
-      <div className="w-full flex flex-col">
-        <div
-          className={`flex items-center justify-center h-full w-full overflow-auto
-           ${bgStyle}`}
-        >
-          <div className="">
-            {result.length > 0 ? (
-              result.map((el) => diaryTemp(el))
-            ) : (
-              <p>Günlük bulunamadı.</p>
-            )}
-          </div>
-        </div>
+    <div
+      className={`flex items-center justify-center h-full w-full 
+     ${bgStyle}`}
+    >
+      <div className="">
+        {result.length > 0 ? (
+          result.map((el) => diaryTemp(el))
+        ) : (
+          <p>Günlük bulunamadı.</p>
+        )}
       </div>
-    </main>
+    </div>
   );
 }

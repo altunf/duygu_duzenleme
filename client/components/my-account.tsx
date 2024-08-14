@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -11,11 +12,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { Settings, UserCog } from "lucide-react";
+import { Settings } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export const MyAccount = () => {
+  const router = useRouter();
   const handleClick: any = () => {
     localStorage.removeItem("token");
+    router.push("/login");
   };
   return (
     <>

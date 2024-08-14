@@ -12,7 +12,7 @@ export function FeelingsSidebar() {
     router.push(`/exercises/${emotion}`);
   };
   return (
-    <div className="hidden min-h-screen border-r bg-muted/40 md:block w-72 min-w-72 max-w-72 overflow-y-auto">
+    <div className="hidden min-h-screen border-r bg-muted/40 md:block w-72 min-w-72 max-w-72 overflow-y-auto ">
       <div className="flex items-center justify-center mt-4 mr-2 cursor-pointer">
         Duygular
       </div>

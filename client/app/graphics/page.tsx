@@ -4,12 +4,8 @@ import { Sidebar } from "@/components/sidebar";
 
 export default function GraphicsPage() {
   return (
-    <main className="min-h-screen flex ">
-      <Sidebar />
-      <div className="w-full flex flex-col">
-        <Header />
-        <Graphics />
-      </div>
+    <main className="h-full w-full">
+      <Graphics />
     </main>
   );
 }

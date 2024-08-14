@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { Sidebar } from "./sidebar";
 
 export const ContentArea = () => {
   return (
@@ -15,4 +16,18 @@ export const ContentArea = () => {
       </div>
     </div>
   );
+};
+
+export const PageTemplate = () => {
+  <main className="flex min-h-screen">
+    <Sidebar />
+    <div className="w-full flex flex-col">
+      <div
+        className={`flex items-center justify-center h-full w-full overflow-auto
+      `}
+      >
+        <div className=""></div>
+      </div>
+    </div>
+  </main>;
 };

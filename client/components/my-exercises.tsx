@@ -12,7 +12,7 @@ export const MyExercises = () => {
   const x = (
     <Tabs
       defaultValue="exercises"
-      className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 "
+      className="flex flex-1  h-full w-full flex-col gap-4 p-4 lg:gap-6 lg:p-6 "
     >
       <div className="flex items-center">
         <h1 className="text-lg font-semibold md:text-2xl">Egzersiz Listem</h1>
@@ -24,17 +24,18 @@ export const MyExercises = () => {
         </TabsList>
       </div>
       <div
-        className="flex flex-1 items-center justify-center rounded-lg border border-dashed overflow-x-auto overflow-y-auto"
+        className="flex-1 flex items-center justify-center rounded-lg border border-dashed overflow-x-auto overflow-y-auto"
         x-chunk="dashboard-02-chunk-1"
       >
-        <TabsContent value="exercises" className="h-96 ">
+        <TabsContent value="exercises">
           <ExerciseTodoList />
         </TabsContent>
-        <TabsContent value="completed" className="h-96">
-          <NewDiary />
+        <TabsContent value="completed">
+          <ExerciseTodoList />
         </TabsContent>
       </div>
     </Tabs>
   );
+
   return x;
 };
