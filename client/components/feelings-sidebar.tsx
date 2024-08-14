@@ -1,17 +1,19 @@
 "use client";
 
 import { Button } from "./ui/button";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export function FeelingsSidebar() {
   const router = useRouter();
+  const pathname = usePathname();
 
   const emotions = ["öfke", "mutluluk", "üzüntü", "korku"];
 
   const handleEmotionClick = (emotion: string) => {
     router.push(`/exercises/${emotion}`);
   };
-  return (
+
+  const x = (
     <div className="hidden min-h-screen border-r bg-muted/40 md:block w-72 min-w-72 max-w-72 overflow-y-auto ">
       <div className="flex items-center justify-center mt-4 mr-2 cursor-pointer">
         Duygular
@@ -32,4 +34,7 @@ export function FeelingsSidebar() {
       </div>
     </div>
   );
+  const b = pathname.startsWith("/exercises");
+
+  return <> {b && x}</>;
 }

@@ -17,7 +17,6 @@ import Link from "next/link";
 import { useSidebarContext } from "@/context/sidebar-context";
 
 const SidebarMenu = () => {
-  const { isOpen, setOpen }: any = useSidebarContext();
   const menuNames = [
     "Egzersiz Listem",
     "Duygu Günlüğüm",
@@ -37,9 +36,6 @@ const SidebarMenu = () => {
         <Link
           href={hrefs[index]}
           className="flex items-center gap-3 rounded-lg px-0 py-4  transition-all hover:text-primary"
-          onClick={() => {
-            index == 3 ? setOpen(true) : "";
-          }}
         >
           {icons[index]}
           {el}
