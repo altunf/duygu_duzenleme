@@ -26,7 +26,7 @@ const addNewExercise = async (req, res) => {
   }
 };
 
-// Kullanıcının tamamlanma tarihlerini ekleyen kontrolör fonksiyonu
+// Kullanıcının egzersizi tamamlamma tarihini ekleyen kontrolör fonksiyonu
 const addCompletionDate = async (req, res) => {
   const exerciseId = req.body.exerciseId;
   const userId = req.headers["user-id"];
@@ -39,13 +39,9 @@ const addCompletionDate = async (req, res) => {
   }
 
   try {
-    // Egzersizi bul ve güncelle
     const exercise = await Exercise.findById(exerciseId);
     if (!exercise)
       return res.status(404).json({ message: "Exercise not found" });
-
-    // Kullanıcıya ait tarih dizisini güncelle
-    // `$push` operatörü ile belirtilen kullanıcı için tarih ekle
 
     await Exercise.findByIdAndUpdate(
       exerciseId,

@@ -45,7 +45,7 @@ export function CreateExercise() {
   });
 
   return (
-    <main className="px-4 md:px-6 pb-6">
+    <main className="px-4 md:px-6 pb-6 w-full h-full flex items-center justify-center">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <header className="space-y-1">

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Badge } from "@/components/ui/badge";
-import { BookOpen, MoreHorizontal } from "lucide-react";
+import { BookOpen, Eye, MoreHorizontal } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   DropdownMenu,
@@ -25,7 +25,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -55,7 +54,15 @@ export function MyDiaries() {
 
   useEffect(() => {
     const getDiaries = async () => {
-      const response = await fetch("http://localhost:3001/diaries");
+      const currentUser: any = localStorage.getItem("token");
+      const userID = JSON.parse(currentUser).userCheck._id;
+      const response = await fetch("http://localhost:3001/diaries", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Current-User": userID,
+        },
+      });
       const data = await response.json();
       setUserDiaries(data);
     };
@@ -119,9 +126,9 @@ export function MyDiaries() {
     return formattedDate;
   };
 
-  return (
-    <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
-      <Card x-chunk="dashboard-06-chunk-0">
+  const x = (
+    <main className="grid flex-1 h-full  items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:w-[900px]">
+      <Card x-chunk="dashboard-06-chunk-0 ">
         <CardContent>
           <Table>
             <TableHeader>
@@ -133,16 +140,14 @@ export function MyDiaries() {
                 <TableHead>Duygu</TableHead>
                 <TableHead className="hidden md:table-cell">Puan</TableHead>
                 <TableHead className="hidden md:table-cell">Tarih</TableHead>
-                <TableHead>
-                  <span className="sr-only">Actions</span>
-                </TableHead>
+                <TableHead>Düzenle</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {userDiaries.map((diary: Diary) => (
                 <TableRow key={diary._id}>
-                  <TableCell className="hidden sm:table-cell">
-                    <BookOpen
+                  <TableCell className="hidden sm:table-cell cursor-pointer">
+                    <Eye
                       onClick={() => {
                         handleRowClick(diary.title);
                       }}
@@ -208,7 +213,7 @@ export function MyDiaries() {
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="name" className="text-right">
-                Yeni günlük adı
+                Yeni başlık
               </Label>
               <Input
                 id="name"
@@ -220,11 +225,17 @@ export function MyDiaries() {
           </div>
           <DialogFooter>
             <Button type="button" onClick={handleSave}>
-              Değişiklikleri kaydet
+              Kaydet
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
     </main>
   );
+
+  const y = <i>Henüz bir duygu günlüğü oluşturmadınız</i>;
+  const display = userDiaries?.length > 0 ? true : false;
+  const ab = display ? x : y;
+
+  return ab;
 }

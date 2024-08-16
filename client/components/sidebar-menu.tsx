@@ -5,16 +5,11 @@ import {
   ChartPie,
   ChevronRight,
   ClipboardList,
-  LineChart,
   List,
-  ListChecks,
   NotebookPen,
 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { DropdownMenuSeparator } from "./ui/dropdown-menu";
-
 import Link from "next/link";
-import { useSidebarContext } from "@/context/sidebar-context";
 
 const SidebarMenu = () => {
   const menuNames = [

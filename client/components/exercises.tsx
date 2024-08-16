@@ -11,6 +11,7 @@ interface Exercise {
 
 export const Exercises = () => {
   const [allExercises, setAllExercises] = useState<Exercise[]>([]);
+
   useEffect(() => {
     const getExercises = async () => {
       const response = await fetch("http://localhost:3001/exercises/:*");
@@ -20,18 +21,18 @@ export const Exercises = () => {
     getExercises();
   }, []);
 
-  let tek = [];
-  let cift = [];
+  let tek: any = [];
+  let cift: any = [];
 
-  for (let i = 0; i < allExercises.length; i++) {
-    if (i % 2 == 0) {
-      cift.push(allExercises[i]);
+  allExercises.forEach((exercise, index) => {
+    if (index % 2 === 0) {
+      cift.push(exercise);
     } else {
-      tek.push(allExercises[i]);
+      tek.push(exercise);
     }
-  }
+  });
 
-  const x = (
+  return (
     <div className="flex flex-1 h-full w-full flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="flex items-center  ">
         <h1 className="text-lg font-semibold md:text-2xl">Egzersizler</h1>
@@ -55,6 +56,4 @@ export const Exercises = () => {
       </div>
     </div>
   );
-
-  return x;
 };

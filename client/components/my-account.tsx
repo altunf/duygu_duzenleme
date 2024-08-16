@@ -17,10 +17,12 @@ import { useRouter } from "next/navigation";
 
 export const MyAccount = () => {
   const router = useRouter();
+
   const handleClick: any = () => {
     localStorage.removeItem("token");
     router.push("/login");
   };
+
   return (
     <>
       <DropdownMenu>

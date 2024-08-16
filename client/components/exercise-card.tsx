@@ -38,34 +38,36 @@ export function ExerciseCard({ props, maxLength = 50 }: any) {
     </div>
   );
 
+  function capitalizeFirstLetter(props: string) {
+    return props.charAt(0).toUpperCase() + props.slice(1);
+  }
+
   return (
-    <Card
-      className="overflow-y-auto max-w-96 max-h-[400px]"
-      x-chunk="dashboard-07-chunk-4"
-    >
+    <Card className="" x-chunk="dashboard-07-chunk-4">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle>
-            <i>{props.title}</i>
+            <i>{capitalizeFirstLetter(props.title)}</i>
           </CardTitle>
         </div>
-        <CardDescription>{props.description}</CardDescription>
+        <CardDescription className="flex items-center justify-start">
+          {props.description}
+        </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex flex-col">
         <div className="grid gap-2">
           <Image
-            src={"/pp.jpeg"}
+            src={"/emotions.jpg"}
             alt="Product image"
-            height={300}
-            width={400}
-            className=" aspect-video"
+            height={200}
+            width={200}
+            className="aspect-video w-full  rounded-lg"
           />
-        </div>
-        <div></div>
+        </div>{" "}
+        {newText}
       </CardContent>
 
-      <CardFooter>{newText}</CardFooter>
-      <CardContent className="flex items-center justify-between">
+      <CardFooter className="flex items-center justify-between">
         <i>#{props.tag?.[0]}</i>
         <Button
           onClick={() => {
@@ -75,7 +77,7 @@ export function ExerciseCard({ props, maxLength = 50 }: any) {
         >
           Listeme ekle
         </Button>
-      </CardContent>
+      </CardFooter>
     </Card>
   );
 }

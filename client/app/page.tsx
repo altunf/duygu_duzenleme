@@ -1,9 +1,6 @@
 "use client";
 
-import { Header } from "@/components/header";
 import { MyExercises } from "@/components/my-exercises";
-import { Sidebar } from "@/components/sidebar";
-import ExerciseTodoList from "@/components/todo-list";
 
 const HomePage = (
   <main>

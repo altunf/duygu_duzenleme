@@ -1,12 +1,8 @@
 "use client";
 import React from "react";
-import { Button } from "./ui/button";
 
-import Link from "next/link";
-import ExerciseTodoList from "./todo-list";
+import Tasks from "./tasks";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
-import { NewDiary } from "./new-diary";
 
 export const MyExercises = () => {
   const x = (
@@ -28,10 +24,10 @@ export const MyExercises = () => {
         x-chunk="dashboard-02-chunk-1"
       >
         <TabsContent value="exercises">
-          <ExerciseTodoList />
+          <Tasks />
         </TabsContent>
         <TabsContent value="completed">
-          <ExerciseTodoList />
+          <Tasks />
         </TabsContent>
       </div>
     </Tabs>

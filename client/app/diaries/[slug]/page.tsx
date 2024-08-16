@@ -18,12 +18,20 @@ export default function Page({ params }: { params: { slug: string } }) {
   const bgClr =
     theme === "light"
       ? " bg-[#F1E9D2] bg-opacity-60"
-      : " bg-orange-700 bg-opacity-40";
+      : " bg-black-700 bg-opacity-0";
 
   useEffect(() => {
     const getDiaries = async () => {
       try {
-        const response = await fetch("http://localhost:3001/diaries");
+        const currentUser: any = localStorage.getItem("token");
+        const userID = JSON.parse(currentUser).userCheck._id;
+        const response = await fetch("http://localhost:3001/diaries", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Current-User": userID,
+          },
+        });
         const data = await response.json();
         setDiary(data);
       } catch (error) {
@@ -34,6 +42,34 @@ export default function Page({ params }: { params: { slug: string } }) {
   }, []);
 
   const result = diary.filter((el) => el.title == params.slug);
+
+  const dateFormatter = (date: any) => {
+    const modifiedDate = new Date(date);
+
+    const day = String(modifiedDate.getDate()).padStart(2, "0");
+    const month = String(modifiedDate.getMonth() + 1).padStart(2, "0");
+    const year = String(modifiedDate.getFullYear());
+
+    const months: any = [
+      "Ocak",
+      "Şubat",
+      "Mart",
+      "Nisan",
+      "Mayıs",
+      "Haziran",
+      "Temmuz",
+      "Ağustos",
+      "Eylül",
+      "Ekim",
+      "Kasım",
+      "Aralık",
+    ];
+
+    //const formattedDate = `${day}.${month}.${year}`;
+    const newFormat = `${day} ${months[Number(month) - 1]} ${year}`;
+
+    return newFormat;
+  };
 
   const diaryTemp = (props: any) => {
     return (
@@ -46,7 +82,9 @@ export default function Page({ params }: { params: { slug: string } }) {
               <h1 className="text-3xl font-bold text-card-foreground">
                 {props.title}
               </h1>
-              <p className="text-muted-foreground">August 11, 2024</p>
+              <p className="text-muted-foreground">
+                {dateFormatter(props.date)}
+              </p>
             </div>
             <div className="space-y-4 max-w-none whitespace-pre-wrap ">
               <p>{props.text}</p>

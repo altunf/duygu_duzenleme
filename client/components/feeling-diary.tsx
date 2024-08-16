@@ -34,7 +34,7 @@ export const FeelingDiary = ({ defaultTab }: any) => {
         </TabsList>
       </div>
       <div
-        className="flex flex-1 items-center justify-center rounded-lg border border-dashed overflow-x-auto overflow-y-auto"
+        className="flex flex-1  items-center justify-center rounded-lg border border-dashed overflow-x-auto overflow-y-auto"
         x-chunk="dashboard-02-chunk-1"
       >
         <TabsContent value="myDiaries">

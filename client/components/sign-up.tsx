@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState, ChangeEvent, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 
 export function SignUpForm() {
   const [registerData, setRegisterData] = useState({
@@ -20,6 +21,8 @@ export function SignUpForm() {
     email: "",
     password: "",
   });
+
+  const router = useRouter();
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setRegisterData({ ...registerData, [e.target.name]: e.target.value });
@@ -35,6 +38,8 @@ export function SignUpForm() {
       body: JSON.stringify(registerData),
     });
     const data = await response.json();
+
+    router.push("/login");
   };
 
   return (
