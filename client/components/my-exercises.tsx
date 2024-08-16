@@ -3,6 +3,7 @@ import React from "react";
 
 import Tasks from "./tasks";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import CompletedTasks from "./completed-tasks";
 
 export const MyExercises = () => {
   const x = (
@@ -27,7 +28,7 @@ export const MyExercises = () => {
           <Tasks />
         </TabsContent>
         <TabsContent value="completed">
-          <Tasks />
+          <CompletedTasks />
         </TabsContent>
       </div>
     </Tabs>

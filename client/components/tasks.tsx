@@ -1,11 +1,21 @@
-"use client";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { CircleCheckBig, TrashIcon } from "lucide-react";
 
 export default function Tasks() {
   //daha sonra bunu db'ye bağlayacağım
-  const storedTodos = JSON.parse(localStorage.getItem("todos") as any);
+  const storedTodos: any =
+    JSON.parse(localStorage.getItem("todos") as any) || [];
+
+  const addCompletedTasks = (el: any) => {
+    let completedTodos =
+      JSON.parse(localStorage.getItem("completedTodos") as any) || [];
+    completedTodos.push(el);
+    localStorage.setItem("completedTodos", JSON.stringify(completedTodos));
+
+    console.log(JSON.parse(JSON.stringify(completedTodos)));
+  };
+
   const handleAddCompletion = async (el: any) => {
     const currentUser: any = localStorage.getItem("token");
     const userID = JSON.parse(currentUser).userCheck._id;
@@ -17,17 +27,17 @@ export default function Tasks() {
       }),
       headers: {
         "Content-Type": "application/json",
-        "User-ID": userID, // ??
+        "User-ID": userID,
       },
     });
+
+    addCompletedTasks(el);
   };
 
   const handleDelete = async (el: any) => {
     const newTodos: any =
       JSON.parse(localStorage.getItem("todos") as any) || [];
-
     const updatedtodos = newTodos.filter((todo: any) => todo._id !== el._id);
-
     localStorage.setItem("todos", JSON.stringify(updatedtodos));
   };
 
