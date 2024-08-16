@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Badge } from "@/components/ui/badge";
-import { BookOpen, Eye, MoreHorizontal } from "lucide-react";
+import { Eye, MoreHorizontal } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   DropdownMenu,
@@ -30,6 +30,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import { useRouter } from "next/navigation";
+import { formatDate } from "@/lib/formatDate";
 
 interface Diary {
   _id: string;
@@ -114,18 +115,6 @@ export function MyDiaries() {
     setDialogOpen(true);
   };
 
-  const dateFormatter = (date: any) => {
-    const modifiedDate = new Date(date);
-
-    const day = String(modifiedDate.getDate()).padStart(2, "0");
-    const month = String(modifiedDate.getMonth() + 1).padStart(2, "0");
-    const year = String(modifiedDate.getFullYear());
-
-    const formattedDate = `${day}.${month}.${year}`;
-
-    return formattedDate;
-  };
-
   const x = (
     <main className="grid flex-1 h-full  items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:w-[900px]">
       <Card x-chunk="dashboard-06-chunk-0 ">
@@ -161,7 +150,7 @@ export function MyDiaries() {
                     {diary.point}
                   </TableCell>
                   <TableCell className="hidden md:table-cell">
-                    {dateFormatter(diary.date)}
+                    {formatDate(diary.date, false)}
                   </TableCell>
                   <TableCell>
                     <DropdownMenu>

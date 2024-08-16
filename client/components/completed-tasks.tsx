@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "./ui/button";
-import { CircleCheckBig, TrashIcon } from "lucide-react";
+import { TrashIcon } from "lucide-react";
 
 const CompletedTasks = () => {
   const completed: any =
@@ -14,17 +14,13 @@ const CompletedTasks = () => {
               key={index}
               className="flex justify-between h-full w-[400px] items-center gap-2 bg-muted p-2 rounded-md  "
             >
-              <label htmlFor="todo-1" className="ml-6 text-md font-medium">
+              <label
+                htmlFor="todo-1"
+                className="ml-6 text-md font-medium line-through text-muted-foreground"
+              >
                 {el.title}
               </label>
               <div>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="text-muted-foreground"
-                >
-                  <CircleCheckBig className="w-5 h-5 text-green-500" />
-                </Button>
                 <Button
                   variant="ghost"
                   size="icon"

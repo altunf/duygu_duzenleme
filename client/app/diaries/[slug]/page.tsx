@@ -1,8 +1,8 @@
 "use client";
 
 import { useTheme } from "next-themes";
-
 import { useEffect, useState } from "react";
+import { formatDate } from "@/lib/formatDate.js";
 
 export default function Page({ params }: { params: { slug: string } }) {
   const [diary, setDiary] = useState<any[]>([]);
@@ -43,34 +43,6 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   const result = diary.filter((el) => el.title == params.slug);
 
-  const dateFormatter = (date: any) => {
-    const modifiedDate = new Date(date);
-
-    const day = String(modifiedDate.getDate()).padStart(2, "0");
-    const month = String(modifiedDate.getMonth() + 1).padStart(2, "0");
-    const year = String(modifiedDate.getFullYear());
-
-    const months: any = [
-      "Ocak",
-      "Şubat",
-      "Mart",
-      "Nisan",
-      "Mayıs",
-      "Haziran",
-      "Temmuz",
-      "Ağustos",
-      "Eylül",
-      "Ekim",
-      "Kasım",
-      "Aralık",
-    ];
-
-    //const formattedDate = `${day}.${month}.${year}`;
-    const newFormat = `${day} ${months[Number(month) - 1]} ${year}`;
-
-    return newFormat;
-  };
-
   const diaryTemp = (props: any) => {
     return (
       <main key={props._id} className="px-4 sm:px-6 lg:px-8 ">
@@ -82,9 +54,7 @@ export default function Page({ params }: { params: { slug: string } }) {
               <h1 className="text-3xl font-bold text-card-foreground">
                 {props.title}
               </h1>
-              <p className="text-muted-foreground">
-                {dateFormatter(props.date)}
-              </p>
+              <p className="text-muted-foreground">{formatDate(props.date)}</p>
             </div>
             <div className="space-y-4 max-w-none whitespace-pre-wrap ">
               <p>{props.text}</p>

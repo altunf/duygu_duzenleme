@@ -32,6 +32,7 @@ export default function Tasks() {
     });
 
     addCompletedTasks(el);
+    handleDelete(el);
   };
 
   const handleDelete = async (el: any) => {
