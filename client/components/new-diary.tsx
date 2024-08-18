@@ -50,7 +50,7 @@ export function NewDiary() {
   return (
     <main className="px-4 md:px-6 pb-6">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <header className="space-y-1">
             <div className="flex items-center justify-start space-x-2">
               <FormField
@@ -166,7 +166,7 @@ export function NewDiary() {
                     <FormLabel>Günlük</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Write your entry here."
+                        placeholder="Düşüncelerinizi buraya yazın."
                         className="min-h-[300px] "
                         onChange={field.onChange}
                       />

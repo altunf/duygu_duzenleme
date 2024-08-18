@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { CircleCheckBig, TrashIcon } from "lucide-react";
+import { CircleCheckBig, TrashIcon, Loader2 } from "lucide-react";
 
 export default function Tasks() {
-  //daha sonra bunu db'ye bağlayacağım
+  const [loading, setLoading] = useState<string | null>(null);
+
   const storedTodos: any =
     JSON.parse(localStorage.getItem("todos") as any) || [];
 
@@ -17,6 +18,7 @@ export default function Tasks() {
   };
 
   const handleAddCompletion = async (el: any) => {
+    setLoading(el._id); // Loading state'i başlat
     const currentUser: any = localStorage.getItem("token");
     const userID = JSON.parse(currentUser).userCheck._id;
 
@@ -33,6 +35,7 @@ export default function Tasks() {
 
     addCompletedTasks(el);
     handleDelete(el);
+    setLoading(null); // Loading state'i bitir
   };
 
   const handleDelete = async (el: any) => {
@@ -62,8 +65,13 @@ export default function Tasks() {
                   onClick={() => {
                     handleAddCompletion(el);
                   }}
+                  disabled={loading === el._id} // Yüklenirken buton devre dışı
                 >
-                  <CircleCheckBig className="w-5 h-5 text-green-500" />
+                  {loading === el._id ? (
+                    <Loader2 className="w-5 h-5 animate-spin text-current transition-all duration-1000" />
+                  ) : (
+                    <CircleCheckBig className="w-5 h-5 text-green-500" />
+                  )}
                 </Button>
                 <Button
                   variant="ghost"

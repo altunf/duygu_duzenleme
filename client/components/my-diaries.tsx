@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Eye, MoreHorizontal } from "lucide-react";
+import { Eye, MoreHorizontal, NotebookTabs } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   DropdownMenu,
@@ -116,8 +116,8 @@ export function MyDiaries() {
   };
 
   const x = (
-    <main className="grid flex-1 h-full  items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:w-[900px]">
-      <Card x-chunk="dashboard-06-chunk-0 ">
+    <main className="grid flex-1 h-full  items-start  p-4 sm:px-6 sm:py-0 md:gap-8 lg:w-[900px]">
+      <Card className=" border-none shadow-none ">
         <CardContent>
           <Table>
             <TableHeader>
@@ -134,23 +134,45 @@ export function MyDiaries() {
             </TableHeader>
             <TableBody>
               {userDiaries.map((diary: Diary) => (
-                <TableRow key={diary._id}>
-                  <TableCell className="hidden sm:table-cell cursor-pointer">
-                    <Eye
+                <TableRow
+                  key={diary._id}
+                  className="opacity-40 hover:opacity-100 hover:bg-none transition-all duration-500 backdrop-blur-xl backdrop-sepia"
+                >
+                  <TableCell className="hidden sm:table-cell cursor-pointer ">
+                    <NotebookTabs
+                      className="text-sky-300"
                       onClick={() => {
                         handleRowClick(diary.title);
                       }}
                     />
                   </TableCell>
-                  <TableCell className="font-medium">{diary.title}</TableCell>
+                  <TableCell className="font-medium  ">
+                    {" "}
+                    <Badge
+                      variant="outline"
+                      className="bg-green-300 px-4 py-1 text-gray-700"
+                    >
+                      {diary.title}
+                    </Badge>
+                  </TableCell>
                   <TableCell>
-                    <Badge variant="outline">{diary.mood}</Badge>
+                    <Badge
+                      variant="outline"
+                      className="bg-yellow-300 px-4 py-1 text-gray-700"
+                    >
+                      {diary.mood}
+                    </Badge>
                   </TableCell>
                   <TableCell className="hidden md:table-cell">
-                    {diary.point}
+                    <Badge
+                      variant="outline"
+                      className="bg-violet-300 px-4 py-1 text-gray-700"
+                    >
+                      {diary.point}
+                    </Badge>
                   </TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    {formatDate(diary.date, false)}
+                  <TableCell className="hidden md:table-cell text-gray-700 ">
+                    <Badge> {formatDate(diary.date, false)}</Badge>
                   </TableCell>
                   <TableCell>
                     <DropdownMenu>

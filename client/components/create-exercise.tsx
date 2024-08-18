@@ -154,7 +154,7 @@ export function CreateExercise() {
     const currentUser: any = localStorage.getItem("token");
     const userID = JSON.parse(currentUser).userCheck._id;
 
-    const response = await fetch("http://localhost:3001/admin", {
+    await fetch("http://localhost:3001/admin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

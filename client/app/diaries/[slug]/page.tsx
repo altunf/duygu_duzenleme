@@ -3,10 +3,10 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { formatDate } from "@/lib/formatDate.js";
+import { capitalizeFirstLetter } from "@/lib/capitalizeFirstLetter";
 
 export default function Page({ params }: { params: { slug: string } }) {
   const [diary, setDiary] = useState<any[]>([]);
-
   const { theme } = useTheme();
 
   const light =
@@ -18,7 +18,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   const bgClr =
     theme === "light"
       ? " bg-[#F1E9D2] bg-opacity-60"
-      : " bg-black-700 bg-opacity-0";
+      : " bg-blue-700 bg-opacity-10";
 
   useEffect(() => {
     const getDiaries = async () => {
@@ -52,7 +52,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           <div className="space-y-6">
             <div className="flex items-center justify-between space-x-2">
               <h1 className="text-3xl font-bold text-card-foreground">
-                {props.title}
+                <i> {capitalizeFirstLetter(props.title)}</i>
               </h1>
               <p className="text-muted-foreground">{formatDate(props.date)}</p>
             </div>

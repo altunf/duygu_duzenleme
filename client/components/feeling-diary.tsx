@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MyDiaries } from "./my-diaries";
 import { NewDiary } from "./new-diary";
 import { useRouter } from "next/navigation";
+import { Plus, PlusIcon } from "lucide-react";
 
 export const FeelingDiary = ({ defaultTab }: any) => {
   const router = useRouter();
@@ -23,13 +24,13 @@ export const FeelingDiary = ({ defaultTab }: any) => {
       <div className="flex items-center">
         <h1 className="text-lg font-semibold md:text-2xl">Duygu Günlüğüm</h1>
       </div>
-      <div className="grid grid-cols-2 w-[480px]">
+      <div className="grid grid-cols-2 w-[500px]">
         <TabsList>
           <TabsTrigger value="myDiaries" onClick={handleCreateDiary}>
             Günlüklerim
           </TabsTrigger>
           <TabsTrigger value="newDiary" onClick={handleCreateNewDiary}>
-            Günlük Oluştur
+            Günlük Oluştur <Plus className="h-4 w-4 " />
           </TabsTrigger>
         </TabsList>
       </div>

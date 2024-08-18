@@ -15,7 +15,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   const x = (
-    <div className="hidden border-r  bg-muted/40 md:block w-72 min-w-72 max-w-64 ">
+    <aside className="hidden border-r  bg-muted/20 md:block w-72 min-w-72 max-w-64 ">
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
           <Link href="/" className="flex items-center gap-2 font-semibold">
@@ -38,7 +38,7 @@ export function Sidebar() {
           <UpgradeToPro />
         </div>
       </div>
-    </div>
+    </aside>
   );
   const b = pathname == "/register" || pathname == "/login" ? false : true;
 

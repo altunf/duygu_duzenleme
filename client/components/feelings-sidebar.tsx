@@ -14,7 +14,7 @@ export function FeelingsSidebar() {
   };
 
   const x = (
-    <div className="hidden min-h-screen border-r bg-muted/40 md:block w-72 min-w-72 max-w-72 overflow-y-auto ">
+    <aside className="hidden min-h-screen border-r bg-muted/40 md:block w-72 min-w-72 max-w-72 overflow-y-auto ">
       <h1 className="flex items-center justify-center mt-4 mr-2 cursor-pointer">
         <strong> Duygular</strong>
       </h1>
@@ -32,7 +32,7 @@ export function FeelingsSidebar() {
           ))}
         </div>
       </div>
-    </div>
+    </aside>
   );
   const b = pathname.startsWith("/exercises");
 
