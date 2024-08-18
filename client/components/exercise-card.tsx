@@ -12,6 +12,7 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { capitalizeFirstLetter } from "@/lib/capitalizeFirstLetter.js";
 
 export function ExerciseCard({ props, maxLength = 50 }: any) {
   const router = useRouter();
@@ -37,10 +38,6 @@ export function ExerciseCard({ props, maxLength = 50 }: any) {
       </button>
     </div>
   );
-
-  function capitalizeFirstLetter(props: string) {
-    return props.charAt(0).toUpperCase() + props.slice(1);
-  }
 
   return (
     <Card className="" x-chunk="dashboard-07-chunk-4">
