@@ -38,16 +38,16 @@ export const Exercises = () => {
         <h1 className="text-lg font-semibold md:text-2xl">Egzersizler</h1>
       </div>
       <div
-        className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
+        className="flex flex-1 items-center justify-center "
         x-chunk="dashboard-02-chunk-1"
       >
-        <div className="flex flex-col-2 items-center gap-1 text-center">
-          <div className="grid place-content-center gap-6">
+        <div className="flex flex-col-2 items-center gap-1 text-center ">
+          <div className="grid place-content-start gap-6">
             {cift?.map((el: any, index: number) => {
               return <ExerciseCard key={index} props={el} />;
             })}
           </div>{" "}
-          <div className="grid place-content-center gap-6">
+          <div className="grid place-content-start gap-6">
             {tek?.map((el: any, index: number) => {
               return <ExerciseCard key={index} props={el} />;
             })}

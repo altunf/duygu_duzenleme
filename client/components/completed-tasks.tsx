@@ -12,7 +12,7 @@ const CompletedTasks = () => {
           return (
             <div
               key={index}
-              className="flex justify-between h-full w-[400px] items-center gap-2 bg-muted p-2 rounded-md"
+              className="flex justify-between h-full w-[400px] items-center gap-2 bg-slate-900  p-2 rounded-md"
             >
               <label
                 htmlFor="todo-1"

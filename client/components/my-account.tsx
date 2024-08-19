@@ -27,7 +27,7 @@ export const MyAccount = () => {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="secondary" size="icon" className="rounded-full">
+          <Button variant="outline" size="icon" className="rounded-full">
             <Settings className="h-6 w-6" />
             <span className="sr-only">Toggle user menu</span>
           </Button>

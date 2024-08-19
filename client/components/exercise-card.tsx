@@ -54,9 +54,6 @@ export function ExerciseCard({ props, maxLength = 50 }: any) {
             <i>{capitalizeFirstLetter(props.title)}</i>
           </CardTitle>
         </div>
-        <CardDescription className="flex items-center justify-start">
-          {props.description}
-        </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col">
         <div className="grid gap-2">
@@ -67,8 +64,10 @@ export function ExerciseCard({ props, maxLength = 50 }: any) {
             width={200}
             className="aspect-video w-full  rounded-lg"
           />
-        </div>{" "}
-        {newText}
+        </div>
+        <CardDescription className="flex items-center justify-start">
+          {newText}
+        </CardDescription>
       </CardContent>
 
       <CardFooter className="flex items-center justify-between">

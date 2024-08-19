@@ -20,14 +20,11 @@ export const MyExercises = () => {
           <TabsTrigger value="completed">Tamamladıklarım</TabsTrigger>
         </TabsList>
       </div>
-      <div
-        className="flex-1 flex items-center justify-center rounded-lg border border-dashed overflow-x-auto overflow-y-auto"
-        x-chunk="dashboard-02-chunk-1"
-      >
+      <div className="flex-1 flex items-center justify-center overflow-x-auto overflow-y-auto scroll-smooth">
         <TabsContent value="exercises">
           <Tasks />
         </TabsContent>
-        <TabsContent value="completed">
+        <TabsContent value="completed" className="h-[600px] m-0 p-0">
           <CompletedTasks />
         </TabsContent>
       </div>

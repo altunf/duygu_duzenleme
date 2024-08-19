@@ -4,11 +4,10 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 import SidebarMenu from "./sidebar-menu";
-import UpgradeToPro from "./upgrade-to-pro";
+import SidebarFooter from "./sidebar-footer";
 
 import { AvatarDemo } from "./avatar";
-import { MyAccount } from "./my-account";
-import { ThemeButton } from "./theme-button";
+
 import { usePathname } from "next/navigation";
 
 export function Sidebar() {
@@ -22,20 +21,12 @@ export function Sidebar() {
             <AvatarDemo />
             <span className="">Fırat Altun</span>
           </Link>
-          <Button
-            variant="outline"
-            size="icon"
-            className="ml-auto mr-auto h-8 w-8"
-          >
-            <MyAccount />
-          </Button>
-          <ThemeButton />
         </div>
         <div className="flex-1">
           <SidebarMenu />
         </div>
         <div className="mt-auto p-4">
-          <UpgradeToPro />
+          <SidebarFooter />
         </div>
       </div>
     </aside>

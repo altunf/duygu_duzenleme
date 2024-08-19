@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Eye, MoreHorizontal, NotebookTabs } from "lucide-react";
+import { Eye, MoreHorizontal, NotebookTabs, NotebookText } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   DropdownMenu,
@@ -116,7 +116,7 @@ export function MyDiaries() {
   };
 
   const x = (
-    <main className="grid flex-1 h-full  items-start  p-4 sm:px-6 sm:py-0 md:gap-8 lg:w-[900px]">
+    <main className="grid flex-1 h-full w-full items-start  p-4 sm:px-6 sm:py-0 md:gap-8 ">
       <Card className=" border-none shadow-none ">
         <CardContent>
           <Table>
@@ -136,21 +136,21 @@ export function MyDiaries() {
               {userDiaries.map((diary: Diary) => (
                 <TableRow
                   key={diary._id}
-                  className="opacity-40 hover:opacity-100 hover:bg-none transition-all duration-500 backdrop-blur-xl backdrop-sepia"
+                  className="opacity-80 hover:opacity-100  transition-all duration-500 "
                 >
                   <TableCell className="hidden sm:table-cell cursor-pointer ">
-                    <NotebookTabs
-                      className="text-sky-300"
+                    <NotebookText
+                      className="m-auto text-blue-400"
                       onClick={() => {
                         handleRowClick(diary.title);
                       }}
                     />
                   </TableCell>
+
                   <TableCell className="font-medium  ">
-                    {" "}
                     <Badge
                       variant="outline"
-                      className="bg-green-300 px-4 py-1 text-gray-700"
+                      className="bg-green-400 px-4 py-1 text-gray-700 "
                     >
                       {diary.title}
                     </Badge>
@@ -158,7 +158,7 @@ export function MyDiaries() {
                   <TableCell>
                     <Badge
                       variant="outline"
-                      className="bg-yellow-300 px-4 py-1 text-gray-700"
+                      className="bg-yellow-400 px-4 py-1 text-gray-700"
                     >
                       {diary.mood}
                     </Badge>
@@ -166,7 +166,7 @@ export function MyDiaries() {
                   <TableCell className="hidden md:table-cell">
                     <Badge
                       variant="outline"
-                      className="bg-violet-300 px-4 py-1 text-gray-700"
+                      className="bg-violet-400 px-4 py-1 text-gray-700"
                     >
                       {diary.point}
                     </Badge>
@@ -176,7 +176,7 @@ export function MyDiaries() {
                   </TableCell>
                   <TableCell>
                     <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
+                      <DropdownMenuTrigger>
                         <Button
                           aria-haspopup="true"
                           size="icon"
