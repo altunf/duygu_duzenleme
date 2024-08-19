@@ -13,8 +13,10 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { capitalizeFirstLetter } from "@/lib/capitalizeFirstLetter.js";
+import { useToast } from "./ui/use-toast";
 
 export function ExerciseCard({ props, maxLength = 50 }: any) {
+  const { toast } = useToast();
   const router = useRouter();
   const [isTruncated, setIsTruncated] = useState(true);
 
@@ -26,6 +28,11 @@ export function ExerciseCard({ props, maxLength = 50 }: any) {
     let existingTodos = JSON.parse(localStorage.getItem("todos") || "[]");
     existingTodos.push(props);
     localStorage.setItem("todos", JSON.stringify(existingTodos));
+
+    toast({
+      variant: "default",
+      title: "Egzersiz listeye eklendi ",
+    });
 
     router.push("/");
   };

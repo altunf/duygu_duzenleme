@@ -1,7 +1,7 @@
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "./ui/button";
 
-export const ToastDemo = () => {
+export const ToastDemo = (title: string, desc: string, name: string) => {
   const { toast } = useToast();
 
   return (

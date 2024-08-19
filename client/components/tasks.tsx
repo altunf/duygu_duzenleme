@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CircleCheckBig, TrashIcon, Loader2 } from "lucide-react";
+import { useToast } from "./ui/use-toast";
 
 export default function Tasks() {
+  const { toast } = useToast();
   const [loading, setLoading] = useState<string | null>(null);
 
   const storedTodos: any =
@@ -22,7 +24,7 @@ export default function Tasks() {
     const currentUser: any = localStorage.getItem("token");
     const userID = JSON.parse(currentUser).userCheck._id;
 
-    await fetch("http://localhost:3001/", {
+    const response = await fetch("http://localhost:3001/", {
       method: "POST",
       body: JSON.stringify({
         exerciseId: el._id,
@@ -35,6 +37,19 @@ export default function Tasks() {
 
     addCompletedTasks(el);
     handleDelete(el);
+
+    if (response.ok) {
+      toast({
+        variant: "default",
+        title: "Egzersiz tamamlandı olarak işaretlendi",
+      });
+    } else {
+      toast({
+        variant: "destructive",
+        title: "egzersiz tamamlanamadı",
+        description: `${response.statusText}`,
+      });
+    }
     setLoading(null); // Loading state'i bitir
   };
 
@@ -43,6 +58,11 @@ export default function Tasks() {
       JSON.parse(localStorage.getItem("todos") as any) || [];
     const updatedtodos = newTodos.filter((todo: any) => todo._id !== el._id);
     localStorage.setItem("todos", JSON.stringify(updatedtodos));
+
+    toast({
+      variant: "default",
+      title: "Egzersiz listeden kaldırıldı",
+    });
   };
 
   return (

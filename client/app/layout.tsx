@@ -5,6 +5,7 @@ import SidebarProvider from "@/providers/sidebar-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { Sidebar } from "@/components/sidebar";
 import { FeelingsSidebar } from "@/components/feelings-sidebar";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,7 +34,7 @@ export default function RootLayout({
                 <Sidebar />
                 <FeelingsSidebar />
                 <div className="w-full flex flex-1 flex-col items-center justify-center">
-                  {children}
+                  {children} <Toaster />
                 </div>
               </div>
             </main>

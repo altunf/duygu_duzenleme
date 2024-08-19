@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "./ui/textarea";
 import { Slider } from "./ui/slider";
+import { useToast } from "./ui/use-toast";
 
 const formSchema = z.object({
   title: z.string(),
@@ -36,6 +37,7 @@ const formSchema = z.object({
 });
 
 export function NewDiary() {
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -87,6 +89,7 @@ export function NewDiary() {
                     <FormLabel>Nasıl Hissediyorsun?</FormLabel>
                     <FormControl>
                       <Select
+                        {...field}
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
@@ -146,6 +149,7 @@ export function NewDiary() {
                       <FormLabel>Tarih</FormLabel>
                       <FormControl>
                         <Input
+                          {...field}
                           type="date"
                           id="date"
                           onChange={field.onChange}
@@ -166,6 +170,7 @@ export function NewDiary() {
                     <FormLabel>Günlük</FormLabel>
                     <FormControl>
                       <Textarea
+                        {...field}
                         placeholder="Düşüncelerinizi buraya yazın."
                         className="min-h-[300px] "
                         onChange={field.onChange}
@@ -196,5 +201,21 @@ export function NewDiary() {
       },
       body: JSON.stringify(values),
     });
+
+    if (response.ok) {
+      //Formu sıfırla
+      form.reset();
+      toast({
+        variant: "default",
+        title: "Günlüğünüz başarılı bir şekilde kaydedildi",
+      });
+    } else {
+      console.error("Veriler gönderilemedi, hata:", response.statusText);
+      toast({
+        variant: "destructive",
+        title: "Günlüğünüz kaydedilemedi!",
+        description: `${response.statusText}`,
+      });
+    }
   }
 }
