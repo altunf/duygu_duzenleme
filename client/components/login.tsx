@@ -47,10 +47,13 @@ export function LoginForm() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(values),
+      credentials: "include",
     });
     const data = await response.json();
-    localStorage.setItem("token", JSON.stringify(data));
-    router.push("/");
+
+    if (response.ok) {
+      router.push("/");
+    }
   };
 
   return (

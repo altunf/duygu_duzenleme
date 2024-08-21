@@ -5,9 +5,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MyDiaries } from "./my-diaries";
 import { NewDiary } from "./new-diary";
 import { useRouter } from "next/navigation";
-import { Plus, PlusIcon } from "lucide-react";
+import { Plus } from "lucide-react";
 
-export const FeelingDiary = ({ defaultTab }: any) => {
+export const FeelingDiary = ({ defaultTab, token }: any) => {
   const router = useRouter();
   const handleCreateNewDiary = () => {
     router.push("/diaries/new");
@@ -39,7 +39,7 @@ export const FeelingDiary = ({ defaultTab }: any) => {
         x-chunk="dashboard-02-chunk-1"
       >
         <TabsContent value="myDiaries">
-          <MyDiaries />
+          <MyDiaries token={token} />
         </TabsContent>
         <TabsContent value="newDiary">
           <NewDiary />

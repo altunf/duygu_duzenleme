@@ -1,4 +1,3 @@
-"use client";
 import { FeelingDiary } from "@/components/feeling-diary";
 
 export default function MyFeelingDiaryPage() {

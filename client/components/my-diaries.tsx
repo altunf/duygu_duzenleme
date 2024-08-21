@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Eye, MoreHorizontal, NotebookTabs, NotebookText } from "lucide-react";
+import { MoreHorizontal, NotebookText } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   DropdownMenu,
@@ -41,7 +41,7 @@ interface Diary {
   text: string;
 }
 
-export function MyDiaries() {
+export function MyDiaries({ token }: any) {
   const [userDiaries, setUserDiaries] = useState<Diary[]>([]);
   const [selectedDiary, setSelectedDiary] = useState<Diary | null>(null);
   const [newTitle, setNewTitle] = useState<string>("");
@@ -55,20 +55,31 @@ export function MyDiaries() {
 
   useEffect(() => {
     const getDiaries = async () => {
-      const currentUser: any = localStorage.getItem("token");
-      const userID = JSON.parse(currentUser).userCheck._id;
-      const response = await fetch("http://localhost:3001/diaries", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Current-User": userID,
-        },
-      });
-      const data = await response.json();
-      setUserDiaries(data);
+      try {
+        const userID = JSON.parse(atob(token.split(".")[1])).userId;
+
+        const response = await fetch("http://localhost:3001/diaries", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            "Current-User": userID,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch diary");
+        }
+
+        const data = await response.json();
+        setUserDiaries(data);
+      } catch (error) {
+        console.error("Error fetching diaries:", error);
+      }
     };
+
     getDiaries();
-  }, []);
+  }, [token]);
 
   const handleSave = async () => {
     if (selectedDiary) {
