@@ -1,13 +1,10 @@
 "use client";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
-
 import SidebarMenu from "./sidebar-menu";
 import SidebarFooter from "./sidebar-footer";
 
 import { AvatarDemo } from "./avatar";
-
 import { usePathname } from "next/navigation";
 
 export function Sidebar() {

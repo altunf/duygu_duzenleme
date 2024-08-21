@@ -26,7 +26,6 @@ const newDiaryController = async (req, res) => {
 
 const deleteDiaryController = async (req, res) => {
   const id = req.headers["diary-id"];
-
   try {
     const deletedDiary = await Diary.findByIdAndDelete(id);
     res.status(200).json(deletedDiary);

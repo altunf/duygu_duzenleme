@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CompletedTasks from "./completed-tasks";
 
 export const MyExercises = () => {
-  const x = (
+  const tab = (
     <Tabs
       defaultValue="exercises"
       className="flex flex-1  h-full w-full flex-col gap-4 p-4 lg:gap-6 lg:p-6 "
@@ -31,5 +31,5 @@ export const MyExercises = () => {
     </Tabs>
   );
 
-  return x;
+  return tab;
 };

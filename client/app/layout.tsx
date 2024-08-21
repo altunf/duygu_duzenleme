@@ -6,6 +6,8 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { Sidebar } from "@/components/sidebar";
 import { FeelingsSidebar } from "@/components/feelings-sidebar";
 import { Toaster } from "@/components/ui/toaster";
+import { SidebarDrawer } from "@/components/sidebar-drawer";
+import SidebarFooter from "@/components/sidebar-footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,9 +32,10 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <main>
-              <div className="min-h-screen flex ">
+              <div className="min-h-screen flex">
                 <Sidebar />
                 <FeelingsSidebar />
+
                 <div className="w-full flex flex-1 flex-col items-center justify-center">
                   {children} <Toaster />
                 </div>

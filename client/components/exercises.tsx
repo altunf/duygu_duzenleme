@@ -33,27 +33,24 @@ export const Exercises = () => {
   });
 
   return (
-    <div className="flex flex-1 h-full w-full flex-col gap-4 p-4 lg:gap-6 lg:p-6">
-      <div className="flex items-center  ">
+    <main className="flex flex-1 h-full w-full flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+      <div className="flex items-center">
         <h1 className="text-lg font-semibold md:text-2xl">Egzersizler</h1>
       </div>
-      <div
-        className="flex flex-1 items-center justify-center "
-        x-chunk="dashboard-02-chunk-1"
-      >
-        <div className="flex flex-col-2 items-center gap-1 text-center ">
-          <div className="grid place-content-start gap-6">
-            {cift?.map((el: any, index: number) => {
-              return <ExerciseCard key={index} props={el} />;
-            })}
-          </div>{" "}
-          <div className="grid place-content-start gap-6">
-            {tek?.map((el: any, index: number) => {
-              return <ExerciseCard key={index} props={el} />;
-            })}
+      <div className="flex flex-1 items-center justify-center">
+        <div className="md:flex grid grid-cols-2 gap-6 text-center">
+          <div className="flex flex-col items-center gap-1">
+            {cift?.map((el: any, index: number) => (
+              <ExerciseCard key={el.id || index} props={el} />
+            ))}
+          </div>
+          <div className="flex flex-col items-center gap-1">
+            {tek?.map((el: any, index: number) => (
+              <ExerciseCard key={el.id || index} props={el} />
+            ))}
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 };

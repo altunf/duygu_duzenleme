@@ -13,7 +13,7 @@ export function FeelingsSidebar() {
     router.push(`/exercises/${emotion}`);
   };
 
-  const x = (
+  const mood = (
     <aside className="hidden min-h-screen border-r bg-muted/10 md:block w-72 min-w-72 max-w-72 overflow-y-auto ">
       <h1 className="flex items-center justify-center mt-4 mr-2 cursor-pointer">
         <strong> Duygular</strong>
@@ -34,7 +34,7 @@ export function FeelingsSidebar() {
       </div>
     </aside>
   );
-  const b = pathname.startsWith("/exercises");
+  const path = pathname.startsWith("/exercises");
 
-  return <> {b && x}</>;
+  return <> {path && mood}</>;
 }
