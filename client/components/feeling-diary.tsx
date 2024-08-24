@@ -42,7 +42,7 @@ export const FeelingDiary = ({ defaultTab, token }: any) => {
           <MyDiaries token={token} />
         </TabsContent>
         <TabsContent value="newDiary">
-          <NewDiary />
+          <NewDiary token={token} />
         </TabsContent>
       </div>
     </Tabs>

@@ -28,7 +28,7 @@ export function MyDiaries({ token }: any) {
   useEffect(() => {
     const getDiaries = async () => {
       try {
-        const userID = JSON.parse(atob(token.split(".")[1])).userId;
+        const userID = JSON.parse(atob(token?.split(".")[1])).userId;
 
         const response = await fetch("http://localhost:3001/diaries", {
           method: "GET",

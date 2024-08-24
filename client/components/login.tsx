@@ -49,7 +49,7 @@ export function LoginForm() {
       body: JSON.stringify(values),
       credentials: "include",
     });
-    const data = await response.json();
+    // const data = await response.json();
 
     if (response.ok) {
       router.push("/");
@@ -62,9 +62,9 @@ export function LoginForm() {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Card className="mx-auto max-w-sm">
             <CardHeader>
-              <CardTitle className="text-2xl">Login</CardTitle>
+              <CardTitle className="text-2xl">Giriş Yap</CardTitle>
               <CardDescription>
-                Enter your email below to login to your account
+                Hesabınıza giriş yapmak için email adresinizi girin
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -77,13 +77,7 @@ export function LoginForm() {
                       <FormItem>
                         <FormLabel htmlFor="email">Email</FormLabel>
                         <FormControl>
-                          <Input
-                            {...field}
-                            id="email"
-                            type="email"
-                            placeholder="m@example.com"
-                            required
-                          />
+                          <Input {...field} id="email" type="email" required />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -92,12 +86,12 @@ export function LoginForm() {
                 </div>
                 <div className="grid gap-2">
                   <div className="flex items-center">
-                    <FormLabel htmlFor="password">Password</FormLabel>
+                    <FormLabel htmlFor="password">Şifre</FormLabel>
                     <Link
                       href="#"
                       className="ml-auto inline-block text-sm underline"
                     >
-                      Forgot your password?
+                      Şifremi unuttum
                     </Link>
                   </div>
                   <FormField
@@ -119,14 +113,14 @@ export function LoginForm() {
                   />
                 </div>
                 <Button type="submit" className="w-full">
-                  Login
+                  Giriş yap
                 </Button>
                 <Button variant="outline" className="w-full">
-                  Login with Google
+                  Google ile giriş yap
                 </Button>
               </div>
               <div className="mt-4 text-center text-sm">
-                Don&apos;t have an account?{" "}
+                Bir hesabın yok mu?{" "}
                 <Link href="/register" className="underline">
                   Sign up
                 </Link>

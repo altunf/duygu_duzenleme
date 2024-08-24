@@ -1,10 +1,43 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { TrashIcon } from "lucide-react";
+import { formatDate } from "@/lib/formatDate";
 
-const CompletedTasks = () => {
-  const completed: any =
-    JSON.parse(localStorage.getItem("completedTodos") as any) || [];
+const CompletedTasks = ({ token }: any) => {
+  const [completed, setCompleted]: any = useState([]);
+
+  useEffect(() => {
+    const getCompletedTasks = async () => {
+      try {
+        const userID = JSON.parse(atob(token.token?.split(".")[1])).userId;
+
+        const response = await fetch("http://localhost:3001", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            "Current-User": userID,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch completed tasks");
+        }
+
+        const data = await response.json();
+        setCompleted(data);
+      } catch (error) {
+        console.error("Error fetching completed tasks:", error);
+      }
+    };
+
+    getCompletedTasks();
+  }, []);
+
+  console.log(completed, "completed");
+
+  for (let i = 0; i < completed.length; i++) {}
   return (
     <main className="flex flex-col h-full w-full  rounded-sm  items-center gap-2 p-2">
       {completed?.length > 0 ? (
@@ -18,7 +51,13 @@ const CompletedTasks = () => {
                 htmlFor="todo-1"
                 className="ml-6 text-md font-medium line-through text-muted-foreground"
               >
-                {el.title}
+                {el?.title}
+              </label>
+              <label
+                htmlFor="todo-1"
+                className="ml-6 text-md font-medium line-through text-muted-foreground"
+              >
+                {formatDate(el.date)}
               </label>
               <div>
                 <Button

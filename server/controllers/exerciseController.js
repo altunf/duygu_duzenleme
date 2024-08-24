@@ -64,4 +64,31 @@ const getAllExercises = async (req, res) => {
     res.status(500).json({ message: "Error fetching exercises", error });
   }
 };
-export { addNewExercise, addCompletionDate, getAllExercises };
+
+const getAllCompExercises = async (req, res) => {
+  const userID = req.headers["current-user"];
+
+  try {
+    const exercises = await Exercise.find();
+
+    const result = exercises
+      .filter((exercise) => exercise.completionDates.has(userID))
+      .flatMap((exercise) =>
+        exercise.completionDates.get(userID).map((entry) => ({
+          title: exercise.title,
+          date: new Date(entry.date),
+        }))
+      )
+      .sort((a, b) => b.date - a.date);
+
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching exercises", error });
+  }
+};
+export {
+  addNewExercise,
+  addCompletionDate,
+  getAllExercises,
+  getAllCompExercises,
+};

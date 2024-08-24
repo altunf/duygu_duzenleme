@@ -1,5 +1,3 @@
-"use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -36,7 +34,7 @@ const formSchema = z.object({
   text: z.string(),
 });
 
-export function NewDiary() {
+export function NewDiary({ token }: any) {
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -48,6 +46,44 @@ export function NewDiary() {
       text: "",
     },
   });
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const userID = JSON.parse(atob(token?.split(".")[1])).userId;
+      console.log(token, "userId");
+      const response = await fetch("http://localhost:3001/diaries/new", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          "Current-User": userID,
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (response.ok) {
+        //Formu sıfırla
+        form.reset();
+        toast({
+          variant: "default",
+          title: "Günlüğünüz başarılı bir şekilde kaydedildi",
+        });
+      }
+
+      if (!response.ok) {
+        console.error("Veriler gönderilemedi, hata:", response.statusText);
+        toast({
+          variant: "destructive",
+          title: "Günlüğünüz kaydedilemedi!",
+          description: `${response.statusText}`,
+        });
+      }
+
+      const data = await response.json();
+    } catch (error) {
+      console.error("Error fetching diaries:", error);
+    }
+  };
 
   return (
     <main className="px-4 md:px-6 pb-6">
@@ -64,7 +100,7 @@ export function NewDiary() {
                       <Input
                         {...field}
                         type="text"
-                        placeholder="Günlük adı giriniz..."
+                        placeholder="Günlük adı giriniz"
                         className="text-3xl font-bold w-full border-none focus:outline-none px-0 "
                         autoFocus
                       />
@@ -74,8 +110,8 @@ export function NewDiary() {
                 )}
               />
             </div>
-            <p className="text-gray-500 dark:text-gray-400">
-              Duygularla ilgili günlük deneyimlerinizi ve düşüncelerinizi
+            <p className="text-gray-500 dark:text-gray-400 text-wrap">
+              Duygularınızla ilgili günlük deneyimlerinizi ve düşüncelerinizi
               kaydedin.
             </p>
           </header>
@@ -187,35 +223,4 @@ export function NewDiary() {
       </Form>
     </main>
   );
-
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    const currentUser: any = localStorage.getItem("token");
-    const userID = JSON.parse(currentUser).userCheck._id;
-
-    const response = await fetch("http://localhost:3001/diaries/new", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Current-User": userID,
-      },
-      body: JSON.stringify(values),
-    });
-
-    if (response.ok) {
-      //Formu sıfırla
-      form.reset();
-      toast({
-        variant: "default",
-        title: "Günlüğünüz başarılı bir şekilde kaydedildi",
-      });
-    } else {
-      console.error("Veriler gönderilemedi, hata:", response.statusText);
-      toast({
-        variant: "destructive",
-        title: "Günlüğünüz kaydedilemedi!",
-        description: `${response.statusText}`,
-      });
-    }
-  }
 }

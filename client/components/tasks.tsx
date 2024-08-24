@@ -64,6 +64,7 @@ export default function Tasks() {
       title: "Egzersiz listeden kaldırıldı",
     });
   };
+  4;
 
   return (
     <main className="flex flex-col h-full w-full  rounded-sm  items-center gap-2 p-2">

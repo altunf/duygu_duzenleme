@@ -5,7 +5,7 @@ import Tasks from "./tasks";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CompletedTasks from "./completed-tasks";
 
-export const MyExercises = () => {
+export const MyExercises = (token: any) => {
   const tab = (
     <Tabs
       defaultValue="exercises"
@@ -25,7 +25,7 @@ export const MyExercises = () => {
           <Tasks />
         </TabsContent>
         <TabsContent value="completed" className="h-[600px] m-0 p-0">
-          <CompletedTasks />
+          <CompletedTasks token={token} />
         </TabsContent>
       </div>
     </Tabs>

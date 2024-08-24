@@ -37,7 +37,7 @@ export function SignUpForm() {
       },
       body: JSON.stringify(registerData),
     });
-    const data = await response.json();
+    // const data = await response.json();
 
     router.push("/login");
   };
@@ -47,39 +47,37 @@ export function SignUpForm() {
       <form onSubmit={handleSubmit}>
         <Card className="mx-auto max-w-sm">
           <CardHeader>
-            <CardTitle className="text-xl">Sign Up</CardTitle>
+            <CardTitle className="text-xl">Kayıt Ol</CardTitle>
             <CardDescription>
-              Enter your information to create an account
+              Hesap oluşturmak için bilgilerinizi girin
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid gap-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="name">First name</Label>
+                  <Label htmlFor="name">Ad</Label>
                   <Input
                     id="name"
                     name="name"
                     value={registerData.name}
                     onChange={onChange}
-                    placeholder="Max"
                     required
                   />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="surname">Last name</Label>
+                  <Label htmlFor="surname">Soyad</Label>
                   <Input
                     id="surname"
                     name="surname"
                     value={registerData.surname}
                     onChange={onChange}
-                    placeholder="Robinson"
                     required
                   />
                 </div>
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="username">User name</Label>
+                <Label htmlFor="username">Kullanıcı adı</Label>
                 <Input
                   id="username"
                   name="username"
@@ -102,7 +100,7 @@ export function SignUpForm() {
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Şifre</Label>
                 <Input
                   id="password"
                   type="password"
@@ -113,13 +111,13 @@ export function SignUpForm() {
                 />
               </div>
               <Button type="submit" className="w-full">
-                Create an account
+                Hesap oluştur
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
-              Already have an account?{" "}
+              Zaten hesabın var mı?{" "}
               <Link href="/login" className="underline">
-                Sign in
+                Giriş yap
               </Link>
             </div>
           </CardContent>
