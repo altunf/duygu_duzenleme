@@ -41,7 +41,7 @@ export function useDiary(token: string | null) {
     };
 
     getDiaries();
-  }, [token]);
+  }, []);
 
   const updateDiary = async (id: string, title: string) => {
     try {

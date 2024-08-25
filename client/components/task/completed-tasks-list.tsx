@@ -9,6 +9,7 @@ const CompletedTasks = ({ token }: any) => {
   const [paginatedData, setPaginatedData] = useState<any[]>([]);
 
   const data = useFetchCompletedTasks(token);
+
   const itemsPerPage = 10;
   const { currentPage, totalPages, getPageNumbers, paginate } = usePagination(
     data,

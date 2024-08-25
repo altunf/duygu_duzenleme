@@ -32,10 +32,40 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
+  ChartConfig,
 } from "@/components//ui/chart";
 import { Separator } from "@/components//ui/separator";
 
-export const Graphics = () => {
+import { useDiary } from "@/hooks/useDiary";
+import { useFetchCompletedTasks } from "@/hooks/useFetchCompletedTasks";
+
+export const Graphics = ({ token }: any) => {
+  const { userDiaries }: any = useDiary(token);
+  const data = useFetchCompletedTasks({ token });
+
+  const moods = [
+    { name: "şaşırmış", point: 0 },
+    { name: "öfkeli", point: 0 },
+    { name: "tiksinmiş", point: 0 },
+    { name: "üzgün", point: 0 },
+    { name: "neşeli", point: 0 },
+  ];
+
+  for (let i = 0; i < data.length; i++) {
+    const moodName = data[i]?.tag[0];
+    if (moodName == "şaşırmış") moods[0].point++;
+    if (moodName == "öfkeli") moods[1].point++;
+    if (moodName == "tiksinmiş") moods[2].point++;
+    if (moodName == "üzgün") moods[3].point++;
+    if (moodName == "neşeli") moods[4].point++;
+  }
+
+  let total = 0;
+  for (let i = 0; i < userDiaries.length; i++) {
+    total += userDiaries[i].point;
+  }
+  const averageMoodPoint = total / userDiaries.length;
+
   return (
     <main className="flex flex-1 h-full w-full flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="flex items-center">
@@ -45,109 +75,64 @@ export const Graphics = () => {
         className="flex flex-1 items-center justify-center rounded-lg border border-dashed "
         x-chunk="dashboard-02-chunk-1"
       >
-        <Charts />
+        <Charts average={averageMoodPoint} moods={moods} />
       </div>
     </main>
   );
 };
 
-export function Charts() {
+const chartConfig = {
+  point: {
+    label: "Point",
+    color: "hsl(var(--chart-1))",
+  },
+} satisfies ChartConfig;
+
+export function Charts({ average, moods }: any) {
   return (
     <div className="chart-wrapper mx-auto flex max-w-6xl flex-col flex-wrap items-start justify-center gap-6 p-6 sm:flex-row sm:p-8">
       <div className="grid w-full gap-6 sm:grid-cols-2 lg:max-w-[22rem] lg:grid-cols-1 xl:max-w-[25rem] ">
         <Card className="lg:max-w-md" x-chunk="charts-01-chunk-0">
           <CardHeader className="space-y-0 pb-2">
-            <CardDescription>Today</CardDescription>
+            <CardDescription>Tamamlanan</CardDescription>
             <CardTitle className="text-4xl tabular-nums">
-              12,584{" "}
+              19{" "}
               <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
-                steps
+                egzersiz
               </span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <ChartContainer
-              config={{
-                steps: {
-                  label: "Steps",
-                  color: "hsl(var(--chart-1))",
-                },
-              }}
-            >
+            <ChartContainer config={chartConfig}>
               <BarChart
                 accessibilityLayer
                 margin={{
                   left: -4,
                   right: -4,
                 }}
-                data={[
-                  {
-                    date: "2024-01-01",
-                    steps: 2000,
-                  },
-                  {
-                    date: "2024-01-02",
-                    steps: 2100,
-                  },
-                  {
-                    date: "2024-01-03",
-                    steps: 2200,
-                  },
-                  {
-                    date: "2024-01-04",
-                    steps: 1300,
-                  },
-                  {
-                    date: "2024-01-05",
-                    steps: 1400,
-                  },
-                  {
-                    date: "2024-01-06",
-                    steps: 2500,
-                  },
-                  {
-                    date: "2024-01-07",
-                    steps: 1600,
-                  },
-                ]}
+                data={moods}
               >
                 <Bar
-                  dataKey="steps"
-                  fill="var(--color-steps)"
+                  dataKey="point"
+                  fill="hsl(var(--chart-1))"
                   radius={5}
                   fillOpacity={0.6}
                   activeBar={<Rectangle fillOpacity={0.8} />}
                 />
                 <XAxis
-                  dataKey="date"
+                  dataKey="name"
                   tickLine={false}
                   axisLine={false}
                   tickMargin={4}
-                  tickFormatter={(value) => {
-                    return new Date(value).toLocaleDateString("en-US", {
-                      weekday: "short",
-                    });
-                  }}
                 />
                 <ChartTooltip
                   defaultIndex={2}
-                  content={
-                    <ChartTooltipContent
-                      hideIndicator
-                      labelFormatter={(value) => {
-                        return new Date(value).toLocaleDateString("en-US", {
-                          day: "numeric",
-                          month: "long",
-                          year: "numeric",
-                        });
-                      }}
-                    />
-                  }
+                  content={<ChartTooltipContent hideIndicator />}
                   cursor={false}
                 />
                 <ReferenceLine
                   y={1200}
-                  stroke="hsl(var(--muted-foreground))"
+                  stroke="hsl(var(--chart-1))"
                   strokeDasharray="3 3"
                   strokeWidth={1}
                 >
@@ -693,16 +678,16 @@ export function Charts() {
         </Card>
         <Card className="max-w-xs" x-chunk="charts-01-chunk-6">
           <CardHeader className="p-4 pb-0">
-            <CardTitle>Active Energy</CardTitle>
+            <CardTitle>Ortalama Duygu Yoğunluğu</CardTitle>
             <CardDescription>
               You're burning an average of 754 calories per day. Good job!
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-row items-baseline gap-4 p-4 pt-2">
             <div className="flex items-baseline gap-2 text-3xl font-bold tabular-nums leading-none">
-              1,254
+              {average}
               <span className="text-sm font-normal text-muted-foreground">
-                kcal/day
+                puan/günlük
               </span>
             </div>
             <ChartContainer
