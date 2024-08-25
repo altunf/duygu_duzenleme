@@ -8,12 +8,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { capitalizeFirstLetter } from "@/lib/capitalizeFirstLetter.js";
-import { useToast } from "./ui/use-toast";
+import { useToast } from "../ui/use-toast";
 
 export function ExerciseCard({ props, maxLength = 50 }: any) {
   const { toast } = useToast();

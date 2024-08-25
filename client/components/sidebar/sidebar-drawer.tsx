@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { Menu } from "lucide-react";
-import { AvatarDemo } from "./avatar";
+import { AvatarDemo } from "../avatar";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import SidebarMenu from "./sidebar-menu";
 import SidebarFooter from "./sidebar-footer";

@@ -24,7 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "./ui/textarea";
+import { Textarea } from "../ui/textarea";
 
 const formSchema = z.object({
   title: z.string(),

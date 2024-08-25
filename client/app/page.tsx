@@ -1,4 +1,4 @@
-import { MyExercises } from "@/components/my-exercises";
+import { MyExercises } from "@/components/task/my-exercises";
 import { cookies } from "next/headers";
 
 export default function Home() {

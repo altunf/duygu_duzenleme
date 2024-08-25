@@ -1,6 +1,4 @@
-import { Graphics } from "@/components/graphics";
-import { Header } from "@/components/header";
-import { Sidebar } from "@/components/sidebar";
+import { Graphics } from "@/components/graphic/graphics";
 
 export default function GraphicsPage() {
   return (

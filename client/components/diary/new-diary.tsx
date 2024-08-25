@@ -22,9 +22,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "./ui/textarea";
-import { Slider } from "./ui/slider";
-import { useToast } from "./ui/use-toast";
+import { useToast } from "../ui/use-toast";
+import { Slider } from "../ui/slider";
+import { Textarea } from "../ui/textarea";
 
 const formSchema = z.object({
   title: z.string(),

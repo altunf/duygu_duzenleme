@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "./ui/button";
 import { usePathname, useRouter } from "next/navigation";
+import { Button } from "../ui/button";
 
 export function FeelingsSidebar() {
   const router = useRouter();

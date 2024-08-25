@@ -8,8 +8,9 @@ import {
   List,
   NotebookPen,
 } from "lucide-react";
-import { DropdownMenuSeparator } from "./ui/dropdown-menu";
+
 import Link from "next/link";
+import { DropdownMenuSeparator } from "../ui/dropdown-menu";
 
 const SidebarMenu = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(0);

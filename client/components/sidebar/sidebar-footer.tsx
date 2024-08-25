@@ -1,8 +1,6 @@
 import React from "react";
-
-import { Button } from "./ui/button";
-import { MyAccount } from "./my-account";
-import { ThemeButton } from "./theme-button";
+import { MyAccount } from "../my-account";
+import { ThemeButton } from "../theme-button";
 
 const SidebarFooter = () => {
   return (

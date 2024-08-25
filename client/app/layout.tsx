@@ -3,11 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import SidebarProvider from "@/providers/sidebar-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
-import { Sidebar } from "@/components/sidebar";
-import { FeelingsSidebar } from "@/components/feelings-sidebar";
+import { Sidebar } from "@/components/sidebar/sidebar";
+import { FeelingsSidebar } from "@/components/sidebar/feelings-sidebar";
 import { Toaster } from "@/components/ui/toaster";
-import { SidebarDrawer } from "@/components/sidebar-drawer";
-import SidebarFooter from "@/components/sidebar-footer";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CircleCheckBig, TrashIcon, Loader2 } from "lucide-react";
-import { useToast } from "./ui/use-toast";
+import { useToast } from "../ui/use-toast";
 
 export default function Tasks({ token }: any) {
   const { toast } = useToast();

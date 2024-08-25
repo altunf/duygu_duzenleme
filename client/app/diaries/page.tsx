@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { FeelingDiary } from "@/components/feeling-diary";
+import { FeelingDiary } from "@/components/diary/feeling-diary";
 
 export default function MyFeelingDiaryPage() {
   const cookieStore = cookies();

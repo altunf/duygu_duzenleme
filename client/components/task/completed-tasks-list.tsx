@@ -1,20 +1,19 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import CompletedTaskItem from "./completed-tasks-items";
-import PaginationControls from "./pagination-controls";
+import PaginationControls from "../pagination-controls";
 import { useFetchCompletedTasks } from "@/hooks/useFetchCompletedTasks";
 import { usePagination } from "@/hooks/usePagination";
 
 const CompletedTasks = ({ token }: any) => {
+  const [paginatedData, setPaginatedData] = useState<any[]>([]);
+
   const data = useFetchCompletedTasks(token);
   const itemsPerPage = 10;
-
   const { currentPage, totalPages, getPageNumbers, paginate } = usePagination(
     data,
     itemsPerPage
   );
-
-  const [paginatedData, setPaginatedData] = useState<any[]>([]);
 
   useEffect(() => {
     const paginated = paginate(currentPage);

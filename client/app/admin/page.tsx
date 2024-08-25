@@ -1,6 +1,6 @@
 "use client";
 
-import { CreateExercise } from "@/components/create-exercise";
+import { CreateExercise } from "@/components/exercise/create-exercise";
 
 export default function Home() {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import { SidebarDrawer } from "@/components/sidebar-drawer";
+import { SidebarDrawer } from "./sidebar-drawer";
 
 export const Header = () => {
   return (
