@@ -3,13 +3,15 @@ import {
   addNewExercise,
   addCompletionDate,
   getAllExercises,
-  getAllCompExercises,
+  getAllCompletedExercises,
 } from "../controllers/exerciseController.js";
 
 const router = express.Router();
+
 router.post("/admin", addNewExercise);
 router.post("/", addCompletionDate);
-router.get("/", getAllCompExercises);
+
+router.get("/", getAllCompletedExercises);
 router.get("/exercises/:*", getAllExercises);
 
 export default router;

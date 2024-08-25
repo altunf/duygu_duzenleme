@@ -150,7 +150,6 @@ export function CreateExercise() {
   );
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     const currentUser: any = localStorage.getItem("token");
     const userID = JSON.parse(currentUser).userCheck._id;
 

@@ -3,39 +3,29 @@ import { Button } from "@/components/ui/button";
 import { CircleCheckBig, TrashIcon, Loader2 } from "lucide-react";
 import { useToast } from "./ui/use-toast";
 
-export default function Tasks() {
+export default function Tasks({ token }: any) {
   const { toast } = useToast();
   const [loading, setLoading] = useState<string | null>(null);
 
   const storedTodos: any =
     JSON.parse(localStorage.getItem("todos") as any) || [];
 
-  const addCompletedTasks = (el: any) => {
-    let completedTodos =
-      JSON.parse(localStorage.getItem("completedTodos") as any) || [];
-    completedTodos.push(el);
-    localStorage.setItem("completedTodos", JSON.stringify(completedTodos));
-
-    console.log(JSON.parse(JSON.stringify(completedTodos)));
-  };
-
   const handleAddCompletion = async (el: any) => {
     setLoading(el._id); // Loading state'i başlat
     const currentUser: any = localStorage.getItem("token");
-    const userID = JSON.parse(currentUser).userCheck._id;
+    const userID = JSON.parse(atob(token.token?.split(".")[1])).userId;
 
     const response = await fetch("http://localhost:3001/", {
       method: "POST",
-      body: JSON.stringify({
-        exerciseId: el._id,
-      }),
       headers: {
         "Content-Type": "application/json",
         "User-ID": userID,
       },
+      body: JSON.stringify({
+        exerciseId: el._id,
+      }),
     });
 
-    addCompletedTasks(el);
     handleDelete(el);
 
     if (response.ok) {

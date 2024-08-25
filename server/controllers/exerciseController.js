@@ -1,9 +1,9 @@
 import { Exercise } from "../models/exerciseModel.js";
 
 const addNewExercise = async (req, res) => {
-  //Pro versiyonunda kullanıcılar kendilerine özel egzersizler ekleyebilir
+  //Only ADMIN can add new exercise
+  //In the Pro version, users can add custom exercises
 
-  //Sadece ADMİN yeni egzersiz ekleyebilir
   try {
     const { title, description, tag, text } = req.body;
     const userID = req.headers["user-id"];
@@ -26,7 +26,6 @@ const addNewExercise = async (req, res) => {
   }
 };
 
-// Kullanıcının egzersizi tamamlamma tarihini ekleyen kontrolör fonksiyonu
 const addCompletionDate = async (req, res) => {
   const exerciseId = req.body.exerciseId;
   const userId = req.headers["user-id"];
@@ -65,17 +64,17 @@ const getAllExercises = async (req, res) => {
   }
 };
 
-const getAllCompExercises = async (req, res) => {
+const getAllCompletedExercises = async (req, res) => {
   const userID = req.headers["current-user"];
 
   try {
     const exercises = await Exercise.find();
-
     const result = exercises
       .filter((exercise) => exercise.completionDates.has(userID))
       .flatMap((exercise) =>
         exercise.completionDates.get(userID).map((entry) => ({
           title: exercise.title,
+          tag: exercise.tag,
           date: new Date(entry.date),
         }))
       )
@@ -90,5 +89,5 @@ export {
   addNewExercise,
   addCompletionDate,
   getAllExercises,
-  getAllCompExercises,
+  getAllCompletedExercises,
 };

@@ -50,7 +50,6 @@ export function NewDiary({ token }: any) {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const userID = JSON.parse(atob(token?.split(".")[1])).userId;
-      console.log(token, "userId");
       const response = await fetch("http://localhost:3001/diaries/new", {
         method: "POST",
         headers: {
