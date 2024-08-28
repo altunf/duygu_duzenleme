@@ -1,4 +1,4 @@
-export function formatDate(date, withName = true) {
+export function formatDate(date, withName = true, charts = false) {
   const modifiedDate = new Date(date);
 
   const day = String(modifiedDate.getDate()).padStart(2, "0");
@@ -22,8 +22,9 @@ export function formatDate(date, withName = true) {
 
   const formattedDate = `${day}.${month}.${year}`;
   const withMonthName = `${day} ${months[Number(month) - 1]} ${year}`;
+  const forCharts = `${year}-${month}-${day}`;
 
-  const result = withName ? withMonthName : formattedDate;
+  const result = withName ? withMonthName : charts ? forCharts : formattedDate;
 
   return result;
 }

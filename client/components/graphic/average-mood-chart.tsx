@@ -15,7 +15,7 @@ export const AverageMoodChart = ({ average }: any) => {
       <CardHeader className="p-4 pb-0">
         <CardTitle>Ortalama Duygu Yoğunluğu</CardTitle>
         <CardDescription>
-          You're burning an average of 754 calories per day. Good job!
+          Duygu günlüklerindeki duygu yoğunluğu puanlarından elde edilmiştir.
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-row items-baseline gap-4 p-4 pt-2">

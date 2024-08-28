@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  PolarAngleAxis,
-  RadialBar,
-  RadialBarChart,
-} from "recharts";
+import { PolarAngleAxis, RadialBar, RadialBarChart } from "recharts";
 import { ChartContainer } from "../ui/chart";
 import { Card, CardContent } from "../ui/card";
 

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Card,
   CardContent,
@@ -8,46 +8,26 @@ import {
 } from "../ui/card";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "../ui/chart";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
-import { Button } from "../ui/button";
 
-const filterDataByTimeFrame = (data: any, timeFrame: any) => {
-  const today = new Date();
-  let filteredData = [];
-
-  if (timeFrame === "daily") {
-    filteredData = data.filter((item: any) => {
-      const date = new Date(item.date);
-      return date.toDateString() === today.toDateString();
-    });
-  } else if (timeFrame === "monthly") {
-    filteredData = data.filter((item: any) => {
-      const date = new Date(item.date);
-      return (
-        date.getMonth() === today.getMonth() &&
-        date.getFullYear() === today.getFullYear()
-      );
-    });
-  } else if (timeFrame === "yearly") {
-    filteredData = data.filter((item: any) => {
-      const date = new Date(item.date);
-      return date.getFullYear() === today.getFullYear();
-    });
-  }
-
-  return filteredData;
-};
+import { getWeeklyPoints } from "@/lib/getWeeklyPoints.js";
+import { getMonthlyPoints } from "@/lib/getMonthlyPoints.js";
+import { getYearlyPoints } from "@/lib/getYearlyPoints.js";
 
 export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
-  const [timeFrame, setTimeFrame] = useState("daily");
+  const [timeFrame, setTimeFrame] = useState("weekly"); // for buttons
 
-  console.log(userDiaries, "moods");
-
-  const dataToDisplay = useMemo(
-    () => filterDataByTimeFrame(userDiaries, timeFrame),
-    [userDiaries, timeFrame]
-  );
-
-  console.log(dataToDisplay, "datasdads");
+  const dataToDisplay = useMemo(() => {
+    switch (timeFrame) {
+      case "weekly":
+        return getWeeklyPoints(userDiaries);
+      case "monthly":
+        return getMonthlyPoints(userDiaries);
+      case "yearly":
+        return getYearlyPoints(userDiaries);
+      default:
+        return [];
+    }
+  }, [userDiaries, timeFrame]);
 
   return (
     <Card className="flex flex-col lg:max-w-md" x-chunk="charts-01-chunk-1">
@@ -71,32 +51,32 @@ export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
           </CardTitle>
         </div>
         <div className="flex justify-end gap-2 mb-4">
-          <Button
-            onClick={() => setTimeFrame("daily")}
-            className={`btn ${timeFrame === "daily" && "btn-active"}`}
+          <button
+            onClick={() => setTimeFrame("weekly")}
+            className={`btn ${timeFrame === "weekly" && "btn-active"}`}
           >
-            Günlük
-          </Button>
-          <Button
+            Haftalık
+          </button>
+          <button
             onClick={() => setTimeFrame("monthly")}
             className={`btn ${timeFrame === "monthly" && "btn-active"}`}
           >
             Aylık
-          </Button>
-          <Button
+          </button>
+          <button
             onClick={() => setTimeFrame("yearly")}
             className={`btn ${timeFrame === "yearly" && "btn-active"}`}
           >
             Yıllık
-          </Button>
+          </button>
         </div>
       </CardHeader>
       <CardContent className="flex flex-1 items-center">
         <ChartContainer
           config={{
-            point: {
-              label: "Point",
-              color: "hsl(var(--chart-2))",
+            resting: {
+              label: "Resting",
+              color: "hsl(var(--chart-1))",
             },
           }}
           className="w-full"
@@ -118,26 +98,39 @@ export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
             />
             <YAxis hide domain={["dataMin - 10", "dataMax + 10"]} />
             <XAxis
-              dataKey="date"
+              dataKey={
+                timeFrame === "yearly"
+                  ? "year"
+                  : timeFrame === "monthly"
+                  ? "month"
+                  : "day"
+              }
               tickLine={false}
               axisLine={false}
               tickMargin={8}
               tickFormatter={(value) => {
-                return new Date(value).toLocaleDateString("tr-TR", {
-                  weekday: "short",
-                });
+                if (timeFrame === "yearly") {
+                  return value;
+                }
+                if (timeFrame === "monthly") {
+                  return value;
+                }
+                if (timeFrame === "weekly") {
+                  return value;
+                }
+                return value;
               }}
             />
             <Line
               dataKey="point"
               type="natural"
-              fill="var(--color-point)"
-              stroke="var(--color-point)"
+              fill="var(--color-resting)"
+              stroke="var(--color-resting)"
               strokeWidth={2}
               dot={false}
               activeDot={{
-                fill: "var(--color-point)",
-                stroke: "var(--color-point)",
+                fill: "var(--color-resting)",
+                stroke: "var(--color-resting)",
                 r: 4,
               }}
             />
@@ -146,7 +139,7 @@ export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
                 <ChartTooltipContent
                   indicator="line"
                   labelFormatter={(value) => {
-                    return new Date(value).toLocaleDateString("tr-TR", {
+                    return new Date(value).toLocaleDateString("en-US", {
                       day: "numeric",
                       month: "long",
                       year: "numeric",

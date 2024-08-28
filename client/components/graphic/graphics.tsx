@@ -38,7 +38,10 @@ export const Graphics = ({ token }: any) => {
     point: moodPoints[mood],
   }));
 
-  const topThreeMoods = moods.sort((a, b) => b.point - a.point).slice(0, 3);
+  let topThreeMoods = JSON.parse(JSON.stringify(moods));
+  topThreeMoods = topThreeMoods
+    .sort((a: any, b: any) => b.point - a.point)
+    .slice(0, 3);
 
   const totalPoints = userDiaries.reduce((sum, diary) => sum + diary.point, 0);
   const averageMoodPoint = totalPoints / userDiaries.length;
