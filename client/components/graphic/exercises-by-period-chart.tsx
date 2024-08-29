@@ -9,12 +9,14 @@ import {
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "../ui/chart";
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
-import { getWeeklyPoints } from "@/lib/getWeeklyPoints.js";
-import { getMonthlyPoints } from "@/lib/getMonthlyPoints.js";
-import { getYearlyPoints } from "@/lib/getYearlyPoints.js";
+import { getWeeklyPoints } from "@/lib/getWeeklyPoints";
+import { getMonthlyPoints } from "@/lib/getMonthlyPoints";
+import { getYearlyPoints } from "@/lib/getYearlyPoints";
+
+const timeFrameOptions = ["weekly", "monthly", "yearly"];
 
 export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
-  const [timeFrame, setTimeFrame] = useState("weekly"); // for buttons
+  const [timeFrame, setTimeFrame] = useState("weekly");
 
   const dataToDisplay = useMemo(() => {
     switch (timeFrame) {
@@ -28,6 +30,8 @@ export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
         return [];
     }
   }, [userDiaries, timeFrame]);
+
+  const handleButtonClick = (frame: string) => () => setTimeFrame(frame);
 
   return (
     <Card className="flex flex-col lg:max-w-md" x-chunk="charts-01-chunk-1">
@@ -51,47 +55,39 @@ export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
           </CardTitle>
         </div>
         <div className="flex justify-end gap-2 mb-4">
-          <button
-            onClick={() => setTimeFrame("weekly")}
-            className={`btn ${timeFrame === "weekly" && "btn-active"}`}
-          >
-            Haftalık
-          </button>
-          <button
-            onClick={() => setTimeFrame("monthly")}
-            className={`btn ${timeFrame === "monthly" && "btn-active"}`}
-          >
-            Aylık
-          </button>
-          <button
-            onClick={() => setTimeFrame("yearly")}
-            className={`btn ${timeFrame === "yearly" && "btn-active"}`}
-          >
-            Yıllık
-          </button>
+          {timeFrameOptions.map((option) => (
+            <div key={option}>
+              <button
+                onClick={handleButtonClick(option)}
+                className={`btn ${timeFrame === option ? "btn-active " : ""}`}
+              >
+                {option === "weekly"
+                  ? "Haftalık"
+                  : option === "monthly"
+                  ? "Aylık"
+                  : "Yıllık"}
+              </button>
+              <hr
+                className={` ${
+                  timeFrame === option
+                    ? "btn-active border border-b-orange-500"
+                    : "border-none"
+                }`}
+              />
+            </div>
+          ))}
         </div>
       </CardHeader>
       <CardContent className="flex flex-1 items-center">
         <ChartContainer
           config={{
-            resting: {
-              label: "Resting",
-              color: "hsl(var(--chart-1))",
-            },
+            resting: { label: "Resting", color: "hsl(var(--chart-1))" },
           }}
           className="w-full"
         >
-          <LineChart
-            accessibilityLayer
-            margin={{
-              left: 14,
-              right: 14,
-              top: 10,
-            }}
-            data={dataToDisplay}
-          >
+          <LineChart width={650} accessibilityLayer data={dataToDisplay}>
             <CartesianGrid
-              strokeDasharray="4 4"
+              strokeDasharray="3 3"
               vertical={false}
               stroke="hsl(var(--muted-foreground))"
               strokeOpacity={0.5}
@@ -105,25 +101,19 @@ export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
                   ? "month"
                   : "day"
               }
+              padding={{ right: 8 }}
+              interval={0}
               tickLine={false}
               axisLine={false}
-              tickMargin={8}
-              tickFormatter={(value) => {
-                if (timeFrame === "yearly") {
-                  return value;
-                }
-                if (timeFrame === "monthly") {
-                  return value;
-                }
-                if (timeFrame === "weekly") {
-                  return value;
-                }
-                return value;
-              }}
+              tickMargin={15}
+              angle={
+                timeFrame === "yearly" ? 0 : timeFrame === "monthly" ? -90 : -45
+              }
+              tickFormatter={(value: any) => value}
             />
             <Line
               dataKey="point"
-              type="natural"
+              type="monotone"
               fill="var(--color-resting)"
               stroke="var(--color-resting)"
               strokeWidth={2}
@@ -135,18 +125,7 @@ export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
               }}
             />
             <ChartTooltip
-              content={
-                <ChartTooltipContent
-                  indicator="line"
-                  labelFormatter={(value) => {
-                    return new Date(value).toLocaleDateString("en-US", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    });
-                  }}
-                />
-              }
+              content={<ChartTooltipContent indicator="dashed" />}
               cursor={false}
             />
           </LineChart>

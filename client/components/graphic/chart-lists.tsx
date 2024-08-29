@@ -11,7 +11,7 @@ import { AverageMoodChart } from "./average-mood-chart";
 import { CompletedExercisesChart } from "./completed-exercises-chart";
 import { ExercisesByPeriodChart } from "./exercises-by-period-chart";
 
-export const ChartsLists = ({
+export const ChartLists = ({
   average,
   moods,
   topThreeMoods,

@@ -1,13 +1,5 @@
 export const getWeeklyPoints = (data) => {
-  const daysOfWeek = [
-    "Pazartesi",
-    "Salı",
-    "Çarşamba",
-    "Perşembe",
-    "Cuma",
-    "Cumartesi",
-    "Pazar",
-  ];
+  const daysOfWeek = ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"];
   const weeklyPoints = daysOfWeek.map((day) => ({ day, point: 0 }));
 
   data.forEach((entry) => {
@@ -18,6 +10,6 @@ export const getWeeklyPoints = (data) => {
       existingEntry.point += entry.point;
     }
   });
-
+  console.log(weeklyPoints, "weeklypoints");
   return weeklyPoints;
 };

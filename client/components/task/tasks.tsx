@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CircleCheckBig, TrashIcon, Loader2 } from "lucide-react";
 import { useToast } from "../ui/use-toast";
+import { Card } from "../ui/card";
 
 export default function Tasks({ token }: any) {
   const { toast } = useToast();
@@ -61,9 +62,9 @@ export default function Tasks({ token }: any) {
       {storedTodos?.length > 0 ? (
         storedTodos?.map((el: any, index: number) => {
           return (
-            <div
+            <Card
               key={index}
-              className="flex justify-between h-full w-[400px] items-center bg-slate-900 text-white  gap-2 p-2 rounded-md  "
+              className="flex justify-between h-full w-[400px] items-center   gap-2 p-2 rounded-md  "
             >
               <label htmlFor="todo-1" className="ml-6 text-md font-medium">
                 {el.title}
@@ -95,7 +96,7 @@ export default function Tasks({ token }: any) {
                   <TrashIcon className="w-5 h-5  text-red-500" />
                 </Button>
               </div>
-            </div>
+            </Card>
           );
         })
       ) : (

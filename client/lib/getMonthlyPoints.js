@@ -1,17 +1,17 @@
 export const getMonthlyPoints = (data) => {
   const months = [
-    "Ocak",
-    "Şubat",
-    "Mart",
-    "Nisan",
-    "Mayıs",
-    "Haziran",
-    "Temmuz",
-    "Ağustos",
-    "Eylül",
-    "Ekim",
-    "Kasım",
-    "Aralık",
+    "Oca",
+    "Şub",
+    "Mar",
+    "Nis",
+    "May",
+    "Haz",
+    "Tem",
+    "Ağu",
+    "Eyl",
+    "Ek",
+    "Kas",
+    "Ara",
   ];
   const monthlyPoints = months.map((month) => ({ month, point: 0 }));
 

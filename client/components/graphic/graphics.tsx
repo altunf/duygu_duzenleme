@@ -4,7 +4,7 @@ import React from "react";
 import { useDiary } from "@/hooks/useDiary";
 import { useFetchCompletedTasks } from "@/hooks/useFetchCompletedTasks";
 import daysBetween from "@/lib/daysBetween.js";
-import { ChartsLists } from "./charts-lists";
+import { ChartLists } from "./chart-lists";
 
 export const Graphics = ({ token }: any) => {
   const { userDiaries } = useDiary(token);
@@ -14,9 +14,6 @@ export const Graphics = ({ token }: any) => {
   // const date2 = data[data.length - 1]?.date;
 
   // console.log(daysBetween(date1, date2), "fark");
-
-  console.log(data, "DATA from graphics");
-  console.log(userDiaries, "userDiaries from graphics");
 
   const moodPoints: any = {
     şaşırmış: 0,
@@ -51,8 +48,8 @@ export const Graphics = ({ token }: any) => {
       <div className="flex items-center">
         <h1 className="text-lg font-semibold md:text-2xl">Grafikler</h1>
       </div>
-      <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed">
-        <ChartsLists
+      <div className="flex flex-1 items-center justify-center ">
+        <ChartLists
           average={averageMoodPoint}
           moods={moods}
           userDiaries={userDiaries}

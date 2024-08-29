@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   Bar,
   BarChart,
@@ -8,7 +7,6 @@ import {
   ReferenceLine,
   XAxis,
 } from "recharts";
-
 import {
   Card,
   CardContent,
@@ -68,7 +66,7 @@ export const CompletedExercisesChart = ({ moods }: any) => {
             />
             <ChartTooltip
               defaultIndex={2}
-              content={<ChartTooltipContent hideIndicator />}
+              content={<ChartTooltipContent />}
               cursor={false}
             />
             <ReferenceLine

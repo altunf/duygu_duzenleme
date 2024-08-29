@@ -1,16 +1,20 @@
 import React from "react";
 import { PolarAngleAxis, RadialBar, RadialBarChart } from "recharts";
 import { ChartContainer } from "../ui/chart";
-import { Card, CardContent } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { capitalizeFirstLetter } from "@/lib/capitalizeFirstLetter";
 
 export const TopThreeMoodsChart = ({ topThreeMoods }: any) => {
   return (
     <Card className="max-w-xs" x-chunk="charts-01-chunk-5">
+      <CardHeader className="p-4 pb-0">
+        <CardTitle> En Çok tamamlanan Egzersizler</CardTitle>
+      </CardHeader>
       <CardContent className="flex gap-4 p-4">
         <div className="grid items-center gap-2">
           <div className="grid flex-1 auto-rows-min gap-0.5">
             <div className="text-sm text-muted-foreground">
-              {topThreeMoods[0]?.name}
+              {capitalizeFirstLetter(topThreeMoods[0]?.name)}
             </div>
             <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
               {topThreeMoods[0]?.point}
@@ -22,7 +26,7 @@ export const TopThreeMoodsChart = ({ topThreeMoods }: any) => {
           <div className="grid flex-1 auto-rows-min gap-0.5">
             <div className="text-sm text-muted-foreground">
               {" "}
-              {topThreeMoods[1]?.name}
+              {capitalizeFirstLetter(topThreeMoods[1]?.name)}
             </div>
             <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
               {topThreeMoods[1]?.point}
@@ -34,7 +38,7 @@ export const TopThreeMoodsChart = ({ topThreeMoods }: any) => {
           <div className="grid flex-1 auto-rows-min gap-0.5">
             <div className="text-sm text-muted-foreground">
               {" "}
-              {topThreeMoods[2]?.name}
+              {capitalizeFirstLetter(topThreeMoods[2]?.name)}
             </div>
             <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
               {topThreeMoods[2]?.point}
