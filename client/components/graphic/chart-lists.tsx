@@ -24,7 +24,7 @@ export const ChartLists = ({
         <ExercisesByPeriodChart userDiaries={userDiaries} />
       </div>
       <div className="grid w-full flex-1 gap-6 lg:max-w-[20rem]">
-        <Card className="max-w-xs" x-chunk="charts-01-chunk-4">
+        {/* <Card className="max-w-xs" x-chunk="charts-01-chunk-4">
           <CardContent className="flex gap-4 p-4 pb-2">
             <ChartContainer
               config={{
@@ -128,7 +128,7 @@ export const ChartLists = ({
               </div>
             </div>
           </CardFooter>
-        </Card>
+        </Card> */}
 
         <TopThreeMoodsChart topThreeMoods={topThreeMoods} />
         <AverageMoodChart average={average} />
