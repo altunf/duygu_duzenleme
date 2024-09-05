@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { CircleCheckBig, TrashIcon, Loader2 } from "lucide-react";
 import { useToast } from "../ui/use-toast";
 import { Card } from "../ui/card";
+import EmptyPage from "../empty-page";
 
 export default function Tasks({ token }: any) {
   const { toast } = useToast();
@@ -13,7 +14,7 @@ export default function Tasks({ token }: any) {
 
   const handleAddCompletion = async (el: any) => {
     setLoading(el._id); // Loading state'i başlat
-    const currentUser: any = localStorage.getItem("token");
+    //const currentUser: any = localStorage.getItem("token");
     const userID = JSON.parse(atob(token.token?.split(".")[1])).userId;
 
     const response = await fetch("http://localhost:3001/", {
@@ -32,7 +33,7 @@ export default function Tasks({ token }: any) {
     if (response.ok) {
       toast({
         variant: "default",
-        title: "Egzersiz tamamlandı olarak işaretlendi",
+        title: "Egzersiz tamamlandı",
       });
     } else {
       toast({
@@ -100,7 +101,14 @@ export default function Tasks({ token }: any) {
           );
         })
       ) : (
-        <i>Henüz bir duygu egzersizi eklemediniz</i>
+        <EmptyPage
+          href={"/exercises"}
+          title={"Henüz bir duygu egzersizi eklemediniz"}
+          description={
+            "Listenize yeni bir egzersiz ekleyerek başlayabilirsiniz."
+          }
+          buttonName={"Egzersiz ekle"}
+        />
       )}
     </main>
   );

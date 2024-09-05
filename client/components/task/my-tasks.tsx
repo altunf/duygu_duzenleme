@@ -4,7 +4,7 @@ import Tasks from "./tasks";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CompletedTasks from "./completed-tasks-list";
 
-export const MyExercises = (token: any) => {
+export const MyTasks = (token: any) => {
   const tab = (
     <Tabs
       defaultValue="exercises"

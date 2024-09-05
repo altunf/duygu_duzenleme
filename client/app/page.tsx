@@ -1,4 +1,4 @@
-import { MyExercises } from "@/components/task/my-exercises";
+import { MyTasks } from "@/components/task/my-tasks";
 import { cookies } from "next/headers";
 
 export default function Home() {
@@ -6,7 +6,7 @@ export default function Home() {
   const token = cookieStore.get("token")?.value;
   return (
     <main className="h-full w-full">
-      <MyExercises token={token} />
+      <MyTasks token={token} />
     </main>
   );
 }
