@@ -19,7 +19,7 @@ export const FeelingDiary = ({ defaultTab, token }: any) => {
   return (
     <Tabs
       defaultValue={defaultTab}
-      className="flex h-full w-full flex-col gap-4 p-4 lg:gap-6 lg:p-6 "
+      className="flex h-full w-full flex-col gap-4 p-4 lg:gap-6 lg:p-6"
     >
       <div className="flex items-center">
         <h1 className="text-lg font-semibold md:text-2xl">Duygu Günlüğüm</h1>

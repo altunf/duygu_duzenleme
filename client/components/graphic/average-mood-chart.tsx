@@ -11,7 +11,7 @@ import { Bar, BarChart, Rectangle, XAxis } from "recharts";
 
 export const AverageMoodChart = ({ average }: any) => {
   return (
-    <Card className="max-w-xs" x-chunk="charts-01-chunk-6">
+    <Card className="max-w-lg" x-chunk="charts-01-chunk-6">
       <CardHeader className="p-4 pb-0">
         <CardTitle>Ortalama Duygu Yoğunluğu</CardTitle>
         <CardDescription>

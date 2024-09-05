@@ -30,12 +30,17 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export const CompletedExercisesChart = ({ moods }: any) => {
+  let totalPoint = 0;
+  for (let i = 0; i < moods.length; i++) {
+    totalPoint += moods[i].point;
+  }
+
   return (
     <Card className="lg:max-w-md" x-chunk="charts-01-chunk-0">
       <CardHeader className="space-y-0 pb-2">
         <CardDescription>Tamamlanan</CardDescription>
         <CardTitle className="text-4xl tabular-nums">
-          19{" "}
+          {totalPoint}{" "}
           <span className="font-sans text-sm font-normal tracking-normal text-muted-foreground">
             egzersiz
           </span>

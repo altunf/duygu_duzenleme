@@ -15,47 +15,50 @@ import { getYearlyPoints } from "@/lib/getYearlyPoints";
 
 const timeFrameOptions = ["weekly", "monthly", "yearly"];
 
+const dateModified = (dateStr: any) => {
+  const date = new Date(dateStr);
+  const options: any = { day: "numeric", month: "long", year: "numeric" };
+  return date.toLocaleDateString("tr-TR", options);
+};
+
 export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
   const [timeFrame, setTimeFrame] = useState("weekly");
 
-  console.log(userDiaries[0]?.point, "gnlk");
-
   const dataToDisplay = useMemo(() => {
-    switch (timeFrame) {
-      case "weekly":
-        return getWeeklyPoints(userDiaries);
-      case "monthly":
-        return getMonthlyPoints(userDiaries);
-      case "yearly":
-        return getYearlyPoints(userDiaries);
-      default:
-        return [];
-    }
+    const dataFetchers: any = {
+      weekly: getWeeklyPoints,
+      monthly: getMonthlyPoints,
+      yearly: getYearlyPoints,
+    };
+    return dataFetchers[timeFrame](userDiaries);
   }, [userDiaries, timeFrame]);
 
-  const handleButtonClick = (frame: string) => () => setTimeFrame(frame);
+  const highestPointRecord = useMemo(() => {
+    return [...dataToDisplay].sort((a, b) => b.point - a.point)[0] || {};
+  }, [dataToDisplay]);
 
-  const highestPointRecord = JSON.parse(JSON.stringify(dataToDisplay)).sort(
-    (a: any, b: any) => b.point - a.point
-  )[0];
-
-  const dateModified = (data: any) => {
-    const date = new Date(data);
-    const options: any = { day: "numeric", month: "long", year: "numeric" };
-    const dayAndMonth = date.toLocaleDateString("tr-TR", options);
-
-    return dayAndMonth;
+  const formattedDate = (dateStr: any) => {
+    const formatted = dateModified(dateStr);
+    switch (timeFrame) {
+      case "weekly":
+        return formatted.slice(0, 2);
+      case "monthly":
+        return formatted.slice(2, -4);
+      case "yearly":
+        return formatted.slice(-4);
+      default:
+        return "";
+    }
   };
-
   return (
     <Card className="flex flex-col lg:max-w-md" x-chunk="charts-01-chunk-1">
       <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 [&>div]:flex-1">
         <div className="flex flex-col items-start justify-center gap-4 space-y-0 pb-2">
           <div className="flex gap-4 space-y-0 pb-2">
             <div>
-              <CardDescription>En Yüksek Değer</CardDescription>
+              <CardDescription>En Yüksek Duygu Yoğunluğu</CardDescription>
               <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                {highestPointRecord.point}
+                {highestPointRecord.point || 0}
                 <span className="text-sm font-normal tracking-normal text-muted-foreground">
                   puan
                 </span>
@@ -64,15 +67,13 @@ export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
             <div>
               <CardDescription>Tarih</CardDescription>
               <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
-                {timeFrame == "weekly"
-                  ? dateModified(highestPointRecord.date).slice(0, 2)
-                  : timeFrame == "monthly"
-                  ? dateModified(highestPointRecord.date).slice(2, -4)
-                  : dateModified(highestPointRecord.yearDate).slice(-4)}
+                {timeFrame === "yearly"
+                  ? formattedDate(highestPointRecord.yearDate)
+                  : formattedDate(highestPointRecord.date)}
                 <span className="text-sm font-normal tracking-normal text-muted-foreground">
-                  {timeFrame == "weekly"
+                  {timeFrame === "weekly"
                     ? dateModified(highestPointRecord.date).slice(2, -4)
-                    : timeFrame == "monthly"
+                    : timeFrame === "monthly"
                     ? dateModified(highestPointRecord.date).slice(-4)
                     : ""}
                 </span>
@@ -83,7 +84,7 @@ export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
             {timeFrameOptions.map((option) => (
               <div key={option}>
                 <button
-                  onClick={handleButtonClick(option)}
+                  onClick={() => setTimeFrame(option)}
                   className={`btn ${timeFrame === option ? "btn-active " : ""}`}
                 >
                   {option === "weekly"
@@ -111,7 +112,7 @@ export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
           }}
           className="w-full"
         >
-          <LineChart width={650} accessibilityLayer data={dataToDisplay}>
+          <LineChart width={650} data={dataToDisplay}>
             <CartesianGrid
               strokeDasharray="3 3"
               vertical={false}
@@ -135,7 +136,7 @@ export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
               angle={
                 timeFrame === "yearly" ? 0 : timeFrame === "monthly" ? -90 : -45
               }
-              tickFormatter={(value: any) => value}
+              tickFormatter={(value) => value}
             />
             <Line
               dataKey="point"

@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { DiariesTable } from "@/components/diary/diaries-table";
 import { DiaryEditDialog } from "@/components/diary/diary-edit-dialog";
 import { useDiary } from "@/hooks/useDiary";
+import EmptyPage from "../empty-page";
 
 interface Diary {
   _id: string;
@@ -64,7 +65,7 @@ export function MyDiaries({ token }: any) {
           />
         </>
       ) : (
-        <i>Henüz bir duygu günlüğü oluşturmadınız</i>
+        <EmptyPage />
       )}
     </main>
   );

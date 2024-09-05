@@ -35,6 +35,8 @@ export const Graphics = ({ token }: any) => {
     point: moodPoints[mood],
   }));
 
+  console.log(moods, "moods");
+
   let topThreeMoods = JSON.parse(JSON.stringify(moods));
   topThreeMoods = topThreeMoods
     .sort((a: any, b: any) => b.point - a.point)
