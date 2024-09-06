@@ -6,9 +6,11 @@ import SidebarFooter from "./sidebar-footer";
 
 import { AvatarDemo } from "../avatar";
 import { usePathname } from "next/navigation";
+import { useSidebarContext } from "@/context/sidebar-context";
 
 export function Sidebar() {
   const pathname = usePathname();
+  const { fullName }: any = useSidebarContext();
 
   const x = (
     <aside className="hidden border-r  bg-muted/20 md:block w-72 min-w-72 max-w-64 ">
@@ -16,7 +18,7 @@ export function Sidebar() {
         <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
           <Link href="/" className="flex items-center gap-2 font-semibold">
             <AvatarDemo />
-            <span className="">Fırat Altun</span>
+            <span className="">{fullName}</span>
           </Link>
         </div>
         <div className="flex-1">

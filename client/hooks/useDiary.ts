@@ -9,7 +9,7 @@ interface Diary {
   text: string;
 }
 
-export function useDiary(token: string | null) {
+export function useDiary(token: string | null | any) {
   const [userDiaries, setUserDiaries] = useState<Diary[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -45,22 +45,32 @@ export function useDiary(token: string | null) {
 
   const updateDiary = async (id: string, title: string) => {
     try {
-      await fetch(`http://localhost:3001/diaries`, {
+      const userID = JSON.parse(atob(token.split(".")[1])).userId;
+      const response = await fetch(`http://localhost:3001/diaries`, {
         method: "PUT",
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
           "Diary-ID": id,
           "Content-Title": title,
+          "Current-User": userID,
         },
       });
 
-      setUserDiaries((prevDiaries) =>
-        prevDiaries.map((diary) =>
-          diary._id === id ? { ...diary, title } : diary
-        )
-      );
+      if (response.ok) {
+        setUserDiaries((prevDiaries) =>
+          prevDiaries.map((diary) =>
+            diary._id === id ? { ...diary, title } : diary
+          )
+        );
+      } else {
+        const errorData = await response.json();
+        setError("Günlük güncellenirken bir hata oluştu: " + errorData.message);
+      }
     } catch (error) {
-      setError("Error updating diary: " + (error as Error).message);
+      setError(
+        "Günlük güncellenirken bir hata oluştu: " + (error as Error).message
+      );
     }
   };
 

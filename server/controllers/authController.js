@@ -70,7 +70,12 @@ const loginController = async (req, res) => {
         .setExpirationTime("1h")
         .sign(secret);
     } else {
-      token = await new SignJWT({ userId: userCheck._id })
+      token = await new SignJWT({
+        userId: userCheck._id,
+        username: userCheck.username,
+        name: userCheck.name,
+        surname: userCheck.surname,
+      })
         .setProtectedHeader({ alg: "HS256" })
         .setExpirationTime("2d")
         .sign(secret);
@@ -82,6 +87,8 @@ const loginController = async (req, res) => {
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
     });
+
+    // res.status(200).json({ status: "OK", userCheck, token });
 
     res.status(200).json({ status: "OK", userCheck, token });
   } catch (error) {

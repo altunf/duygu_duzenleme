@@ -12,7 +12,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
 import {
   Select,
   SelectContent,
@@ -41,7 +40,7 @@ export function NewDiary({ token }: any) {
     defaultValues: {
       title: "",
       mood: "",
-      point: 2,
+      point: 5, // duygu yoğunluğu sıfır olamaz.
       date: "",
       text: "",
     },
@@ -74,7 +73,8 @@ export function NewDiary({ token }: any) {
         toast({
           variant: "destructive",
           title: "Günlüğünüz kaydedilemedi!",
-          description: `${response.statusText}`,
+          //description: `${response.statusText}`,
+          description: "Bütün alanları doldurduğunuzdan emin olun",
         });
       }
 

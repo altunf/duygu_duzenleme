@@ -1,19 +1,20 @@
 "use client";
 import React from "react";
+import { Plus } from "lucide-react";
+import { NewDiary } from "./new-diary";
+import { MyDiaries } from "./my-diaries";
+import { useRouter } from "next/navigation";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MyDiaries } from "./my-diaries";
-import { NewDiary } from "./new-diary";
-import { useRouter } from "next/navigation";
-import { Plus } from "lucide-react";
 
-export const FeelingDiary = ({ defaultTab, token }: any) => {
+export const FeelingDiary = ({ defaultTab = "myDiaries", token }: any) => {
   const router = useRouter();
+
   const handleCreateNewDiary = () => {
     router.push("/diaries/new");
   };
 
-  const handleCreateDiary = () => {
+  const handleCreatedDiary = () => {
     router.push("/diaries");
   };
   return (
@@ -26,7 +27,7 @@ export const FeelingDiary = ({ defaultTab, token }: any) => {
       </div>
       <div className="grid grid-cols-2 w-[500px]">
         <TabsList>
-          <TabsTrigger value="myDiaries" onClick={handleCreateDiary}>
+          <TabsTrigger value="myDiaries" onClick={handleCreatedDiary}>
             Günlüklerim
           </TabsTrigger>
           <TabsTrigger value="newDiary" onClick={handleCreateNewDiary}>

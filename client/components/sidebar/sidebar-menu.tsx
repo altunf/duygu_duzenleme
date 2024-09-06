@@ -29,7 +29,7 @@ const SidebarMenu = () => {
     <ChartPie className="h-5 w-5 text-blue-400" />,
     <List className="h-5 w-5 text-green-400" />,
   ];
-  const hrefs = ["/", "/", "/diaries", "/graphics", "/exercises"];
+  const hrefs = ["/", "/tasks", "/diaries", "/graphics", "/exercises"];
   const menuItems = menuNames.map((el: any, index: number) => {
     return (
       <div key={index}>

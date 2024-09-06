@@ -36,22 +36,37 @@ const deleteDiaryController = async (req, res) => {
 
 const updateDiaryTitleController = async (req, res) => {
   const id = req.headers["diary-id"];
-  const title = req.headers["content-title"];
+  const title = req.headers["content-title"].toLowerCase().trim();
+  const userId = req.headers["current-user"];
 
   try {
+    const existingDiary = await Diary.findOne({
+      title: title,
+      userID: userId, // Düzeltilmiş alan adı
+      _id: { $ne: id },
+    });
+
+    if (existingDiary) {
+      return res
+        .status(400)
+        .json({ message: "Bu başlığa sahip başka bir günlüğünüz var" });
+    }
+
     const updatedDiary = await Diary.findByIdAndUpdate(
       id,
-      { title: title }, // Güncellenecek alan ve yeni değer
-      { new: true } // Yeni güncellenmiş belgeyi döndür
+      { title: title },
+      { new: true }
     );
 
     if (!updatedDiary) {
-      return res.status(404).json({ message: "Diary not found" });
+      return res.status(404).json({ message: "Günlük bulunamadı" });
     }
 
     res.status(200).json(updatedDiary);
   } catch (error) {
-    res.status(500).json({ message: "Error updating diary", error });
+    res
+      .status(500)
+      .json({ message: "Günlük güncellenirken bir hata oluştu", error });
   }
 };
 

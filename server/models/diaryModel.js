@@ -6,39 +6,39 @@ const diarySchema = new Schema(
   {
     title: {
       type: String,
-      required: [true, "Name area is required"],
+      required: [true, "Başlık alanı gereklidir"],
       lowercase: true,
       trim: true,
-      unique: true,
     },
     mood: {
       type: String,
-      required: [true, "Mood area is required"],
+      required: [true, "Ruh hali alanı gereklidir"],
       lowercase: true,
       trim: true,
     },
     point: {
       type: Number,
-      required: [true, "Point area is required"],
-      lowercase: true,
+      required: [true, "Puan alanı gereklidir"],
     },
     date: {
       type: Date,
-      required: [true, "Date area is required"],
+      required: [true, "Tarih alanı gereklidir"],
     },
     text: {
       type: String,
-      required: [true, "Text area is required"],
+      required: [true, "Metin alanı gereklidir"],
     },
     userID: {
       type: String,
-      required: [true, "UserID area is required"],
+      required: [true, "Kullanıcı ID'si gereklidir"],
     },
   },
   {
     timestamps: true,
   }
 );
+
+diarySchema.index({ title: 1, userID: 1 }, { unique: true });
 
 const Diary = mongoose.model("Diary", diarySchema);
 

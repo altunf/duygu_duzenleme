@@ -5,12 +5,15 @@ const SidebarContext = createContext({});
 export const SidebarContextProvider = ({ children }: any) => {
   const [sidebarItemTitle, setTitle] = useState("");
   const [isOpen, setOpen] = useState(false);
+  const [fullName, setFullName] = useState("");
 
   const values = {
     sidebarItemTitle,
     setTitle,
     isOpen,
     setOpen,
+    fullName,
+    setFullName,
   };
   return (
     <SidebarContext.Provider value={values}>{children}</SidebarContext.Provider>
