@@ -20,7 +20,7 @@ export const AverageMoodChart = ({ average }: any) => {
       </CardHeader>
       <CardContent className="flex flex-row items-baseline gap-4 p-4 pt-2">
         <div className="flex items-baseline gap-2 text-3xl font-bold tabular-nums leading-none">
-          {average}
+          {average?.toFixed(1)}
           <span className="text-sm font-normal text-muted-foreground">
             puan
           </span>

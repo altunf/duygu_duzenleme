@@ -98,7 +98,7 @@ export const CompletedExercisesChart = ({ moods }: any) => {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-1">
+      {/* <CardFooter className="flex-col items-start gap-1">
         <CardDescription>
           Over the past 7 days, you have walked{" "}
           <span className="font-medium text-foreground">53,305</span> steps.
@@ -107,7 +107,7 @@ export const CompletedExercisesChart = ({ moods }: any) => {
           You need <span className="font-medium text-foreground">12,584</span>{" "}
           more steps to reach your goal.
         </CardDescription>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 };

@@ -66,7 +66,7 @@ export function MyDiaries({ token }: any) {
         </>
       ) : (
         <EmptyPage
-          href={"/"}
+          href={"/diaries/new"}
           title={"Kayıtlı bir duygu günlüğünüz yok"}
           description={"Yeni bir duygu günlüğü oluşturarak başlayabilirsiniz."}
           buttonName={"Günlük oluştur"}
