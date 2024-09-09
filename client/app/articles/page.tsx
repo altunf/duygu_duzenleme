@@ -1,3 +1,4 @@
+import { Articles } from "@/components/article/articles";
 import { cookies } from "next/headers";
 
 export default async function ArticlesPage() {
@@ -6,7 +7,7 @@ export default async function ArticlesPage() {
 
   return (
     <main className="h-full w-full">
-      <h1>article page</h1>
+      <Articles token={token} />
     </main>
   );
 }

@@ -7,10 +7,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "../ui/button";
 import Image from "next/image";
 import { useState } from "react";
-import { capitalizeFirstLetter } from "@/lib/capitalizeFirstLetter.js";
+import { Button } from "../ui/button";
 import { useToast } from "../ui/use-toast";
 
 export function ExerciseCard({ props, maxLength = 50 }: any) {
@@ -46,7 +45,7 @@ export function ExerciseCard({ props, maxLength = 50 }: any) {
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle>
-            <i>{capitalizeFirstLetter(props.title)}</i>
+            <i className="capitalize">{props.title}</i>
           </CardTitle>
         </div>
       </CardHeader>

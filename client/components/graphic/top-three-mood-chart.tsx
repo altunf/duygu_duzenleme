@@ -2,7 +2,6 @@ import React from "react";
 import { PolarAngleAxis, RadialBar, RadialBarChart } from "recharts";
 import { ChartContainer } from "../ui/chart";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { capitalizeFirstLetter } from "@/lib/capitalizeFirstLetter";
 
 export const TopThreeMoodsChart = ({ topThreeMoods }: any) => {
   return (
@@ -13,8 +12,8 @@ export const TopThreeMoodsChart = ({ topThreeMoods }: any) => {
       <CardContent className="flex gap-4 p-4">
         <div className="grid items-center gap-2">
           <div className="grid flex-1 auto-rows-min gap-0.5">
-            <div className="text-sm text-muted-foreground">
-              {capitalizeFirstLetter(topThreeMoods[0]?.name)}
+            <div className="text-sm text-muted-foreground capitalize">
+              {topThreeMoods[0]?.name}
             </div>
             <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
               {topThreeMoods[0]?.point}
@@ -24,9 +23,9 @@ export const TopThreeMoodsChart = ({ topThreeMoods }: any) => {
             </div>
           </div>
           <div className="grid flex-1 auto-rows-min gap-0.5">
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-muted-foreground capitalize">
               {" "}
-              {capitalizeFirstLetter(topThreeMoods[1]?.name)}
+              {topThreeMoods[1]?.name}
             </div>
             <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
               {topThreeMoods[1]?.point}
@@ -36,9 +35,9 @@ export const TopThreeMoodsChart = ({ topThreeMoods }: any) => {
             </div>
           </div>
           <div className="grid flex-1 auto-rows-min gap-0.5">
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-muted-foreground capitalize">
               {" "}
-              {capitalizeFirstLetter(topThreeMoods[2]?.name)}
+              {topThreeMoods[2]?.name}
             </div>
             <div className="flex items-baseline gap-1 text-xl font-bold tabular-nums leading-none">
               {topThreeMoods[2]?.point}

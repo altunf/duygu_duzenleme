@@ -3,7 +3,6 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { formatDate } from "@/lib/formatDate.js";
-import { capitalizeFirstLetter } from "@/lib/capitalizeFirstLetter";
 
 export const ReadDiary = ({ params, token }: any) => {
   const [diary, setDiary] = useState<any[]>([]);
@@ -56,7 +55,7 @@ export const ReadDiary = ({ params, token }: any) => {
           <div className="space-y-6">
             <div className="flex items-center justify-between space-x-2">
               <h1 className="text-3xl font-bold text-card-foreground">
-                <i> {capitalizeFirstLetter(props.title)}</i>
+                <i className="capitalize"> {props.title}</i>
               </h1>
               <p className="text-muted-foreground">{formatDate(props.date)}</p>
             </div>
