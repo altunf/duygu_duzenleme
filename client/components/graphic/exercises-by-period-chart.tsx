@@ -56,7 +56,7 @@ export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
         <div className="flex flex-col items-start justify-center gap-4 space-y-0 pb-2">
           <div className="flex gap-4 space-y-0 pb-2">
             <div>
-              <CardDescription>En Yüksek Duygu Yoğunluğu</CardDescription>
+              <CardDescription>En Yüksek </CardDescription>
               <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
                 {highestPointRecord.point || 0}
                 <span className="text-sm font-normal tracking-normal text-muted-foreground">
