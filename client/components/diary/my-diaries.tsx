@@ -15,7 +15,7 @@ interface Diary {
 }
 
 export function MyDiaries({ token }: any) {
-  const { userDiaries, error, updateDiary, deleteDiary } = useDiary(token);
+  const { userDiaries, updateDiary, deleteDiary } = useDiary(token);
   const [selectedDiary, setSelectedDiary] = useState<Diary | null>(null);
   const [newTitle, setNewTitle] = useState<string>("");
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);

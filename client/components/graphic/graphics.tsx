@@ -1,9 +1,7 @@
 "use client";
 import React from "react";
-
 import { useDiary } from "@/hooks/useDiary";
 import { useMoods } from "@/hooks/useMoods";
-import { useFetchCompletedTasks } from "@/hooks/useFetchCompletedTasks";
 import { ChartLists } from "./chart-lists";
 
 export const Graphics = ({ token }: any) => {
