@@ -25,7 +25,7 @@ export const Summary = ({ token }: any) => {
     <div className="flex flex-col items-center justify-center">
       {" "}
       <Link href={"/diaries"}>
-        <DiaryTableRow diary={userDiaries[0] as any} />
+        <DiaryTableRow diary={userDiaries[0]} />
       </Link>
       <Link href={"/graphics"}>
         <TopThreeMoodsChart topThreeMoods={topThreeMoods} />
