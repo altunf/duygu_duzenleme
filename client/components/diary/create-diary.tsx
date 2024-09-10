@@ -33,7 +33,7 @@ const formSchema = z.object({
   text: z.string(),
 });
 
-export function NewDiary({ token }: any) {
+export function CreateDiary({ token }: any) {
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { DiariesTable } from "@/components/diary/diaries-table";
-import { DiaryEditDialog } from "@/components/diary/diary-edit-dialog";
-import { useDiary } from "@/hooks/useDiary";
 import EmptyPage from "../empty-page";
+import { DiaryTable } from "./diary-table";
+import { useRouter } from "next/navigation";
+import { useDiary } from "@/hooks/useDiary";
+import { DiaryEditDialog } from "@/components/diary/diary-edit-dialog";
 
 interface Diary {
   _id: string;
@@ -14,7 +14,7 @@ interface Diary {
   text: string;
 }
 
-export function MyDiaries({ token }: any) {
+export function DiariesList({ token }: any) {
   const { userDiaries, updateDiary, deleteDiary } = useDiary(token);
   const [selectedDiary, setSelectedDiary] = useState<Diary | null>(null);
   const [newTitle, setNewTitle] = useState<string>("");
@@ -49,7 +49,7 @@ export function MyDiaries({ token }: any) {
     <main className="grid flex-1 h-full w-full items-start p-4 sm:px-6 sm:py-0 md:gap-8">
       {display ? (
         <>
-          <DiariesTable
+          <DiaryTable
             diaries={userDiaries}
             onEdit={openDialog}
             onDelete={handleDelete}

@@ -2,10 +2,10 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
-import { Sidebar } from "@/components/sidebar/sidebar";
 import SidebarProvider from "@/providers/sidebar-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { FeelingsSidebar } from "@/components/sidebar/feelings-sidebar";
+import { SidebarContainer } from "@/components/sidebar/sidebar-container";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +31,7 @@ export default function RootLayout({
           >
             <main>
               <div className="min-h-screen flex">
-                <Sidebar />
+                <SidebarContainer />
                 <FeelingsSidebar />
 
                 <div className="w-full flex flex-1 flex-col items-center justify-center">

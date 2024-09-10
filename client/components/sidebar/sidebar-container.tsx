@@ -8,7 +8,7 @@ import { AvatarDemo } from "../avatar";
 import { usePathname } from "next/navigation";
 import { useSidebarContext } from "@/context/sidebar-context";
 
-export function Sidebar() {
+export function SidebarContainer() {
   const pathname = usePathname();
   const { fullName }: any = useSidebarContext();
 

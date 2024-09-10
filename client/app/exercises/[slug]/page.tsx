@@ -1,4 +1,4 @@
-import { Exercises } from "@/components/exercise/exercises";
+import { ExerciseContainer } from "@/components/exercise/exercise-container";
 
 export default function MyFeelingDiaryPage() {
   const bgStyle =
@@ -7,7 +7,7 @@ export default function MyFeelingDiaryPage() {
   return (
     <main className={`relative flex items-center justify-center h-full w-full`}>
       <div className={bgStyle}></div>
-      <Exercises />
+      <ExerciseContainer />
     </main>
   );
 }

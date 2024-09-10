@@ -5,7 +5,7 @@ import { useToast } from "../ui/use-toast";
 import { Card } from "../ui/card";
 import EmptyPage from "../empty-page";
 
-export default function Tasks({ token }: any) {
+export default function TasksList({ token }: any) {
   const { toast } = useToast();
   const [loading, setLoading] = useState<string | null>(null);
 

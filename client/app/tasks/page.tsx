@@ -1,4 +1,4 @@
-import { MyTasks } from "@/components/task/my-tasks";
+import { TasksContainer } from "@/components/task/tasks-container";
 import { cookies } from "next/headers";
 
 export default function TasksListPage() {
@@ -8,7 +8,7 @@ export default function TasksListPage() {
   console.log(JSON.stringify(token), "token");
   return (
     <main className="h-full w-full">
-      <MyTasks token={token} />
+      <TasksContainer token={token} />
     </main>
   );
 }

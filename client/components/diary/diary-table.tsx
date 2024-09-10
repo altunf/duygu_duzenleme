@@ -23,7 +23,7 @@ interface DiaryTableProps {
   onRowClick: (title: string) => void;
 }
 
-export const DiariesTable = ({
+export const DiaryTable = ({
   diaries,
   onEdit,
   onDelete,

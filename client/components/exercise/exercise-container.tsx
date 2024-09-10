@@ -9,7 +9,7 @@ interface Exercise {
   text: string;
 }
 
-export const Exercises = () => {
+export const ExerciseContainer = () => {
   const [allExercises, setAllExercises] = useState<Exercise[]>([]);
 
   useEffect(() => {

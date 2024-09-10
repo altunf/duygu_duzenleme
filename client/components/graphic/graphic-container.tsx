@@ -2,9 +2,9 @@
 import React from "react";
 import { useDiary } from "@/hooks/useDiary";
 import { useMoods } from "@/hooks/useMoods";
-import { ChartLists } from "./chart-lists";
+import { ChartsList } from "./charts-list";
 
-export const Graphics = ({ token }: any) => {
+export const GraphicContainer = ({ token }: any) => {
   const { userDiaries } = useDiary(token);
   const { topThreeMoods, averageMoodPoint, moods } = useMoods(
     token,
@@ -17,7 +17,7 @@ export const Graphics = ({ token }: any) => {
         <h1 className="text-lg font-semibold md:text-2xl">Grafikler</h1>
       </div>
       <div className="flex flex-1 items-center justify-center ">
-        <ChartLists
+        <ChartsList
           average={averageMoodPoint}
           moods={moods}
           userDiaries={userDiaries}

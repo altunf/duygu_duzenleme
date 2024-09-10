@@ -16,7 +16,7 @@ interface Diary {
   date: string;
 }
 
-export const Summary = ({ token }: any) => {
+export const SummaryContainer = ({ token }: any) => {
   const { userDiaries } = useDiary(token);
   const { topThreeMoods } = useMoods(token, userDiaries);
 

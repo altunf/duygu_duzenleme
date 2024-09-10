@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import Tasks from "./tasks";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CompletedTasks from "./completed-tasks-list";
+import TasksList from "./tasks-list";
 
-export const MyTasks = (token: any) => {
+export const TasksContainer = (token: any) => {
   const tab = (
     <Tabs
       defaultValue="exercises"
@@ -21,7 +21,7 @@ export const MyTasks = (token: any) => {
       </div>
       <div className="flex-1 flex items-center justify-center overflow-x-auto overflow-y-auto scroll-smooth">
         <TabsContent value="exercises">
-          <Tasks token={token} />
+          <TasksList token={token} />
         </TabsContent>
         <TabsContent value="completed" className="h-[600px] m-0 p-0">
           <CompletedTasks token={token} />

@@ -1,4 +1,4 @@
-import { Articles } from "@/components/article/articles";
+import { ArticlesContainer } from "@/components/article/articles-container";
 import { cookies } from "next/headers";
 
 export default async function ArticlesPage() {
@@ -7,7 +7,7 @@ export default async function ArticlesPage() {
 
   return (
     <main className="h-full w-full">
-      <Articles token={token} />
+      <ArticlesContainer token={token} />
     </main>
   );
 }

@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
-import { FeelingDiary } from "@/components/diary/feeling-diary";
+
+import { DiaryContainer } from "@/components/diary/diary-container";
 
 export default function MyFeelingDiaryPage() {
   const cookieStore = cookies();
@@ -7,7 +8,7 @@ export default function MyFeelingDiaryPage() {
 
   return (
     <main className="h-full w-full">
-      <FeelingDiary defaultTab={"myDiaries"} token={token} />
+      <DiaryContainer defaultTab={"myDiaries"} token={token} />
     </main>
   );
 }

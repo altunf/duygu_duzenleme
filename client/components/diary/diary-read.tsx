@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { formatDate } from "@/lib/formatDate.js";
 
-export const ReadDiary = ({ params, token }: any) => {
+export const DiaryRead = ({ params, token }: any) => {
   const [diary, setDiary] = useState<any[]>([]);
   const { theme } = useTheme();
 
