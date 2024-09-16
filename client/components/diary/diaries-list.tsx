@@ -1,9 +1,9 @@
 import { useState } from "react";
-import EmptyPage from "../empty-page";
-import { DiaryTable } from "./diary-table";
 import { useRouter } from "next/navigation";
 import { useDiary } from "@/hooks/useDiary";
 import { DiaryEditDialog } from "@/components/diary/diary-edit-dialog";
+import EmptyPage from "../empty-page";
+import DiaryCard from "./diary-card";
 
 interface Diary {
   _id: string;
@@ -46,15 +46,18 @@ export function DiariesList({ token }: any) {
   const display = userDiaries.length > 0;
 
   return (
-    <main className="grid flex-1 h-full w-full items-start p-4 sm:px-6 sm:py-0 md:gap-8">
+    <main className="flex flex-1 h-full w-full items-start p-4 sm:px-6 sm:py-0 md:gap-8">
       {display ? (
         <>
-          <DiaryTable
-            diaries={userDiaries}
-            onEdit={openDialog}
-            onDelete={handleDelete}
-            onRowClick={handleRowClick}
-          />
+          {userDiaries?.map((diary) => (
+            <DiaryCard
+              key={diary._id}
+              diary={diary}
+              onEdit={openDialog}
+              onDelete={handleDelete}
+              onRowClick={handleRowClick}
+            />
+          ))}
           <DiaryEditDialog
             open={dialogOpen}
             onClose={() => setDialogOpen(false)}

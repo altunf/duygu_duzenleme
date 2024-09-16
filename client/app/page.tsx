@@ -23,7 +23,6 @@ export default async function Home() {
 
   return (
     <main className="h-full w-full">
-      <h1 className="p-10 capitalize">hoşgeldin, {name}</h1>{" "}
       <UserNameSetter fullName={fullName} />
       <SummaryContainer token={token} />
     </main>

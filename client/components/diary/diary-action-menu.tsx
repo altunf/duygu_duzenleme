@@ -6,7 +6,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "../ui/button";
-import { MoreHorizontal } from "lucide-react";
+import { MoreHorizontal, SlidersHorizontal } from "lucide-react";
 interface ActionMenuProps {
   onEdit: () => void;
   onDelete: () => void;
@@ -17,7 +17,7 @@ export const DiaryActionMenu = ({ onEdit, onDelete }: ActionMenuProps) => {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Button aria-haspopup="true" size="icon" variant="ghost">
-          <MoreHorizontal className="h-4 w-4" />
+          <SlidersHorizontal className="h-4 w-4" />
           <span className="sr-only">Toggle menu</span>
         </Button>
       </DropdownMenuTrigger>
