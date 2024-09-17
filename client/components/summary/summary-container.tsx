@@ -1,12 +1,13 @@
 "use client";
 import { useDiary } from "@/hooks/useDiary";
 import { useMoods } from "@/hooks/useMoods";
-import React, { use } from "react";
+import React from "react";
 
 import Link from "next/link";
-import { TopThreeMoodsChart } from "../graphic/top-three-mood-chart";
 
-import CardDemo from "../diary/diary-card";
+import DiaryCard from "../diary/diary-card";
+import { AverageMoodChart } from "../graphic/average-mood-chart";
+import TaskCard from "../task/task-card";
 
 interface Diary {
   _id: string;
@@ -18,28 +19,36 @@ interface Diary {
 
 export const SummaryContainer = ({ token }: any) => {
   const { userDiaries } = useDiary(token);
-  const { topThreeMoods } = useMoods(token, userDiaries);
+  const { topThreeMoods, averageMoodPoint, moods } = useMoods(
+    token,
+    userDiaries
+  );
 
-  <main className="flex flex-1 h-full w-full flex-col gap-4 p-4 lg:gap-6 lg:p-6">
-    <div className="flex items-center">
-      <h1 className="text-lg font-semibold md:text-2xl">Yazılar</h1>
-    </div>
-    <div className="flex flex-1 items-center justify-center ">Articles</div>
-  </main>;
+  const diary: Diary = userDiaries[0];
+
+  const storedTodos: any =
+    JSON.parse(localStorage.getItem("todos") as any) || [];
+
+  const currentTodo = storedTodos[0];
 
   return (
     <main className="flex flex-1 h-full w-full flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="flex items-center">
-        <h1 className="text-lg font-semibold md:text-2xl">Özet</h1>
+        <h1 className="text-lg font-semibold md:text-2xl">Feed</h1>
       </div>
-      <div className="flex flex-1 items-center justify-center ">
-        <div className="">
-          <Link href={"/diaries"}>
-            <CardDemo diary={userDiaries[0]} />
-          </Link>
+      <div className="flex flex-1 items-center justify-center space-y-6">
+        <div className="flex flex-col items-center justify-center space-y-6">
           <Link href={"/graphics"}>
-            <TopThreeMoodsChart topThreeMoods={topThreeMoods} />
-          </Link>{" "}
+            <AverageMoodChart average={averageMoodPoint} />
+          </Link>
+          <Link href={`/diaries/${diary?.title}`}>
+            <DiaryCard diary={diary} />
+          </Link>
+          {storedTodos.length > 0 && (
+            <Link href={`/tasks`}>
+              <TaskCard task={currentTodo} isCompleted={false} />
+            </Link>
+          )}
         </div>
       </div>
     </main>

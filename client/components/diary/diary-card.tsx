@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Card,
   CardContent,
@@ -10,12 +9,8 @@ import {
 import { Button } from "@/components/ui/button";
 import {
   CalendarIcon,
-  HeartIcon,
-  MessageSquareIcon,
-  ShareIcon,
   BookOpenIcon,
   Hash,
-  GitCommitVertical,
   GitCommitHorizontal,
 } from "lucide-react";
 
@@ -33,9 +28,9 @@ interface Diary {
 
 interface DiaryRowProps {
   diary: Diary;
-  onEdit: (diary: Diary) => void;
-  onDelete: (id: string) => void;
-  onRowClick: (title: string) => void;
+  onEdit?: (diary: Diary) => void;
+  onDelete?: (id: string) => void;
+  onRowClick?: (title: string) => void;
 }
 
 export default function DiaryCard({
@@ -47,15 +42,18 @@ export default function DiaryCard({
   //const [isLiked, setIsLiked] = useState(false);
 
   return (
-    <Card className="w-full max-w-md bg-card text-card-foreground">
+    <Card
+      className="w-full max-w-md bg-card text-card-foreground"
+      x-chunk="charts-01-chunk-5"
+    >
       <CardHeader className="space-y-1">
         <div className="flex items-center justify-between">
           <CardTitle className="text-2xl font-bold capitalize">
             {diary?.title}
           </CardTitle>
           <DiaryActionMenu
-            onEdit={() => onEdit(diary)}
-            onDelete={() => onDelete(diary?._id)}
+            onEdit={() => onEdit && onEdit(diary)}
+            onDelete={() => onDelete && onDelete(diary?._id)}
           />
         </div>
 
