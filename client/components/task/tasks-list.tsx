@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { CircleCheckBig, TrashIcon, Loader2 } from "lucide-react";
 import { useToast } from "../ui/use-toast";
-import { Card } from "../ui/card";
+import TaskCard from "./task-card";
 import EmptyPage from "../empty-page";
 
 export default function TasksList({ token }: any) {
@@ -12,9 +10,8 @@ export default function TasksList({ token }: any) {
   const storedTodos: any =
     JSON.parse(localStorage.getItem("todos") as any) || [];
 
-  const handleAddCompletion = async (el: any) => {
-    setLoading(el._id); // Loading state'i başlat
-    //const currentUser: any = localStorage.getItem("token");
+  const handleAddCompletion = async (task: any) => {
+    setLoading(task._id); // Loading state'i başlat
     const userID = JSON.parse(atob(token.token?.split(".")[1])).userId;
 
     const response = await fetch("http://localhost:3001/", {
@@ -24,11 +21,11 @@ export default function TasksList({ token }: any) {
         "User-ID": userID,
       },
       body: JSON.stringify({
-        exerciseId: el._id,
+        exerciseId: task._id,
       }),
     });
 
-    handleDelete(el);
+    handleDelete(task);
 
     if (response.ok) {
       toast({
@@ -38,17 +35,17 @@ export default function TasksList({ token }: any) {
     } else {
       toast({
         variant: "destructive",
-        title: "egzersiz tamamlanamadı",
+        title: "Egzersiz tamamlanamadı",
         description: `${response.statusText}`,
       });
     }
     setLoading(null); // Loading state'i bitir
   };
 
-  const handleDelete = async (el: any) => {
+  const handleDelete = async (task: any) => {
     const newTodos: any =
       JSON.parse(localStorage.getItem("todos") as any) || [];
-    const updatedtodos = newTodos.filter((todo: any) => todo._id !== el._id);
+    const updatedtodos = newTodos.filter((todo: any) => todo._id !== task._id);
     localStorage.setItem("todos", JSON.stringify(updatedtodos));
 
     toast({
@@ -56,50 +53,20 @@ export default function TasksList({ token }: any) {
       title: "Egzersiz listeden kaldırıldı",
     });
   };
-  4;
 
   return (
     <main className="flex flex-col h-full w-full  rounded-sm  items-center gap-2 p-2">
       {storedTodos?.length > 0 ? (
-        storedTodos?.map((el: any, index: number) => {
-          return (
-            <Card
-              key={index}
-              className="flex justify-between h-full w-[400px] items-center   gap-2 p-2 rounded-md  "
-            >
-              <label htmlFor="todo-1" className="ml-6 text-md font-medium">
-                {el.title}
-              </label>
-              <div>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="text-muted-foreground"
-                  onClick={() => {
-                    handleAddCompletion(el);
-                  }}
-                  disabled={loading === el._id} // Yüklenirken buton devre dışı
-                >
-                  {loading === el._id ? (
-                    <Loader2 className="w-5 h-5 animate-spin text-current transition-all duration-1000" />
-                  ) : (
-                    <CircleCheckBig className="w-5 h-5 text-green-500" />
-                  )}
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="text-muted-foreground"
-                  onClick={() => {
-                    handleDelete(el);
-                  }}
-                >
-                  <TrashIcon className="w-5 h-5  text-red-500" />
-                </Button>
-              </div>
-            </Card>
-          );
-        })
+        storedTodos?.map((task: any, index: number) => (
+          <TaskCard
+            key={index}
+            task={task}
+            loading={loading}
+            handleAddCompletion={handleAddCompletion}
+            handleDelete={handleDelete}
+            isCompleted={false}
+          />
+        ))
       ) : (
         <EmptyPage
           href={"/exercises"}

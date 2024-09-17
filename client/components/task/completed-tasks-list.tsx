@@ -4,6 +4,8 @@ import CompletedTaskItem from "./completed-tasks-items";
 import PaginationControls from "../pagination-controls";
 import { useFetchCompletedTasks } from "@/hooks/useFetchCompletedTasks";
 import { usePagination } from "@/hooks/usePagination";
+import TaskCard from "./task-card";
+import { Separator } from "../ui/separator";
 
 const CompletedTasks = ({ token }: any) => {
   const [paginatedData, setPaginatedData] = useState<any[]>([]);
@@ -30,20 +32,23 @@ const CompletedTasks = ({ token }: any) => {
   return (
     <main className="flex flex-col h-full w-full rounded-sm items-center gap-2 p-2">
       {paginatedData?.length > 0 ? (
-        paginatedData.map((task, index) => (
-          <CompletedTaskItem key={index} task={task} />
+        paginatedData.map((task: any, index: number) => (
+          <TaskCard key={index} task={task} isCompleted={true} />
         ))
       ) : (
         <i>Henüz bir duygu egzersizi tamamlamadınız</i>
       )}
 
       {totalPages > 1 && (
-        <PaginationControls
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePaginationClick}
-          getPageNumbers={getPageNumbers}
-        />
+        <>
+          <Separator className="m-4" />
+          <PaginationControls
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePaginationClick}
+            getPageNumbers={getPageNumbers}
+          />
+        </>
       )}
     </main>
   );
