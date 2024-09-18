@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { verifyJwtToken } from "@/lib/auth/index.js";
 import UserNameSetter from "@/components/user-name-setter";
-import { SummaryContainer } from "@/components/summary/summary-container";
+import { FeedContainer } from "@/components/feed/feed-container";
 
 export default async function Home() {
   const cookieStore = cookies();
@@ -24,7 +24,7 @@ export default async function Home() {
   return (
     <main className="h-full w-full">
       <UserNameSetter fullName={fullName} />
-      <SummaryContainer token={token} />
+      <FeedContainer token={token} />
     </main>
   );
 }

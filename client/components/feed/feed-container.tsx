@@ -19,7 +19,7 @@ interface Diary {
   date: string;
 }
 
-export const SummaryContainer = ({ token }: any) => {
+export const FeedContainer = ({ token }: any) => {
   const { userDiaries } = useDiary(token);
   const { allExercises } = useExercise();
   const { topThreeMoods, averageMoodPoint, moods } = useMoods(
