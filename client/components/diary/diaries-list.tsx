@@ -1,9 +1,12 @@
+"use client";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useDiary } from "@/hooks/useDiary";
 import { DiaryEditDialog } from "@/components/diary/diary-edit-dialog";
 import EmptyPage from "../empty-page";
 import DiaryCard from "./diary-card";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface Diary {
   _id: string;
@@ -14,7 +17,7 @@ interface Diary {
   text: string;
 }
 
-export function DiariesList({ token }: any) {
+export function DiariesList({ token }: { token: string }) {
   const { userDiaries, updateDiary, deleteDiary } = useDiary(token);
   const [selectedDiary, setSelectedDiary] = useState<Diary | null>(null);
   const [newTitle, setNewTitle] = useState<string>("");
@@ -37,7 +40,7 @@ export function DiariesList({ token }: any) {
     deleteDiary(id);
   };
 
-  const openDialog = (diary: Diary | any) => {
+  const openDialog = (diary: Diary) => {
     setSelectedDiary(diary);
     setNewTitle(diary.title);
     setDialogOpen(true);
@@ -48,7 +51,7 @@ export function DiariesList({ token }: any) {
   return (
     <main className="flex flex-1 h-full w-full items-start p-4 sm:px-6 sm:py-0 md:gap-8">
       {display ? (
-        <>
+        <div className="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {userDiaries?.map((diary) => (
             <DiaryCard
               key={diary._id}
@@ -58,23 +61,23 @@ export function DiariesList({ token }: any) {
               onRowClick={handleRowClick}
             />
           ))}
-          <DiaryEditDialog
-            open={dialogOpen}
-            onClose={() => setDialogOpen(false)}
-            selectedDiary={selectedDiary}
-            newTitle={newTitle}
-            setNewTitle={setNewTitle}
-            onSave={handleSave}
-          />
-        </>
+        </div>
       ) : (
         <EmptyPage
-          href={"/diaries/new"}
-          title={"Kayıtlı bir duygu günlüğünüz yok"}
-          description={"Yeni bir duygu günlüğü oluşturarak başlayabilirsiniz."}
-          buttonName={"Günlük oluştur"}
+          href="/diaries/new"
+          title="Kayıtlı bir duygu günlüğünüz yok"
+          description="Yeni bir duygu günlüğü oluşturarak başlayabilirsiniz."
+          buttonName="Günlük oluştur"
         />
       )}
+      <DiaryEditDialog
+        open={dialogOpen}
+        onClose={() => setDialogOpen(false)}
+        selectedDiary={selectedDiary}
+        newTitle={newTitle}
+        setNewTitle={setNewTitle}
+        onSave={handleSave}
+      />
     </main>
   );
 }

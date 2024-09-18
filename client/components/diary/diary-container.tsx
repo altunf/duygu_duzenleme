@@ -42,8 +42,11 @@ export const DiaryContainer = ({ defaultTab = "myDiaries", token }: any) => {
         x-chunk="dashboard-02-chunk-1"
       >
         <TabsContent value="myDiaries">
-          <DiariesList token={token} />
+          <ScrollArea className="h-screen w-full rounded-md ">
+            <DiariesList token={token} />{" "}
+          </ScrollArea>
         </TabsContent>
+
         <TabsContent value="newDiary">
           <CreateDiary token={token} />
         </TabsContent>
