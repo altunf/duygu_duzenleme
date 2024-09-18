@@ -1,25 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ExerciseCard } from "./exercise-card";
-
-interface Exercise {
-  title: string;
-  description: string;
-  tag: any;
-  text: string;
-}
+import { useExercise } from "@/hooks/useExercise";
 
 export const ExerciseContainer = () => {
-  const [allExercises, setAllExercises] = useState<Exercise[]>([]);
-
-  useEffect(() => {
-    const getExercises = async () => {
-      const response = await fetch("http://localhost:3001/exercises/:*");
-      const data = await response.json();
-      setAllExercises(data);
-    };
-    getExercises();
-  }, []);
+  const { allExercises } = useExercise();
 
   let tek: any = [];
   let cift: any = [];

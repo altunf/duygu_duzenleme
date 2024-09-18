@@ -33,7 +33,9 @@ export function ExerciseCard({ props, maxLength = 50 }: any) {
 
   const newText = (
     <div>
-      <p>{isTruncated ? props.text.slice(0, maxLength) + "..." : props.text}</p>
+      <p>
+        {isTruncated ? props?.text.slice(0, maxLength) + "..." : props?.text}
+      </p>
       <button onClick={toggleTruncate} className="text-blue-500">
         {isTruncated ? "Read More" : "Read Less"}
       </button>
@@ -45,7 +47,7 @@ export function ExerciseCard({ props, maxLength = 50 }: any) {
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle>
-            <i className="capitalize">{props.title}</i>
+            <i className="capitalize">{props?.title}</i>
           </CardTitle>
         </div>
       </CardHeader>
@@ -65,7 +67,7 @@ export function ExerciseCard({ props, maxLength = 50 }: any) {
       </CardContent>
 
       <CardFooter className="flex items-center justify-between">
-        <i>#{props.tag?.[0]}</i>
+        <i>#{props?.tag?.[0]}</i>
         <Button
           onClick={() => {
             handleClick(props);

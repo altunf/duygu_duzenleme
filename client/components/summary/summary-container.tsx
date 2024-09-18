@@ -8,6 +8,8 @@ import Link from "next/link";
 import DiaryCard from "../diary/diary-card";
 import { AverageMoodChart } from "../graphic/average-mood-chart";
 import TaskCard from "../task/task-card";
+import { ExerciseCard } from "../exercise/exercise-card";
+import { useExercise } from "@/hooks/useExercise";
 
 interface Diary {
   _id: string;
@@ -19,6 +21,7 @@ interface Diary {
 
 export const SummaryContainer = ({ token }: any) => {
   const { userDiaries } = useDiary(token);
+  const { allExercises } = useExercise();
   const { topThreeMoods, averageMoodPoint, moods } = useMoods(
     token,
     userDiaries
@@ -49,6 +52,9 @@ export const SummaryContainer = ({ token }: any) => {
               <TaskCard task={currentTodo} isCompleted={false} />
             </Link>
           )}
+          <Link href={`/diaries/${diary?.title}`}>
+            <ExerciseCard props={allExercises[0]} />
+          </Link>
         </div>
       </div>
     </main>
