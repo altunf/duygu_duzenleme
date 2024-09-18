@@ -11,6 +11,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { useToast } from "../ui/use-toast";
+import { Badge } from "../ui/badge";
 
 export function ExerciseCard({ props, maxLength = 50 }: any) {
   const { toast } = useToast();
@@ -43,7 +44,7 @@ export function ExerciseCard({ props, maxLength = 50 }: any) {
   );
 
   return (
-    <Card className="" x-chunk="dashboard-07-chunk-4">
+    <Card className="max-w-sm" x-chunk="dashboard-07-chunk-4">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle>
@@ -61,13 +62,15 @@ export function ExerciseCard({ props, maxLength = 50 }: any) {
             className="aspect-video w-full  rounded-lg"
           />
         </div>
-        <CardDescription className="flex items-center justify-start">
+        <CardDescription className="flex items-center justify-start mt-2">
           {newText}
         </CardDescription>
       </CardContent>
 
       <CardFooter className="flex items-center justify-between">
-        <i>#{props?.tag?.[0]}</i>
+        <Badge className="bg-violet-400 dark:text-black capitalize">
+          <i># {props?.tag?.[0]}</i>
+        </Badge>
         <Button
           onClick={() => {
             handleClick(props);

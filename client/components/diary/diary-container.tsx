@@ -6,6 +6,7 @@ import { DiariesList } from "./diaries-list";
 import { useRouter } from "next/navigation";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ScrollArea } from "../ui/scroll-area";
 
 export const DiaryContainer = ({ defaultTab = "myDiaries", token }: any) => {
   const router = useRouter();
@@ -35,8 +36,9 @@ export const DiaryContainer = ({ defaultTab = "myDiaries", token }: any) => {
           </TabsTrigger>
         </TabsList>
       </div>
+
       <div
-        className="flex flex-1  items-center justify-center overflow-x-auto overflow-y-auto"
+        className="flex flex-1  items-center justify-center "
         x-chunk="dashboard-02-chunk-1"
       >
         <TabsContent value="myDiaries">

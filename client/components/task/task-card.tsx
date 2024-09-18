@@ -30,20 +30,20 @@ const TaskCard: React.FC<TaskCardProps> = ({
 }) => {
   return (
     <>
-      <Card className="flex items-center justify-between h-full w-[400px] gap-3 p-1 rounded-lg ">
+      <Card className="flex items-center justify-between w-[400px] gap-3 p-1 rounded-lg ">
         <Button
           variant="ghost"
           size="sm"
           onClick={() => handleAddCompletion && handleAddCompletion(task)}
-          disabled={loading === task._id}
+          disabled={loading === task?._id}
           className="shrink-0"
         >
-          {loading === task._id ? (
+          {loading === task?._id ? (
             <Loader2 className="w-5 h-5 animate-spin text-primary transition-all duration-2000" />
           ) : (
             <Check
               className={`w-5 h-5 ${
-                loading === task._id
+                loading === task?._id
                   ? "text-muted-foreground"
                   : "text-green-500"
               }`}
@@ -56,16 +56,16 @@ const TaskCard: React.FC<TaskCardProps> = ({
               isCompleted ? "line-through text-muted-foreground" : ""
             }`}
           >
-            {task.title}
+            {task?.title}
           </p>
-          {isCompleted && task.date && (
+          {isCompleted && task?.date && (
             <p className="text-xs text-muted-foreground mt-1">
-              {formatDate(task.date)}
+              {formatDate(task?.date)}
             </p>
           )}
         </div>
         <Badge className="ml-2 shrink-0 bg-violet-400 dark:text-black">
-          <Link href={`/exercises/${task.tag}`}>{task.tag}</Link>
+          <Link href={`/exercises/${task?.tag}`}>{task?.tag}</Link>
         </Badge>
         <Badge
           variant={isCompleted ? "secondary" : "default"}

@@ -30,7 +30,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <main>
-              <div className="min-h-screen flex">
+              <div className="flex h-screen overflow-hidden">
                 <SidebarContainer />
                 <FeelingsSidebar />
 

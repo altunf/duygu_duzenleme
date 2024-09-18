@@ -10,6 +10,7 @@ import { AverageMoodChart } from "../graphic/average-mood-chart";
 import TaskCard from "../task/task-card";
 import { ExerciseCard } from "../exercise/exercise-card";
 import { useExercise } from "@/hooks/useExercise";
+import { ScrollArea } from "../ui/scroll-area";
 
 interface Diary {
   _id: string;
@@ -20,18 +21,13 @@ interface Diary {
 }
 
 export const FeedContainer = ({ token }: any) => {
-  const { userDiaries } = useDiary(token);
   const { allExercises } = useExercise();
-  const { topThreeMoods, averageMoodPoint, moods } = useMoods(
-    token,
-    userDiaries
-  );
+  const { userDiaries } = useDiary(token);
+  const { averageMoodPoint } = useMoods(token, userDiaries);
 
   const diary: Diary = userDiaries[0];
-
   const storedTodos: any =
     JSON.parse(localStorage.getItem("todos") as any) || [];
-
   const currentTodo = storedTodos[0];
 
   return (
@@ -39,24 +35,31 @@ export const FeedContainer = ({ token }: any) => {
       <div className="flex items-center">
         <h1 className="text-lg font-semibold md:text-2xl">Feed</h1>
       </div>
-      <div className="flex flex-1 items-center justify-center space-y-6">
-        <div className="flex flex-col items-center justify-center space-y-6">
-          <Link href={"/graphics"}>
-            <AverageMoodChart average={averageMoodPoint} />
-          </Link>
-          <Link href={`/diaries/${diary?.title}`}>
-            <DiaryCard diary={diary} />
-          </Link>
-          {storedTodos.length > 0 && (
-            <Link href={`/tasks`}>
-              <TaskCard task={currentTodo} isCompleted={false} />
+      <ScrollArea className="flex-1">
+        <div className="flex items-center justify-center space-x-6">
+          <div className="flex flex-col items-center justify-center space-y-6"></div>
+          <div className="flex flex-col items-center justify-center space-y-6">
+            {" "}
+            <Link href={"/graphics"}>
+              <AverageMoodChart average={averageMoodPoint} />
             </Link>
-          )}
-          <Link href={`/diaries/${diary?.title}`}>
-            <ExerciseCard props={allExercises[0]} />
-          </Link>
+            <Link href={`/diaries/${diary?.title}`}>
+              <DiaryCard diary={diary} />
+            </Link>{" "}
+            {storedTodos.length > 0 && (
+              <Link href={`/tasks`}>
+                <TaskCard task={currentTodo} isCompleted={false} />
+              </Link>
+            )}
+            <Link href={`/diaries/${diary?.title}`}>
+              <ExerciseCard props={allExercises[0]} />
+            </Link>{" "}
+            <Link href={`/diaries/${diary?.title}`}>
+              <ExerciseCard props={allExercises[3]} />
+            </Link>
+          </div>
         </div>
-      </div>
+      </ScrollArea>
     </main>
   );
 };
