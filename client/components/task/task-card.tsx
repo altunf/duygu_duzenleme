@@ -9,7 +9,7 @@ import Link from "next/link";
 interface Task {
   _id: string;
   title: string;
-  tag: string;
+  mood: string;
   date?: string;
 }
 
@@ -65,7 +65,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
           )}
         </div>
         <Badge className="ml-2 shrink-0 bg-violet-400 dark:text-black">
-          <Link href={`/exercises/${task?.tag}`}>{task?.tag}</Link>
+          <Link href={`/exercises/${task?.mood}`}>{task?.mood}</Link>
         </Badge>
         <Badge
           variant={isCompleted ? "secondary" : "default"}

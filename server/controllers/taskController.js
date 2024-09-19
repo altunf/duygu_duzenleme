@@ -21,8 +21,9 @@ const newTaskController = async (req, res) => {
 };
 
 const deleteTaskController = async (req, res) => {
-  const id = req.headers["Task-id"];
+  const id = req.headers["task-id"];
   try {
+    console.log(id, "id");
     const deletedTask = await Task.findByIdAndDelete(id);
     res.status(200).json(deletedTask);
   } catch (error) {

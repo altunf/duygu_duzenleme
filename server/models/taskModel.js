@@ -32,7 +32,7 @@ const taskSchema = new Schema(
   }
 );
 
-diarySchema.index({ title: 1, userID: 1 }, { unique: true });
+taskSchema.index({ title: 1, userID: 1 }, { unique: true });
 
 const Task = mongoose.model("Task", taskSchema);
 

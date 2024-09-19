@@ -13,7 +13,7 @@ import { Button } from "../ui/button";
 import { useToast } from "../ui/use-toast";
 import { Badge } from "../ui/badge";
 
-export function ExerciseCard({ props, maxLength = 50 }: any) {
+export function ExerciseCard({ props, maxLength = 50, token }: any) {
   const { toast } = useToast();
   const [isTruncated, setIsTruncated] = useState(true);
 
@@ -21,14 +21,39 @@ export function ExerciseCard({ props, maxLength = 50 }: any) {
     setIsTruncated(!isTruncated);
   };
 
-  const handleClick = (props: any) => {
-    let existingTodos = JSON.parse(localStorage.getItem("todos") || "[]");
-    existingTodos.push(props);
-    localStorage.setItem("todos", JSON.stringify(existingTodos));
+  const handleClick = async (props: any) => {
+    try {
+      const userID = JSON.parse(atob(token.split(".")[1])).userId;
+      const currentDate = new Date().toISOString();
+      const { title, tag } = props;
+
+      const response = await fetch("http://localhost:3001/exercises", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          "Current-User": userID,
+        },
+        body: JSON.stringify({
+          title,
+          mood: tag[0],
+          date: currentDate,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch tasks");
+      }
+
+      const data = await response.json();
+      console.log(data, "Taskdata");
+    } catch (error) {
+      console.error("Veri alınırken bir hata oluştu:", error);
+    }
 
     toast({
       variant: "default",
-      title: "Egzersiz listenize eklendi ",
+      title: "Egzersiz listenize eklendi",
     });
   };
 

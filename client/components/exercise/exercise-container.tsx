@@ -4,7 +4,7 @@ import { ExerciseCard } from "./exercise-card";
 import { useExercise } from "@/hooks/useExercise";
 import { ScrollArea } from "../ui/scroll-area";
 
-export const ExerciseContainer = () => {
+export const ExerciseContainer = ({ token }: any) => {
   const { allExercises } = useExercise();
 
   let tek: any = [];
@@ -28,12 +28,12 @@ export const ExerciseContainer = () => {
           <div className="md:flex grid grid-cols-2 gap-6 text-center">
             <div className="flex flex-col items-center gap-1">
               {cift?.map((el: any, index: number) => (
-                <ExerciseCard key={el.id || index} props={el} />
+                <ExerciseCard key={el.id || index} props={el} token={token} />
               ))}
             </div>
             <div className="flex flex-col items-center gap-1">
               {tek?.map((el: any, index: number) => (
-                <ExerciseCard key={el.id || index} props={el} />
+                <ExerciseCard key={el.id || index} props={el} token={token} />
               ))}
             </div>
           </div>
