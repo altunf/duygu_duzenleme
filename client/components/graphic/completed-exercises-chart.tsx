@@ -37,7 +37,8 @@ export const CompletedExercisesChart = ({ moods }: any) => {
 
   return (
     <Card className="lg:max-w-md" x-chunk="charts-01-chunk-0">
-      <CardHeader className="space-y-0 pb-2">
+      <CardHeader className="pb-0 p-4">
+        <CardTitle>Tamamlanan Egzersiz Sayıları</CardTitle>
         <CardDescription>Tamamlanan</CardDescription>
         <CardTitle className="text-4xl tabular-nums">
           {totalPoint}{" "}
@@ -100,8 +101,8 @@ export const CompletedExercisesChart = ({ moods }: any) => {
       </CardContent>
       <CardFooter className="flex-col items-start gap-1">
         <CardDescription>
-          Over the past 7 days, you have walked{" "}
-          <span className="font-medium text-foreground">53,305</span> steps.
+          son 7 günde <span className="font-medium text-foreground">14</span>{" "}
+          egzersiz tamamladınız.
         </CardDescription>
       </CardFooter>
     </Card>

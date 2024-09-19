@@ -7,6 +7,7 @@ import SidebarFooter from "./sidebar-footer";
 import { AvatarDemo } from "../avatar";
 import { usePathname } from "next/navigation";
 import { useSidebarContext } from "@/context/sidebar-context";
+import { Header } from "./header";
 
 export function SidebarContainer() {
   const pathname = usePathname();

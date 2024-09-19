@@ -52,12 +52,13 @@ export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
   };
   return (
     <Card className="flex flex-col lg:max-w-md" x-chunk="charts-01-chunk-1">
-      <CardHeader className="flex flex-row items-center gap-4 space-y-0 pb-2 [&>div]:flex-1">
+      <CardHeader className="flex flex-row items-center space-y-0 pb-2 [&>div]:flex-1">
         <div className="flex flex-col items-start justify-center gap-4 space-y-0 pb-2">
+          <CardTitle>Dönemsel Duygu Yoğunlukları</CardTitle>
           <div className="flex gap-4 space-y-0 pb-2">
             <div>
               <CardDescription>En Yüksek </CardDescription>
-              <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
+              <CardTitle className="flex items-baseline gap-1 text-3xl tabular-nums">
                 {highestPointRecord.point || 0}
                 <span className="text-sm font-normal tracking-normal text-muted-foreground">
                   puan
@@ -66,7 +67,7 @@ export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
             </div>
             <div>
               <CardDescription>Tarih</CardDescription>
-              <CardTitle className="flex items-baseline gap-1 text-4xl tabular-nums">
+              <CardTitle className="flex items-baseline gap-1 text-3xl tabular-nums">
                 {timeFrame === "yearly"
                   ? formattedDate(highestPointRecord.yearDate)
                   : formattedDate(highestPointRecord.date)}

@@ -60,7 +60,7 @@ export function CreateDiary({ token }: any) {
       });
 
       if (response.ok) {
-        //Formu sıfırla
+        // Formu sıfırla
         form.reset();
         toast({
           variant: "default",
@@ -73,7 +73,6 @@ export function CreateDiary({ token }: any) {
         toast({
           variant: "destructive",
           title: "Günlüğünüz kaydedilemedi!",
-          //description: `${response.statusText}`,
           description: "Bütün alanları doldurduğunuzdan emin olun",
         });
       }
@@ -89,18 +88,18 @@ export function CreateDiary({ token }: any) {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <header className="space-y-1">
-            <div className="flex items-center justify-start space-x-2">
+            <div className="flex flex-col space-y-2 md:flex-row md:items-center md:justify-start md:space-x-2">
               <FormField
                 control={form.control}
                 name="title"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="w-full md:w-auto">
                     <FormControl>
                       <Input
                         {...field}
                         type="text"
                         placeholder="Günlük adı giriniz"
-                        className="text-3xl font-bold w-full border-none focus:outline-none px-0 "
+                        className="text-3xl font-bold w-full border-none focus:outline-none px-0"
                         autoFocus
                       />
                     </FormControl>
@@ -115,12 +114,12 @@ export function CreateDiary({ token }: any) {
             </p>
           </header>
           <div className="space-y-4">
-            <div className="flex items-center justify-between space-x-4 lg:flex-flow">
+            <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-x-4 lg:flex-wrap">
               <FormField
                 control={form.control}
                 name="mood"
                 render={({ field }) => (
-                  <FormItem className="w-[150px]">
+                  <FormItem className="w-full md:w-[150px]">
                     <FormLabel>Nasıl Hissediyorsun?</FormLabel>
                     <FormControl>
                       <Select
@@ -147,15 +146,15 @@ export function CreateDiary({ token }: any) {
                   </FormItem>
                 )}
               />
-              <div className="flex items-center pace-x-2 ">
+              <div className="flex items-center space-x-2 w-full md:w-[150px]">
                 <FormField
                   control={form.control}
                   name="point"
                   render={({ field: { value, onChange } }) => (
                     <FormItem>
-                      <FormLabel>Duygu yoğunluğu</FormLabel>
+                      <FormLabel>Duygu Yoğunluğu</FormLabel>
                       <FormControl>
-                        <div className="flex items-center justify-between rounded h-9 w-[150px] border px-3 py-1">
+                        <div className="flex items-center justify-between rounded h-9 w-full border px-3 py-1">
                           <Slider
                             defaultValue={[value]}
                             max={10}
@@ -169,13 +168,12 @@ export function CreateDiary({ token }: any) {
                           </span>
                         </div>
                       </FormControl>
-
                       <FormMessage />
                     </FormItem>
                   )}
                 />
               </div>
-              <div className="flex items-center pace-x-2">
+              <div className="flex items-center space-x-2 w-full md:w-auto">
                 <FormField
                   control={form.control}
                   name="date"
@@ -187,6 +185,7 @@ export function CreateDiary({ token }: any) {
                           {...field}
                           type="date"
                           id="date"
+                          className="w-full"
                           onChange={field.onChange}
                         />
                       </FormControl>
@@ -207,7 +206,7 @@ export function CreateDiary({ token }: any) {
                       <Textarea
                         {...field}
                         placeholder="Düşüncelerinizi buraya yazın."
-                        className="min-h-[300px] "
+                        className="min-h-[300px] w-full"
                         onChange={field.onChange}
                       />
                     </FormControl>
@@ -216,7 +215,9 @@ export function CreateDiary({ token }: any) {
                 )}
               />
             </div>
-            <Button type="submit">Kaydet</Button>
+            <Button type="submit" className="w-full md:w-auto">
+              Kaydet
+            </Button>
           </div>
         </form>
       </Form>
