@@ -10,7 +10,6 @@ export async function middleware(req: NextRequest) {
     AUTH_PAGES.some((page) => page.startsWith(url));
 
   const hasVerifyToken = token && (await verifyJwtToken(token));
-  console.log(hasVerifyToken, "hasdad");
 
   const isAuthPageRequested = isAuthPages(nextUrl.pathname);
 

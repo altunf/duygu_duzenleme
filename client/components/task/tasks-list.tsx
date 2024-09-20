@@ -10,26 +10,26 @@ export default function TasksList({ token }: any) {
 
   const handleAddCompletion = async (task: any) => {
     setLoading(task._id); // Loading state'i başlat
+
     const userID = JSON.parse(atob(token.token?.split(".")[1])).userId;
 
-    const response = await fetch("http://localhost:3001/", {
+    const response = await fetch("http://localhost:3001/tasks", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "User-ID": userID,
       },
       body: JSON.stringify({
-        exerciseId: task._id,
+        exerciseId: task.exerciseId,
       }),
     });
-
-    handleDelete(task);
 
     if (response.ok) {
       toast({
         variant: "default",
         title: "Egzersiz tamamlandı",
       });
+      handleDelete(task);
     } else {
       toast({
         variant: "destructive",
@@ -57,14 +57,12 @@ export default function TasksList({ token }: any) {
       }
       const data = await response.json();
       setTodos(data);
-      console.log(storedTodos, "TODOS");
     } catch (error) {
       console.error("Veri alınırken bir hata oluştu:", error);
     }
   };
   const handleDelete = async (task: any) => {
     try {
-      const userID = JSON.parse(atob(token.token?.split(".")[1])).userId;
       const response = await fetch("http://localhost:3001/tasks", {
         method: "DELETE",
         headers: {

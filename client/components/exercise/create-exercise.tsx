@@ -29,17 +29,17 @@ import { Textarea } from "../ui/textarea";
 const formSchema = z.object({
   title: z.string(),
   description: z.string(),
-  tag: z.string(),
+  mood: z.string(),
   text: z.string(),
 });
 
-export function CreateExercise() {
+export function CreateExercise({ token }: any) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
       description: "",
-      tag: "",
+      mood: "",
       text: "",
     },
   });
@@ -94,7 +94,7 @@ export function CreateExercise() {
             <div className="flex items-center justify-between space-x-4 lg:flex-flow">
               <FormField
                 control={form.control}
-                name="tag"
+                name="mood"
                 render={({ field }) => (
                   <FormItem className="w-[150px]">
                     <FormLabel>Ne ile ilgili?</FormLabel>
@@ -150,8 +150,7 @@ export function CreateExercise() {
   );
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const currentUser: any = localStorage.getItem("token");
-    const userID = JSON.parse(currentUser).userCheck._id;
+    const userID = JSON.parse(atob(token.split(".")[1])).userId;
 
     await fetch("http://localhost:3001/admin", {
       method: "POST",

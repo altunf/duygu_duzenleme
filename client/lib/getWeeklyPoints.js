@@ -24,6 +24,5 @@ export const getWeeklyPoints = (data) => {
     }
   });
 
-  console.log(weeklyPoints, "weeklypoints");
   return weeklyPoints;
 };

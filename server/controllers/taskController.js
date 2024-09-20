@@ -2,11 +2,12 @@ import { Task } from "../models/taskModel.js";
 
 const newTaskController = async (req, res) => {
   try {
-    const { title, mood, date } = req.body;
+    const { exerciseId, title, mood, date } = req.body;
 
     const userID = req.headers["current-user"];
 
     const newTask = await Task.create({
+      exerciseId,
       title,
       mood,
       date,
@@ -23,7 +24,6 @@ const newTaskController = async (req, res) => {
 const deleteTaskController = async (req, res) => {
   const id = req.headers["task-id"];
   try {
-    console.log(id, "id");
     const deletedTask = await Task.findByIdAndDelete(id);
     res.status(200).json(deletedTask);
   } catch (error) {

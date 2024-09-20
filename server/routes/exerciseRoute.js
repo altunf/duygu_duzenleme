@@ -9,9 +9,9 @@ import {
 const router = express.Router();
 
 router.post("/admin", addNewExercise);
-router.post("/", addCompletionDate);
+router.post("/tasks", addCompletionDate);
 
-router.get("/", getAllCompletedExercises);
+router.get("/tasks/completed", getAllCompletedExercises);
 router.get("/exercises/:*", getAllExercises);
 
 export default router;

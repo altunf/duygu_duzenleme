@@ -17,15 +17,16 @@ const exerciseSchema = new Schema(
       type: String,
       required: [true, "Name area is required"],
       lowercase: true,
+      unique: true,
     },
     description: {
       type: String,
       required: [false, "Description area is required"],
       lowercase: true,
     },
-    tag: {
+    mood: {
       type: Array,
-      required: [true, "Tag area is required"],
+      required: [true, "Mood area is required"],
       lowercase: true,
     },
     text: {

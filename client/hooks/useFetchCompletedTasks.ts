@@ -8,7 +8,7 @@ export const useFetchCompletedTasks = (token: any) => {
       try {
         const userID = JSON.parse(atob(token.token?.split(".")[1])).userId;
 
-        const response = await fetch("http://localhost:3001", {
+        const response = await fetch("http://localhost:3001/tasks/completed", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

@@ -25,7 +25,7 @@ export function ExerciseCard({ props, maxLength = 50, token }: any) {
     try {
       const userID = JSON.parse(atob(token.split(".")[1])).userId;
       const currentDate = new Date().toISOString();
-      const { title, tag } = props;
+      const { _id, title, mood } = props;
 
       const response = await fetch("http://localhost:3001/exercises", {
         method: "POST",
@@ -35,8 +35,9 @@ export function ExerciseCard({ props, maxLength = 50, token }: any) {
           "Current-User": userID,
         },
         body: JSON.stringify({
+          exerciseId: _id,
           title,
-          mood: tag[0],
+          mood: mood[0],
           date: currentDate,
         }),
       });
@@ -46,7 +47,6 @@ export function ExerciseCard({ props, maxLength = 50, token }: any) {
       }
 
       const data = await response.json();
-      console.log(data, "Taskdata");
     } catch (error) {
       console.error("Veri alınırken bir hata oluştu:", error);
     }
@@ -94,7 +94,7 @@ export function ExerciseCard({ props, maxLength = 50, token }: any) {
 
       <CardFooter className="flex items-center justify-between">
         <Badge className="bg-violet-400 dark:text-black capitalize">
-          <i># {props?.tag?.[0]}</i>
+          <i># {props?.mood?.[0]}</i>
         </Badge>
         <Button
           onClick={() => {

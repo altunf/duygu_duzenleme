@@ -8,7 +8,9 @@ import {
 const router = express.Router();
 
 router.post("/exercises", newTaskController);
+
 router.delete("/tasks", deleteTaskController);
+
 router.get("/tasks", getAllTasksController);
 
 export default router;

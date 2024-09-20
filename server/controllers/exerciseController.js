@@ -2,16 +2,16 @@ import { Exercise } from "../models/exerciseModel.js";
 
 const addNewExercise = async (req, res) => {
   //Only ADMIN can add new exercise
-  //In the Pro version, users can add custom exercises
+  //In the Pro version, users can add custom exercises (MAYBE FOR THERAPİSTS)
 
   try {
-    const { title, description, tag, text } = req.body;
-    const userID = req.headers["user-id"];
+    const { title, description, mood, text } = req.body;
+    const userID = req.headers["current-user"];
 
     const newExercise = await Exercise.create({
       title,
       description,
-      tag,
+      mood,
       text,
       // completionDates,
       userID: userID,
@@ -28,6 +28,7 @@ const addNewExercise = async (req, res) => {
 
 const addCompletionDate = async (req, res) => {
   const exerciseId = req.body.exerciseId;
+
   const userId = req.headers["user-id"];
   const newDate = { date: new Date().toISOString() };
 
@@ -39,6 +40,7 @@ const addCompletionDate = async (req, res) => {
 
   try {
     const exercise = await Exercise.findById(exerciseId);
+
     if (!exercise)
       return res.status(404).json({ message: "Exercise not found" });
 
@@ -74,7 +76,7 @@ const getAllCompletedExercises = async (req, res) => {
       .flatMap((exercise) =>
         exercise.completionDates.get(userID).map((entry) => ({
           title: exercise.title,
-          tag: exercise.tag,
+          mood: exercise.mood,
           date: new Date(entry.date),
         }))
       )

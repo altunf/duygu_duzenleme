@@ -4,6 +4,12 @@ const { Schema } = mongoose;
 
 const taskSchema = new Schema(
   {
+    exerciseId: {
+      type: String,
+      required: [true, "Başlık alanı gereklidir"],
+      lowercase: true,
+      trim: true,
+    },
     title: {
       type: String,
       required: [true, "Başlık alanı gereklidir"],
