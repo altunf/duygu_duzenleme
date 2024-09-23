@@ -201,6 +201,7 @@ export const Icons = {
   editing: Edit2,
   emoji: Smile,
   externalLink: ExternalLink,
+  film: Film,
   h1: Heading1,
   h2: Heading2,
   h3: Heading3,

@@ -106,7 +106,7 @@ const items = [
         value: MediaEmbedPlugin.key,
         label: "Embed",
         description: "Embed",
-        icon: Icons.code,
+        icon: Icons.film,
       },
       // {
       //   value: ExcalidrawPlugin.key,
