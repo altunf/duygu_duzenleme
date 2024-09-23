@@ -1,14 +1,13 @@
 "use client";
 import React from "react";
 import { Plus } from "lucide-react";
-import { CreateDiary } from "./create-diary";
 import { DiariesList } from "./diaries-list";
 import { useRouter } from "next/navigation";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "../ui/scroll-area";
-import { CreateDiaryDemo } from "./create-diary-demo";
-import { CreateDiaryDemo2 } from "./create-diary-demo2";
+import { CreateDiaryQuill } from "./create-diary-quill";
+import { CreateDiaryPlate } from "./create-diary-plate";
 
 export const DiaryContainer = ({ defaultTab = "myDiaries", token }: any) => {
   const router = useRouter();
@@ -51,7 +50,7 @@ export const DiaryContainer = ({ defaultTab = "myDiaries", token }: any) => {
 
         <TabsContent value="newDiary">
           <ScrollArea className="h-screen w-full rounded-md ">
-            <CreateDiaryDemo2 token={token} />
+            <CreateDiaryPlate token={token} />
           </ScrollArea>
         </TabsContent>
       </div>

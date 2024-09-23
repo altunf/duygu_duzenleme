@@ -20,6 +20,7 @@ import {
   ExternalLink,
   Eye,
   FileCode,
+  Film,
   GripVertical,
   Heading1,
   Heading2,
@@ -52,6 +53,7 @@ import {
   Search,
   Settings,
   Smile,
+  Square,
   Strikethrough,
   Subscript,
   SunMedium,
@@ -162,6 +164,7 @@ const borderTop = (props: LucideProps) => (
 
 export const Icons = {
   add: Plus,
+  todo: Square,
   chevronDown: ChevronDown,
   alignCenter: AlignCenter,
   alignJustify: AlignJustify,

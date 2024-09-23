@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import type { DropdownMenuProps } from '@radix-ui/react-dropdown-menu';
+import type { DropdownMenuProps } from "@radix-ui/react-dropdown-menu";
 
-import { BlockquotePlugin } from '@udecode/plate-block-quote/react';
-import { insertEmptyElement } from '@udecode/plate-common';
+import { BlockquotePlugin } from "@udecode/plate-block-quote/react";
+import { insertEmptyElement } from "@udecode/plate-common";
 import {
   ParagraphPlugin,
   focusEditor,
   useEditorRef,
-} from '@udecode/plate-common/react';
-import { HEADING_KEYS } from '@udecode/plate-heading';
+} from "@udecode/plate-common/react";
+import { HEADING_KEYS } from "@udecode/plate-heading";
 
-import { Icons } from '@/components/icons';
+import { Icons } from "@/components/icons";
 
 import {
   DropdownMenu,
@@ -21,40 +21,43 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   useOpenState,
-} from './dropdown-menu';
-import { ToolbarButton } from './toolbar';
+} from "./dropdown-menu";
+import { ToolbarButton } from "./toolbar";
+import { MediaEmbedPlugin } from "@udecode/plate-media/react";
+import { Film } from "lucide-react";
+import { insertMedia } from "@udecode/plate-media";
 
 const items = [
   {
     items: [
       {
-        description: 'Paragraph',
+        description: "Paragraph",
         icon: Icons.paragraph,
-        label: 'Paragraph',
+        label: "Paragraph",
         value: ParagraphPlugin.key,
       },
       {
-        description: 'Heading 1',
+        description: "Heading 1",
         icon: Icons.h1,
-        label: 'Heading 1',
+        label: "Heading 1",
         value: HEADING_KEYS.h1,
       },
       {
-        description: 'Heading 2',
+        description: "Heading 2",
         icon: Icons.h2,
-        label: 'Heading 2',
+        label: "Heading 2",
         value: HEADING_KEYS.h2,
       },
       {
-        description: 'Heading 3',
+        description: "Heading 3",
         icon: Icons.h3,
-        label: 'Heading 3',
+        label: "Heading 3",
         value: HEADING_KEYS.h3,
       },
       {
-        description: 'Quote (⌘+⇧+.)',
+        description: "Quote (⌘+⇧+.)",
         icon: Icons.blockquote,
-        label: 'Quote',
+        label: "Quote",
         value: BlockquotePlugin.key,
       },
       // {
@@ -82,44 +85,44 @@ const items = [
       //   icon: Icons.hr,
       // },
     ],
-    label: 'Basic blocks',
+    label: "Basic blocks",
+  },
+  {
+    label: "Media",
+    items: [
+      // {
+      //   value: CodeBlockPlugin.key,
+      //   label: "Code",
+      //   description: "Code (```)",
+      //   icon: Icons.codeblock,
+      // },
+      // {
+      //   value: ImagePlugin.key,
+      //   label: "Image",
+      //   description: "Image",
+      //   icon: Icons.image,
+      // },
+      {
+        value: MediaEmbedPlugin.key,
+        label: "Embed",
+        description: "Embed",
+        icon: Icons.code,
+      },
+      // {
+      //   value: ExcalidrawPlugin.key,
+      //   label: "Excalidraw",
+      //   description: "Excalidraw",
+      //   icon: Icons.excalidraw,
+      // },
+    ],
   },
   // {
-  //   label: 'Media',
-  //   items: [
-  //     {
-  //       value: CodeBlockPlugin.key,
-  //       label: 'Code',
-  //       description: 'Code (```)',
-  //       icon: Icons.codeblock,
-  //     },
-  //     {
-  //       value: ImagePlugin.key,
-  //       label: 'Image',
-  //       description: 'Image',
-  //       icon: Icons.image,
-  //     },
-  //     {
-  //       value: MediaEmbedPlugin.key,
-  //       label: 'Embed',
-  //       description: 'Embed',
-  //       icon: Icons.embed,
-  //     },
-  //     {
-  //       value: ExcalidrawPlugin.key,
-  //       label: 'Excalidraw',
-  //       description: 'Excalidraw',
-  //       icon: Icons.excalidraw,
-  //     },
-  //   ],
-  // },
-  // {
-  //   label: 'Inline',
+  //   label: "Inline",
   //   items: [
   //     {
   //       value: LinkPlugin.key,
-  //       label: 'Link',
-  //       description: 'Link',
+  //       label: "Link",
+  //       description: "Link",
   //       icon: Icons.link,
   //     },
   //   ],
@@ -152,7 +155,7 @@ export function InsertDropdownMenu(props: DropdownMenuProps) {
                 <DropdownMenuItem
                   key={type}
                   className="min-w-[180px]"
-                  onSelect={() => {
+                  onSelect={async () => {
                     switch (type) {
                       // case CodeBlockPlugin.key: {
                       //   insertEmptyCodeBlock(editor);
@@ -164,13 +167,13 @@ export function InsertDropdownMenu(props: DropdownMenuProps) {
                       //
                       //   break;
                       // }
-                      // case MediaEmbedPlugin.key: {
-                      //   await insertMedia(editor, {
-                      //     type: MediaEmbedPlugin.key,
-                      //   });
-                      //
-                      //   break;
-                      // }
+                      case MediaEmbedPlugin.key: {
+                        await insertMedia(editor, {
+                          type: MediaEmbedPlugin.key,
+                        });
+
+                        break;
+                      }
                       // case 'ul':
                       // case 'ol': {
                       //   insertEmptyElement(editor, ParagraphPlugin.key, {

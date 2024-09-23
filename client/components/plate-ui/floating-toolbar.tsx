@@ -1,23 +1,23 @@
-'use client';
+"use client";
 
-import React from 'react';
-
-import { cn, withRef } from '@udecode/cn';
+import React from "react";
+import { cn, withRef } from "@udecode/cn";
 import {
   PortalBody,
   useComposedRef,
   useEditorId,
   useEventEditorSelectors,
-} from '@udecode/plate-common/react';
+} from "@udecode/plate-common/react";
 import {
-  type FloatingToolbarState,
   flip,
   offset,
   useFloatingToolbar,
   useFloatingToolbarState,
-} from '@udecode/plate-floating';
+} from "@udecode/plate-floating";
 
-import { Toolbar } from './toolbar';
+import { Toolbar } from "./toolbar";
+
+import type { FloatingToolbarState } from "@udecode/plate-floating";
 
 export const FloatingToolbar = withRef<
   typeof Toolbar,
@@ -37,15 +37,15 @@ export const FloatingToolbar = withRef<
         offset(12),
         flip({
           fallbackPlacements: [
-            'top-start',
-            'top-end',
-            'bottom-start',
-            'bottom-end',
+            "top-start",
+            "top-end",
+            "bottom-start",
+            "bottom-end",
           ],
           padding: 12,
         }),
       ],
-      placement: 'top',
+      placement: "top",
       ...state?.floatingOptions,
     },
   });
@@ -63,10 +63,10 @@ export const FloatingToolbar = withRef<
   return (
     <PortalBody>
       <Toolbar
-        ref={ref}
         className={cn(
-          'absolute z-50 whitespace-nowrap border bg-popover px-1 opacity-100 shadow-md print:hidden'
+          "absolute z-50 whitespace-nowrap border bg-popover px-1 opacity-100 shadow-md print:hidden"
         )}
+        ref={ref}
         {...rootProps}
         {...props}
       >
