@@ -41,9 +41,12 @@ export default function DiaryCard({
 }: DiaryRowProps | any) {
   //const [isLiked, setIsLiked] = useState(false);
 
+  const content = diary?.text.length > 0 && JSON.parse(diary?.text);
+  console.log(content, "content");
+
   return (
     <Card
-      className="w-full max-w-md bg-card text-card-foreground"
+      className="w-full max-w-md bg-card text-card-foreground transition-shadow duration-300 hover:shadow-md"
       x-chunk="charts-01-chunk-5"
     >
       <CardHeader className="space-y-1">
@@ -58,22 +61,19 @@ export default function DiaryCard({
         </div>
 
         <div>
-          <Badge
-            variant="outline"
-            className="bg-blue-400 px-4 py-1 text-gray-700"
-          >
+          <CardDescription className="flex items-center justify-start">
             <CalendarIcon className="mr-1 h-4 w-4" />
             {formatDate(diary?.date, false)}
-          </Badge>
+          </CardDescription>
         </div>
       </CardHeader>
       <CardContent>
         <CardDescription>
-          <p className="text-base">
+          {/* <p className="text-base">
             {diary?.text.length > 200
               ? `${diary?.text.slice(0, 200)}...`
               : diary?.text}
-          </p>
+          </p> */}
         </CardDescription>
       </CardContent>
       <CardFooter className="flex flex-col space-y-4">

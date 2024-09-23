@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@udecode/plate-serializer-html": "^21.5.1",
     "jose": "^5.7.0"
   }
 }

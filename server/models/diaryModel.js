@@ -28,6 +28,10 @@ const diarySchema = new Schema(
       type: String,
       required: [true, "Metin alanı gereklidir"],
     },
+    // content: {
+    //   type: Object,
+    //   required: [true, "Metin alanı gereklidir"],
+    // },
     userID: {
       type: String,
       required: [true, "Kullanıcı ID'si gereklidir"],

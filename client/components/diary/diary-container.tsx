@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "../ui/scroll-area";
+import { CreateDiaryDemo } from "./create-diary-demo";
+import { CreateDiaryDemo2 } from "./create-diary-demo2";
 
 export const DiaryContainer = ({ defaultTab = "myDiaries", token }: any) => {
   const router = useRouter();
@@ -48,7 +50,9 @@ export const DiaryContainer = ({ defaultTab = "myDiaries", token }: any) => {
         </TabsContent>
 
         <TabsContent value="newDiary">
-          <CreateDiary token={token} />
+          <ScrollArea className="h-screen w-full rounded-md ">
+            <CreateDiaryDemo2 token={token} />
+          </ScrollArea>
         </TabsContent>
       </div>
     </Tabs>

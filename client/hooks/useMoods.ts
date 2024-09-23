@@ -24,7 +24,7 @@ export const useMoods = (token: string, userDiaries: any[]) => {
     };
 
     data.forEach((item) => {
-      const moodName = item?.tag[0];
+      const moodName = item?.mood[0];
       if (moodPoints.hasOwnProperty(moodName)) {
         moodPoints[moodName]++;
       }

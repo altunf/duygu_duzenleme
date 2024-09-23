@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { formatDate } from "@/lib/formatDate.js";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { PlateEditor } from "../plate-editor";
 
 export const DiaryRead = ({ params, token }: any) => {
   const [diary, setDiary] = useState<any[]>([]);
@@ -45,8 +46,18 @@ export const DiaryRead = ({ params, token }: any) => {
     getDiaries();
   }, [token]);
 
-  const result = diary.filter((el) => el.title == params.slug);
+  const result = diary.filter((el) => el.title === params.slug);
+  console.log(result, "result");
+  let item = result.length > 0 ? result[0] : null;
+  let initialValue = item ? JSON.parse(item.text) : [];
+  useEffect(() => {
+    return () => {
+      console.log("Temizlik");
 
+      initialValue = null;
+      item = null;
+    };
+  }, []);
   const diaryTemp = (props: any) => {
     return (
       <div
@@ -58,10 +69,17 @@ export const DiaryRead = ({ params, token }: any) => {
             <h1 className="text-3xl font-bold text-card-foreground">
               <i className="capitalize">{props.title}</i>
             </h1>
-            <p className="text-muted-foreground">{formatDate(props.date)}</p>
+            <p className="text-muted-foreground">{formatDate(props.date)}</p>{" "}
           </div>
           <div className="space-y-4 max-w-none whitespace-pre-wrap">
-            <p>{props.text}</p>
+            {" "}
+            {item && (
+              <PlateEditor
+                className={`w-full max-w-4xl mx-auto p-6 border-none ${bgClr} dark:bg-blue-700 dark:bg-opacity-0  bg-opacity-0  rounded-lg `}
+                visible={true}
+                initialValue={initialValue}
+              />
+            )}
           </div>
         </div>
       </div>
