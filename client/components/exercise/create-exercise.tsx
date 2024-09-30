@@ -25,6 +25,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "../ui/textarea";
+import { PlateEditor } from "../plate-editor";
 
 const formSchema = z.object({
   title: z.string(),
@@ -131,11 +132,7 @@ export function CreateExercise({ token }: any) {
                   <FormItem className="grid w-full gap-1.5">
                     <FormLabel>Egzersiz</FormLabel>
                     <FormControl>
-                      <Textarea
-                        placeholder="Write your entry here."
-                        className="min-h-[300px] "
-                        onChange={field.onChange}
-                      />
+                      <PlateEditor visible={false} onChange={field.onChange} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
