@@ -46,7 +46,7 @@ export const DiaryRead = ({ params, token }: any) => {
     getDiaries();
   }, [token]);
 
-  const result = diary.filter((el) => el.title === params.slug);
+  const result = diary.filter((el) => el?._id === params.slug);
   console.log(result, "result");
   let item = result.length > 0 ? result[0] : null;
   let initialValue = item ? JSON.parse(item.text) : [];
@@ -59,11 +59,9 @@ export const DiaryRead = ({ params, token }: any) => {
     };
   }, []);
   const diaryTemp = (props: any) => {
+    const cardStyle = `${bgClr} dark:bg-blue-700 dark:bg-opacity-10 rounded-lg shadow-2xl`;
     return (
-      <div
-        key={props._id}
-        className={`w-full max-w-4xl mx-auto p-6 ${bgClr} dark:bg-blue-700 dark:bg-opacity-10 rounded-lg shadow-2xl`}
-      >
+      <div key={props._id} className={`w-full max-w-4xl mx-auto p-6 `}>
         <div className="space-y-6">
           <div className="flex items-center justify-between space-x-2">
             <h1 className="text-3xl font-bold text-card-foreground">
@@ -75,7 +73,7 @@ export const DiaryRead = ({ params, token }: any) => {
             {" "}
             {item && (
               <PlateEditor
-                className={`w-full max-w-4xl mx-auto p-6 border-none ${bgClr} dark:bg-blue-700 dark:bg-opacity-0  bg-opacity-0  rounded-lg `}
+                className={`w-full max-w-4xl mx-auto p-6 border-none ${bgClr}  dark:bg-opacity-0  bg-opacity-0  rounded-lg `}
                 visible={true}
                 initialValue={initialValue}
               />

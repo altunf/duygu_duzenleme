@@ -51,7 +51,10 @@ export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
     }
   };
   return (
-    <Card className="flex flex-col lg:max-w-md" x-chunk="charts-01-chunk-1">
+    <Card
+      className="flex flex-col lg:max-w-md transition-shadow duration-300 hover:shadow-md"
+      x-chunk="charts-01-chunk-1"
+    >
       <CardHeader className="flex flex-row items-center space-y-0 pb-2 [&>div]:flex-1">
         <div className="flex flex-col items-start justify-center gap-4 space-y-0 pb-2">
           <CardTitle>Dönemsel Duygu Yoğunlukları</CardTitle>

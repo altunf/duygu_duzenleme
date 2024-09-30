@@ -5,7 +5,7 @@ import CompletedTasks from "./completed-tasks-list";
 import TasksList from "./tasks-list";
 
 export const TasksContainer = (token: any) => {
-  const tab = (
+  return (
     <Tabs
       defaultValue="exercises"
       className="flex flex-1  h-full w-full flex-col gap-4 p-4 lg:gap-6 lg:p-6 "
@@ -29,6 +29,4 @@ export const TasksContainer = (token: any) => {
       </div>
     </Tabs>
   );
-
-  return tab;
 };

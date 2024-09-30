@@ -54,9 +54,9 @@ export const FeedContainer = ({ token }: any) => {
             <Link href={`/diaries/${diary?.title}`}>
               <ExerciseCard props={allExercises[0]} />
             </Link>{" "}
-            <Link href={`/diaries/${diary?.title}`}>
+            {/* <Link href={`/diaries/${diary?.title}`}>
               <ExerciseCard props={allExercises[3]} />
-            </Link>
+            </Link> */}
           </div>
         </div>
       </ScrollArea>

@@ -25,8 +25,8 @@ export function DiariesList({ token }: { token: string }) {
 
   const router = useRouter();
 
-  const handleRowClick = (title: string) => {
-    router.push(`/diaries/${encodeURIComponent(title)}`);
+  const handleRowClick = (id: string) => {
+    router.push(`/diaries/${encodeURIComponent(id)}`);
   };
 
   const handleSave = () => {

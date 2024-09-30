@@ -36,7 +36,10 @@ export const CompletedExercisesChart = ({ moods }: any) => {
   }
 
   return (
-    <Card className="lg:max-w-md" x-chunk="charts-01-chunk-0">
+    <Card
+      className="lg:max-w-md transition-shadow duration-300 hover:shadow-md"
+      x-chunk="charts-01-chunk-0"
+    >
       <CardHeader className="pb-0 p-4">
         <CardTitle>Tamamlanan Egzersiz Sayıları</CardTitle>
         <CardDescription>Tamamlanan</CardDescription>

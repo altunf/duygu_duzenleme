@@ -5,7 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 export const TopThreeMoodsChart = ({ topThreeMoods }: any) => {
   return (
-    <Card className="max-w-xs" x-chunk="charts-01-chunk-5">
+    <Card
+      className="max-w-xs transition-shadow duration-300 hover:shadow-md "
+      x-chunk="charts-01-chunk-5"
+    >
       <CardHeader className="p-4 pb-0">
         <CardTitle> En Çok tamamlanan Egzersizler</CardTitle>
       </CardHeader>

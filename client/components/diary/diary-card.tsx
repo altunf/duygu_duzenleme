@@ -105,7 +105,7 @@ export default function DiaryCard({
             <GitCommitHorizontal className="w-4 h-4" /> {diary?.point}
           </Badge>
         </div>
-        <Button className="w-full" onClick={() => onRowClick(diary?.title)}>
+        <Button className="w-full" onClick={() => onRowClick(diary?._id)}>
           <BookOpenIcon className="mr-2 h-4 w-4" />
           Günlüğü Oku
         </Button>

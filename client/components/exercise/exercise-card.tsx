@@ -13,10 +13,12 @@ import { Button } from "../ui/button";
 import { useToast } from "../ui/use-toast";
 import { Badge } from "../ui/badge";
 
+import { useRouter } from "next/navigation";
+
 export function ExerciseCard({ props, maxLength = 50, token }: any) {
   const { toast } = useToast();
   const [isTruncated, setIsTruncated] = useState(true);
-
+  const router = useRouter();
   const toggleTruncate = () => {
     setIsTruncated(!isTruncated);
   };
@@ -56,11 +58,18 @@ export function ExerciseCard({ props, maxLength = 50, token }: any) {
       title: "Egzersiz listenize eklendi",
     });
   };
+  const handleRead = (props: any) => {
+    router.push(
+      `/exercises/${props?.mood?.[0]}/${encodeURIComponent(props?._id)}`
+    );
+  };
 
   const newText = (
     <div>
-      <p>
-        {isTruncated ? props?.text.slice(0, maxLength) + "..." : props?.text}
+      <p className="capitalize">
+        {isTruncated
+          ? props?.description.slice(0, maxLength) + "..."
+          : props?.description}
       </p>
       <button onClick={toggleTruncate} className="text-blue-500">
         {isTruncated ? "Read More" : "Read Less"}
@@ -68,8 +77,28 @@ export function ExerciseCard({ props, maxLength = 50, token }: any) {
     </div>
   );
 
+  let cardImage = "";
+
+  switch (props?.title.toLocaleLowerCase("tr")) {
+    case "nefes egzersizi":
+      cardImage = "nefes-egzersizi.png";
+      break;
+    case "aşamalı kas gevşetme":
+      cardImage = "kas-gevsetme.png";
+      break;
+    case "dikkat dağıtma teknikleri":
+      cardImage = "dikkati-dagıtma.png";
+      break;
+    default:
+      cardImage = "kas-gevsetme.png";
+      break;
+  }
+
   return (
-    <Card className="max-w-sm" x-chunk="dashboard-07-chunk-4">
+    <Card
+      className="max-w-sm transition-shadow duration-300 hover:shadow-md"
+      x-chunk="dashboard-07-chunk-4"
+    >
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle>
@@ -80,11 +109,11 @@ export function ExerciseCard({ props, maxLength = 50, token }: any) {
       <CardContent className="flex flex-col">
         <div className="grid gap-2">
           <Image
-            src={"/emotions.jpg"}
-            alt="Product image"
-            height={200}
-            width={200}
-            className="aspect-video w-full  rounded-lg"
+            src={`/${cardImage}`}
+            alt="exercise image"
+            height={400}
+            width={400}
+            className=" w-full  rounded-lg"
           />
         </div>
         <CardDescription className="flex items-center justify-start mt-2">
@@ -96,6 +125,14 @@ export function ExerciseCard({ props, maxLength = 50, token }: any) {
         <Badge className="bg-violet-400 dark:text-black capitalize">
           <i># {props?.mood?.[0]}</i>
         </Badge>
+        <Button
+          onClick={() => {
+            handleRead(props);
+          }}
+          className="cursor-pointer"
+        >
+          Oku
+        </Button>
         <Button
           onClick={() => {
             handleClick(props);
