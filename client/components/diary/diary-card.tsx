@@ -46,8 +46,8 @@ export default function DiaryCard({
 
   return (
     <Card
-      className="w-full max-w-md bg-card text-card-foreground transition-shadow duration-300 hover:shadow-md"
-      x-chunk="charts-01-chunk-5"
+      className="max-w-sm transition-shadow duration-300 hover:shadow-md  bg-[linear-gradient(135deg,rgba(255,255,255,0.3)_0%,rgba(255,255,255,0.1)_15%,transparent_50%)]"
+      x-chunk="dashboard-07-chunk-4"
     >
       <CardHeader className="space-y-1">
         <div className="flex items-center justify-between">

@@ -89,6 +89,9 @@ export function ExerciseCard({ props, maxLength = 50, token }: any) {
     case "dikkat dağıtma teknikleri":
       cardImage = "dikkati-dagıtma.png";
       break;
+    case "bilişsel yeniden yapılandırma":
+      cardImage = "yeniden-yapilandirma.png";
+      break;
     default:
       cardImage = "kas-gevsetme.png";
       break;
@@ -96,7 +99,7 @@ export function ExerciseCard({ props, maxLength = 50, token }: any) {
 
   return (
     <Card
-      className="max-w-sm transition-shadow duration-300 hover:shadow-md"
+      className="max-w-sm transition-shadow duration-300 hover:shadow-md  bg-[linear-gradient(135deg,rgba(255,255,255,0.3)_0%,rgba(255,255,255,0.1)_15%,transparent_50%)]"
       x-chunk="dashboard-07-chunk-4"
     >
       <CardHeader>
@@ -116,7 +119,7 @@ export function ExerciseCard({ props, maxLength = 50, token }: any) {
             className=" w-full  rounded-lg"
           />
         </div>
-        <CardDescription className="flex items-center justify-start mt-2">
+        <CardDescription className="flex items-center justify-start mt-2 text-white/90 text-shadow">
           {newText}
         </CardDescription>
       </CardContent>
