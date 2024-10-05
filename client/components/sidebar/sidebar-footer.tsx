@@ -2,11 +2,11 @@ import React from "react";
 import { MyAccount } from "../my-account";
 import { ThemeButton } from "../theme-button";
 
-const SidebarFooter = () => {
+const SidebarFooter = (isOpen: any) => {
   return (
-    <main className="flex justify-between items-center px-4 py-4">
-      <MyAccount />
-      <ThemeButton />
+    <main className="mt-auto p-4 space-y-4">
+      <MyAccount isOpen={isOpen} />
+      <ThemeButton isOpen={isOpen} />
     </main>
   );
 };

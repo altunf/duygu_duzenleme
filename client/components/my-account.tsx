@@ -12,10 +12,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { Settings } from "lucide-react";
+import { LogOut, Settings } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export const MyAccount = () => {
+export const MyAccount = (isOpen: any) => {
   const router = useRouter();
 
   const handleClick: any = () => {
@@ -25,24 +25,15 @@ export const MyAccount = () => {
 
   return (
     <>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon" className="rounded-full">
-            <Settings className="h-6 w-6" />
-            <span className="sr-only">Toggle user menu</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuLabel>Hesabım</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Ayarlar</DropdownMenuItem>
-          <DropdownMenuItem>Destek</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={handleClick}>
-            Oturumu Kapat
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <Button
+        variant="ghost"
+        size="sm"
+        className="w-full justify-center text-primary-foreground hover:bg-primary/10"
+        onClick={handleClick}
+      >
+        <LogOut className="h-5 w-5" />
+        {isOpen && <span className="ml-2">Log out</span>}
+      </Button>
     </>
   );
 };
