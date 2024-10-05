@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "../ui/scroll-area";
-import { CreateDiaryQuill } from "./create-diary-quill";
 import { CreateDiaryPlate } from "./create-diary-plate";
 
 export const DiaryContainer = ({ defaultTab = "myDiaries", token }: any) => {
