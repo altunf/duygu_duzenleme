@@ -12,7 +12,7 @@ import { Bar, BarChart, Rectangle, XAxis } from "recharts";
 export const AverageMoodChart = ({ average }: any) => {
   return (
     <Card
-      className="max-w-lg transition-shadow duration-300 hover:shadow-md"
+      className="w-96 transition-shadow duration-300 hover:shadow-lg border-none  dark:hover:shadow-gray-900"
       x-chunk="charts-01-chunk-6"
     >
       <CardHeader className="p-4 pb-0">

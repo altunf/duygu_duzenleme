@@ -28,7 +28,7 @@ export const MyAccount = (isOpen: any) => {
       <Button
         variant="ghost"
         size="sm"
-        className="w-full justify-center text-primary-foreground hover:bg-primary/10"
+        className="w-full justify-center text-primary-foreground hover:bg-primary/10 text-black dark:text-white "
         onClick={handleClick}
       >
         <LogOut className="h-5 w-5" />

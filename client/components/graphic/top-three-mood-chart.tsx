@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 export const TopThreeMoodsChart = ({ topThreeMoods }: any) => {
   return (
     <Card
-      className="max-w-xs transition-shadow duration-300 hover:shadow-md "
+      className="max-w-xs transition-shadow duration-300 hover:shadow-lg border-none  dark:hover:shadow-gray-900"
       x-chunk="charts-01-chunk-5"
     >
       <CardHeader className="p-4 pb-0">

@@ -6,7 +6,7 @@ import { Card } from "../ui/card";
 
 const CompletedTaskItem = ({ task }: { task: any }) => {
   return (
-    <Card className="flex justify-between h-full w-[400px] items-center gap-2p-2 rounded-md">
+    <Card className="flex justify-between h-full w-[400px] items-center gap-2 p-6 rounded-md">
       <label
         htmlFor={`todo-${task.id}`}
         className="ml-6 text-md font-medium line-through text-muted-foreground"

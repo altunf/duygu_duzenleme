@@ -44,7 +44,7 @@ export function SidebarContainer() {
         <Button
           variant="ghost"
           size="icon"
-          className="text-primary-foreground hover:bg-primary/10"
+          className="text-primary-foreground hover:bg-primary/10 text-black dark:text-white "
           onClick={toggleSidebar}
         >
           {isOpen ? (
@@ -62,12 +62,14 @@ export function SidebarContainer() {
         </Link>
         {isOpen && (
           <div className="mt-4 text-center">
-            <h2 className="text-lg font-semibold capitalize">{fullName}</h2>
+            <h2 className="text-lg font-semibold capitalize text-black dark:text-white ">
+              {fullName}
+            </h2>
           </div>
         )}
       </div>
 
-      <ScrollArea className="flex-1 overflow-y-auto px-3">
+      <ScrollArea className="flex-1 overflow-y-auto px-6">
         <SidebarMenu pathname={pathname} isOpen={isOpen} />
       </ScrollArea>
 
@@ -96,8 +98,8 @@ export function SidebarContainer() {
       ) : (
         <aside
           className={cn(
-            "hidden transition-all duration-300 ease-in-out border-r  md:block ",
-            isOpen ? "w-72" : "w-20"
+            "hidden transition-all duration-300 ease-in-out border rounded-xl  md:block bg-white dark:bg-card border-none m-2",
+            isOpen ? "w-72" : "w-24"
           )}
         >
           <SidebarContent />

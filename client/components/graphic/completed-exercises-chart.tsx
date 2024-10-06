@@ -37,7 +37,7 @@ export const CompletedExercisesChart = ({ moods }: any) => {
 
   return (
     <Card
-      className="lg:max-w-md transition-shadow duration-300 hover:shadow-md"
+      className="lg:max-w-md transition-shadow duration-300 hover:shadow-lg border-none  dark:hover:shadow-gray-900"
       x-chunk="charts-01-chunk-0"
     >
       <CardHeader className="pb-0 p-4">

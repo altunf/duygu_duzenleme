@@ -98,7 +98,6 @@ export function CreateDiaryPlate({ token }: any) {
                         type="text"
                         placeholder="Günlük adı giriniz"
                         className="text-3xl font-bold w-full border-none focus:outline-none px-0"
-                        autoFocus
                       />
                     </FormControl>
                     <FormMessage />

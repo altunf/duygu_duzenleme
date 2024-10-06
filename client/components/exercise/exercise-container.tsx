@@ -25,8 +25,8 @@ export const ExerciseContainer = ({ token }: any) => {
       </div>
       <ScrollArea className="flex-1">
         <div className="flex flex-1 items-center justify-center">
-          <div className="md:flex grid grid-cols-2 gap-6 text-center">
-            <div className="flex flex-col items-center gap-1">
+          <div className="md:flex grid grid-cols-1 gap-6 text-center">
+            <div className="flex flex-col items-center gap-6">
               {cift?.map((el: any, index: number) => (
                 <ExerciseCard key={el.id || index} props={el} token={token} />
               ))}

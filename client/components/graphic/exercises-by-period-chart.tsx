@@ -52,7 +52,7 @@ export const ExercisesByPeriodChart = ({ userDiaries }: any) => {
   };
   return (
     <Card
-      className="flex flex-col lg:max-w-md transition-shadow duration-300 hover:shadow-md"
+      className="flex flex-col lg:max-w-md transition-shadow duration-300 hover:shadow-lg border-none  dark:hover:shadow-gray-900"
       x-chunk="charts-01-chunk-1"
     >
       <CardHeader className="flex flex-row items-center space-y-0 pb-2 [&>div]:flex-1">

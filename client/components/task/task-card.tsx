@@ -30,7 +30,7 @@ const TaskCard: React.FC<TaskCardProps> = ({
 }) => {
   return (
     <>
-      <Card className="flex items-center justify-between w-[400px] gap-3 p-1 rounded-lg transition-shadow duration-300 hover:shadow-md">
+      <Card className="flex items-center justify-between w-[400px] gap-3 p-4 rounded-lg  transition-shadow duration-300 hover:shadow-lg border-none  dark:hover:shadow-gray-900 ">
         <Button
           variant="ghost"
           size="sm"

@@ -22,7 +22,7 @@ export default async function Home() {
   const fullName: any = `${name} ${surname}`;
 
   return (
-    <main className="h-full w-full">
+    <main className="h-full w-full ">
       <UserNameSetter fullName={fullName} />
       <FeedContainer token={token} />
     </main>

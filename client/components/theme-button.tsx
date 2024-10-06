@@ -5,12 +5,7 @@ import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import { Moon, Sun } from "lucide-react";
 
 export function ThemeButton(isOpen: any) {
@@ -20,7 +15,7 @@ export function ThemeButton(isOpen: any) {
     <Button
       variant="ghost"
       size="sm"
-      className="w-full justify-center text-primary-foreground hover:bg-primary/10"
+      className="w-full justify-center text-primary-foreground hover:bg-primary/10 text-black dark:text-white "
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
       {theme === "dark" ? (

@@ -36,10 +36,8 @@ export const FeedContainer = ({ token }: any) => {
         <h1 className="text-lg font-semibold md:text-2xl">Özet</h1>
       </div>
       <ScrollArea className="flex-1">
-        <div className="flex items-center justify-center space-x-6">
-          <div className="flex flex-col items-center justify-center space-y-6"></div>
-          <div className="flex flex-col items-center justify-center space-y-6">
-            {" "}
+        <div className="flex  flex-col items-center justify-center space-x-6 md:flex-row space-y-6 ">
+          <div className="flex flex-col items-center justify-center space-y-6 ">
             <Link href={"/graphics"}>
               <AverageMoodChart average={averageMoodPoint} />
             </Link>
@@ -51,12 +49,14 @@ export const FeedContainer = ({ token }: any) => {
                 <TaskCard task={currentTodo} isCompleted={false} />
               </Link>
             )}
-            <Link href={`/diaries/${diary?.title}`}>
-              <ExerciseCard props={allExercises[0]} />
-            </Link>{" "}
             {/* <Link href={`/diaries/${diary?.title}`}>
               <ExerciseCard props={allExercises[3]} />
             </Link> */}
+          </div>{" "}
+          <div>
+            <Link href={`/diaries/${diary?.title}`}>
+              <ExerciseCard props={allExercises[0]} />
+            </Link>{" "}
           </div>
         </div>
       </ScrollArea>
