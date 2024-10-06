@@ -41,7 +41,7 @@ export const FeedContainer = ({ token }: any) => {
             <Link href={"/graphics"}>
               <AverageMoodChart average={averageMoodPoint} />
             </Link>
-            <Link href={`/diaries/${diary?.title}`}>
+            <Link href={`/diaries/${diary?._id}`}>
               <DiaryCard diary={diary} />
             </Link>{" "}
             {storedTodos.length > 0 && (
@@ -49,12 +49,13 @@ export const FeedContainer = ({ token }: any) => {
                 <TaskCard task={currentTodo} isCompleted={false} />
               </Link>
             )}
-            {/* <Link href={`/diaries/${diary?.title}`}>
-              <ExerciseCard props={allExercises[3]} />
-            </Link> */}
           </div>{" "}
           <div>
-            <Link href={`/diaries/${diary?.title}`}>
+            <Link
+              href={`/exercises/${
+                allExercises[0]?.mood?.[0]
+              }/${encodeURIComponent(allExercises[0]?._id)}`}
+            >
               <ExerciseCard props={allExercises[0]} />
             </Link>{" "}
           </div>

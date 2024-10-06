@@ -25,6 +25,7 @@ import { Slider } from "../ui/slider";
 
 // Import PlateEditor related components
 import { PlateEditor } from "@/components/plate-editor";
+import { formatDate } from "@/lib/formatDate";
 
 const formSchema = z.object({
   title: z.string(),
@@ -36,13 +37,16 @@ const formSchema = z.object({
 
 export function CreateDiaryPlate({ token }: any) {
   const { toast } = useToast();
+
+  const today = formatDate(new Date(), false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
       mood: "",
       point: 5,
-      date: "",
+      date: today,
       text: "",
     },
   });

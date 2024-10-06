@@ -39,14 +39,11 @@ export default function DiaryCard({
   onDelete,
   onRowClick,
 }: DiaryRowProps | any) {
-  //const [isLiked, setIsLiked] = useState(false);
-
   const content = diary?.text.length > 0 && JSON.parse(diary?.text);
-  console.log(content, "content");
 
   return (
     <Card
-      className="w-96 transition-shadow duration-300 hover:shadow-lg border-none  dark:hover:shadow-gray-900 "
+      className="w-96 transition-shadow duration-300 hover:shadow-lg border-none  dark:hover:shadow-gray-900 cursor-pointer"
       x-chunk="dashboard-07-chunk-4"
     >
       <CardHeader className="space-y-1">
@@ -68,29 +65,10 @@ export default function DiaryCard({
         </div>
       </CardHeader>
       <CardContent>
-        <CardDescription>
-          {/* <p className="text-base">
-            {diary?.text.length > 200
-              ? `${diary?.text.slice(0, 200)}...`
-              : diary?.text}
-          </p> */}
-        </CardDescription>
+        <CardDescription></CardDescription>
       </CardContent>
       <CardFooter className="flex flex-col space-y-4">
         <div className="flex justify-between w-full">
-          {/* <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setIsLiked(!isLiked)}
-          >
-            <HeartIcon
-              className={`mr-1 h-4 w-4 ${
-                isLiked ? "fill-current text-red-500" : ""
-              }`}
-            />
-            {isLiked ? "Liked" : "Like"}
-          </Button> */}
-
           <Badge
             variant="outline"
             className="bg-violet-400 px-4 py-1 text-gray-700 capitalize"

@@ -47,13 +47,12 @@ export const DiaryRead = ({ params, token }: any) => {
   }, [token]);
 
   const result = diary.filter((el) => el?._id === params.slug);
-  console.log(result, "result");
+
   let item = result.length > 0 ? result[0] : null;
   let initialValue = item ? JSON.parse(item.text) : [];
   useEffect(() => {
     return () => {
-      console.log("Temizlik");
-
+      //  console.log("Temizlik");
       initialValue = null;
       item = null;
     };

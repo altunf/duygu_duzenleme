@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 
 interface Exercise {
+  _id: string;
   title: string;
   description: string;
-  tag: any;
+  mood: any;
   text: string;
 }
 

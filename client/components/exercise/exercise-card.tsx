@@ -71,7 +71,7 @@ export function ExerciseCard({ props, maxLength = 100, token }: any) {
   })();
 
   return (
-    <Card className="flex flex-col justify-center items-center transition-shadow duration-300 hover:shadow-lg border-none w-96  dark:hover:shadow-gray-900 ">
+    <Card className="flex cursor-pointer flex-col justify-center items-center transition-shadow duration-300 hover:shadow-lg border-none w-96  dark:hover:shadow-gray-900 ">
       <div className="rounded-lg overflow-hidden w-full ">
         <CardHeader className="p-0 relative group">
           <Image

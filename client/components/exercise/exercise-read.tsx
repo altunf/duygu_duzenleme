@@ -10,8 +10,6 @@ export const ExerciseRead = ({ params, token }: any) => {
   const [exercise, setExercise] = useState<any[]>([]);
   const { theme } = useTheme();
 
-  console.log(params.slug, "params slug");
-
   const light =
     "bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]";
   const dark =
@@ -41,7 +39,6 @@ export const ExerciseRead = ({ params, token }: any) => {
         }
         const data = await response.json();
         setExercise(data);
-        console.log("DATA:::", data);
       } catch (error) {
         console.error("Veri alınırken bir hata oluştu:", error);
       }
@@ -50,12 +47,12 @@ export const ExerciseRead = ({ params, token }: any) => {
   }, [token]);
 
   const result = exercise.filter((el) => el?._id === params.detail);
-  console.log(result, "result");
+
   let item = result.length > 0 ? result[0] : null;
   let initialValue = item ? JSON.parse(item.text) : [];
   useEffect(() => {
     return () => {
-      console.log("clear");
+      // console.log("clear");
 
       initialValue = null;
       item = null;
