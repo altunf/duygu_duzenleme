@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyJwtToken } from "@/lib/auth/index.js";
+import { verifyJwtToken } from "./app/auth/stateless-cookie";
 
 export async function middleware(req: NextRequest) {
   const { url, nextUrl, cookies } = req;

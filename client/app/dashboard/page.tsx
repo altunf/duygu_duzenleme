@@ -1,7 +1,8 @@
 import { cookies } from "next/headers";
-import { verifyJwtToken } from "@/lib/auth/index.js";
+
 import UserNameSetter from "@/components/user-name-setter";
 import { FeedContainer } from "@/components/feed/feed-container";
+import { verifyJwtToken } from "../auth/stateless-cookie";
 
 export default async function Home() {
   const cookieStore = cookies();

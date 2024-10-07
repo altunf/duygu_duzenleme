@@ -1,6 +1,6 @@
 "use server";
-import { deleteSession } from "./delete-cookie";
+import { deleteCookie } from "./stateless-cookie";
 
 export async function logout() {
-  deleteSession();
+  deleteCookie();
 }
