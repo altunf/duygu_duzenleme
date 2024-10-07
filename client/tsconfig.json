@@ -26,7 +26,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/diaries/[slug]/page.js"
+    "app/dashboard/diaries/[slug]/page.js"
   ],
   "exclude": ["node_modules"]
 }
