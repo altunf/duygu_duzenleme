@@ -98,7 +98,7 @@ export function SidebarContainer() {
       ) : (
         <aside
           className={cn(
-            "hidden transition-all duration-300 ease-in-out border rounded-xl  md:block bg-white dark:bg-card border-none m-2",
+            "hidden transition-all duration-300 ease-in-out border rounded-xl  md:block bg-white dark:bg-card  m-2",
             isOpen ? "w-72" : "w-24"
           )}
         >

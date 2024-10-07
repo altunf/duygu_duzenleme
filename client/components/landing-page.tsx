@@ -7,7 +7,6 @@ import { Label } from "@/components/ui/label";
 import {
   BarChart,
   BookOpen,
-  Calendar,
   Download,
   Smile,
   Target,
