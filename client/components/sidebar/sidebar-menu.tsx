@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import {
   BarChart2,
   ChartPie,
-  ChevronRight,
   ClipboardList,
   LayoutDashboard,
   LayoutGrid,
@@ -13,18 +12,16 @@ import {
 } from "lucide-react";
 
 import Link from "next/link";
-import { DropdownMenuSeparator } from "../ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { ScrollArea } from "../ui/scroll-area";
 
 const SidebarMenu = ({ pathname, isOpen }: any) => {
   const menuItems = [
-    { name: "Ana Sayfa", href: "/", icon: LayoutDashboard },
-    { name: "Egzersiz Listem", href: "/tasks", icon: ClipboardList },
-    { name: "Duygu Günlüğüm", href: "/diaries", icon: NotebookPen },
-    { name: "Grafikler", href: "/graphics", icon: BarChart2 },
-    { name: "Egzersizler", href: "/exercises", icon: List },
-    { name: "Yazılar", href: "/articles", icon: PencilLine },
+    { name: "Ana Sayfa", href: "/dashboard", icon: LayoutDashboard },
+    { name: "Egzersiz Listem", href: "/dashboard/tasks", icon: ClipboardList },
+    { name: "Duygu Günlüğüm", href: "/dashboard/diaries", icon: NotebookPen },
+    { name: "Grafikler", href: "/dashboard/graphics", icon: BarChart2 },
+    { name: "Egzersizler", href: "/dashboard/exercises", icon: List },
+    { name: "Yazılar", href: "/dashboard/articles", icon: PencilLine },
   ];
   const icons = [
     <LayoutGrid className="h-5 w-5 text-yellow-400" />,

@@ -57,7 +57,10 @@ export function SidebarContainer() {
       </div>
 
       <div className="mb-6 flex flex-col items-center justify-center px-4">
-        <Link href="/" className="flex items-center gap-2 font-semibold">
+        <Link
+          href="/dashboard"
+          className="flex items-center gap-2 font-semibold"
+        >
           <AvatarDemo />
         </Link>
         {isOpen && (

@@ -84,63 +84,12 @@ export default function EnhancedMoodTrackerLanding() {
           >
             Contact
           </Link>
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button variant="outline" size="sm" className="hidden sm:flex">
-                <LogIn className="mr-2 h-4 w-4" />
-                Login
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
-              <DialogHeader>
-                <DialogTitle>Login to MoodMaster</DialogTitle>
-                <DialogDescription>
-                  Enter your email and password to access your account.
-                </DialogDescription>
-              </DialogHeader>
-              <form onSubmit={handleLogin} className="space-y-4 pt-4">
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="password">Password</Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="remember" />
-                  <label
-                    htmlFor="remember"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Remember me
-                  </label>
-                </div>
-                <Button type="submit" className="w-full">
-                  Login
-                </Button>
-              </form>
-              <div className="mt-4 text-center text-sm">
-                <Link href="#" className="text-primary hover:underline">
-                  Forgot password?
-                </Link>
-              </div>
-            </DialogContent>
-          </Dialog>
+          <Link
+            className="text-sm font-medium hover:text-primary transition-colors"
+            href="/login"
+          >
+            Login
+          </Link>
         </nav>
       </header>
       <main className="flex-1 pt-16">
@@ -160,9 +109,11 @@ export default function EnhancedMoodTrackerLanding() {
                 </p>
               </div>
               <div className="space-x-4">
-                <Button size="lg" className="animate-pulse">
-                  Get Started Free
-                </Button>
+                <Link href={"/register"}>
+                  <Button size="lg" className="animate-pulse">
+                    Get Started Free
+                  </Button>
+                </Link>
                 <Button variant="outline" size="lg">
                   Watch Demo
                 </Button>
