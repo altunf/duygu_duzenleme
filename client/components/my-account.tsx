@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 import { LogOut } from "lucide-react";
 
-import { logout } from "@/app/auth/logout";
+import { logout } from "@/app/auth/auth";
 
 export const MyAccount = (isOpen: any) => {
   return (

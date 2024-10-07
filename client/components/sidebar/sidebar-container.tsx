@@ -8,17 +8,14 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight, Menu } from "lucide-react";
 import { AvatarDemo } from "../avatar";
-import { useSidebarContext } from "@/context/sidebar-context";
 import SidebarMenu from "./sidebar-menu";
 import SidebarFooter from "./sidebar-footer";
 import Link from "next/link";
 
-export function SidebarContainer() {
+export function SidebarContainer({ user }: any) {
   const [isOpen, setIsOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const pathname = usePathname();
-
-  const { fullName }: any = useSidebarContext();
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -66,7 +63,7 @@ export function SidebarContainer() {
         {isOpen && (
           <div className="mt-4 text-center">
             <h2 className="text-lg font-semibold capitalize text-black dark:text-white ">
-              {fullName}
+              {user}
             </h2>
           </div>
         )}

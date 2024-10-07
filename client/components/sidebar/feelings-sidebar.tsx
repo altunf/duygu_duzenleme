@@ -10,7 +10,7 @@ export function FeelingsSidebar() {
   const emotions = ["öfke", "mutluluk", "üzüntü", "korku"];
 
   const handleEmotionClick = (emotion: string) => {
-    router.push(`/exercises/${emotion}`);
+    router.push(`/dashboard/exercises/${emotion}`);
   };
 
   const mood = (
@@ -34,7 +34,7 @@ export function FeelingsSidebar() {
       </div>
     </aside>
   );
-  const path = pathname.startsWith("/exercises");
+  const path = pathname.startsWith("/dashboard/exercises");
 
   return <> {path && mood}</>;
 }

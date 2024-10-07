@@ -3,6 +3,8 @@ import * as jose from "jose";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
+//cookie management
+
 function getJwtSecretKey() {
   const secretKey = process.env.JWT_SECRET;
 

@@ -51,7 +51,9 @@ export function ExerciseCard({ props, maxLength = 100, token }: any) {
 
   const handleRead = () => {
     router.push(
-      `/exercises/${props?.mood?.[0]}/${encodeURIComponent(props?._id)}`
+      `/dashboard/exercises/${props?.mood?.[0]}/${encodeURIComponent(
+        props?._id
+      )}`
     );
   };
 
